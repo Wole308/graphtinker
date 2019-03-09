@@ -47,9 +47,9 @@ void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int e
 	unsigned int edgeupdatecmd = INSERTEDGE;	
 	#ifdef EN_SGHASHING
 	vertexid_t local_srcvid = get_localvid((vertexid_t)src);
-	vertexid_t local_dstvid = get_localvid((vertexid_t)dst);
+	// vertexid_t local_dstvid = get_localvid((vertexid_t)dst);
 	src = local_srcvid;
-	dst = local_dstvid;
+	// dst = local_dstvid;
 	#endif	
 	// cout<<"src : "<<src<<", dst : "<<dst<<endl;
 	update_edge(src, dst, ew, edgeupdatecmd);
@@ -509,8 +509,8 @@ vertexid_t graphtinker::get_localvid(vertexid_t globalvid){
 	return vertex_translator[globalvid].localvid;
 }
 
-unsigned int graphtinker::get_translator_tracker(){
-	return translator_tracker.mark;
+tracker_t graphtinker::get_translator_tracker(){
+	return translator_tracker;
 }
 
 vertices & graphtinker::get_vertices_handler(){

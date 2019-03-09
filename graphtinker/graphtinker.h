@@ -49,7 +49,7 @@ class graphtinker{
 		void initialize_lvas();
 		void iterator();
 		vertexid_t get_localvid(vertexid_t globalvid);
-		unsigned int get_translator_tracker();
+		tracker_t get_translator_tracker();
 		vertices & get_vertices_handler();
 	private:
 };
