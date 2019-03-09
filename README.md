@@ -14,10 +14,6 @@ Build the project:
 
     $ make
 
-Override the default C++ compiler:
-
-    $ CXX=g++-7 make
-
 Test the build:
 
     $ make test
