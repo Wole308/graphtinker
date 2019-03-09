@@ -48,7 +48,9 @@ GDSARG=$(GDSARG1) $(GDSARG2) $(GDSARG3) $(GDSARG4) $(GDSARG5) $(GDSARG6) $(GDSAR
 	
 $(info echo *** started! ***)
 
-all: system_config generate_src gt
+all: clean system_config generate_src gt
+
+test: clean system_config generate_src gt run
 
 system_config:
 ifeq ($(rmat_500k_8M), $(ON))
@@ -81,6 +83,9 @@ generate_src:
 
 gt:
 	g++ -O3 -std=c++11 $(TESTARG) $(GDSARG) -fopenmp -o gt.exe
+	
+run:
+	./gt.exe
 	
 clean:
 	rm -rf gt.exe
