@@ -1,0 +1,90 @@
+started  (updates_test)
+LLFULLDB: ON
+SGHashing: ON
+VPropUpdate: OFF
+WORK_BLOCK_HEIGHT: 4
+SUB_BLOCK_HEIGHT: 8
+PAGE_BLOCKHEIGHT: 64
+graphbenchmark: rmat16_524288_8380000.edges
+NO_OF_VERTICES: 524288
+NO_OF_EDGES: 8380000
+host: GT
+graph direction type: DIRECTEDGRAPH
+graph deletion type: DELETEEDGE
+graph deletion rate: 0
+initializing vertices (vertices) 
+=== insertions started ===
+
+batch : 0
+edges loaded : 1048576 edges
+number of edges : 1047879 edges
+number of unique edges : 1048576 edges
+number of unique edges in ll : 1048576 edges
+timelapse (ms) : 957.47 ms
+total timelapse (ms) : 957.47 ms
+running throughput : 1.09515 million edges per sec
+
+batch : 1
+edges loaded : 1048576 edges
+number of edges : 2094496 edges
+number of unique edges : 2097152 edges
+number of unique edges in ll : 2097152 edges
+timelapse (ms) : 625.633 ms
+total timelapse (ms) : 1583.1 ms
+running throughput : 1.32471 million edges per sec
+
+batch : 2
+edges loaded : 1048576 edges
+number of edges : 3139850 edges
+number of unique edges : 3145728 edges
+number of unique edges in ll : 3145728 edges
+timelapse (ms) : 682.403 ms
+total timelapse (ms) : 2265.51 ms
+running throughput : 1.38853 million edges per sec
+
+batch : 3
+edges loaded : 1048576 edges
+number of edges : 4184068 edges
+number of unique edges : 4194304 edges
+number of unique edges in ll : 4194304 edges
+timelapse (ms) : 693.503 ms
+total timelapse (ms) : 2959.01 ms
+running throughput : 1.41747 million edges per sec
+
+batch : 4
+edges loaded : 1048576 edges
+number of edges : 5227005 edges
+number of unique edges : 5242880 edges
+number of unique edges in ll : 5242880 edges
+timelapse (ms) : 733.875 ms
+total timelapse (ms) : 3692.88 ms
+running throughput : 1.41973 million edges per sec
+
+batch : 5
+edges loaded : 1048576 edges
+number of edges : 6268925 edges
+number of unique edges : 6291456 edges
+number of unique edges in ll : 6291456 edges
+timelapse (ms) : 802.877 ms
+total timelapse (ms) : 4495.76 ms
+running throughput : 1.39942 million edges per sec
+
+batch : 6
+edges loaded : 1048576 edges
+number of edges : 7309594 edges
+number of unique edges : 7340032 edges
+number of unique edges in ll : 7340032 edges
+timelapse (ms) : 829.579 ms
+total timelapse (ms) : 5325.34 ms
+running throughput : 1.37832 million edges per sec
+finished reading from file (updates_test)
+
+batch : 7
+edges loaded : 1039969 edges
+number of edges : 8340650 edges
+number of unique edges : 8380001 edges
+number of unique edges in ll : 8380001 edges
+timelapse (ms) : 835.416 ms
+total timelapse (ms) : 6160.76 ms
+running throughput : 1.36022 million edges per sec
+destroying graphtinker objects 

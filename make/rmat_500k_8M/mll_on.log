@@ -1,0 +1,18 @@
+started  (updates_test)
+LLFULLDB: ON
+SGHashing: ON
+VPropUpdate: OFF
+WORK_BLOCK_HEIGHT: 4
+SUB_BLOCK_HEIGHT: 8
+PAGE_BLOCKHEIGHT: 64
+graphbenchmark: rmat16_524288_8380000.edges
+NO_OF_VERTICES: 524288
+NO_OF_EDGES: 8380000
+host: GT
+graph direction type: DIRECTEDGRAPH
+graph deletion type: DELETEEDGE
+graph deletion rate: 0
+number of cores configured: 2
+number of omp threads: 1
+initializing vertices (vertices) 
+=== insertions started ===

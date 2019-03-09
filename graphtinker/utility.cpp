@@ -1,0 +1,63 @@
+#include <string.h>
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+#include "graphtinker.h"
+
+unsigned int bitcombine_AB(unsigned int A, unsigned int B){
+	unsigned int bitcomb;
+	
+	if((A==0) && (B==0)) { 
+	  bitcomb = 00;
+	  
+	} else if((A==0) && (B==1)) { 
+      bitcomb = 01;
+	  
+	} else if((A==1) && (B==0)) {
+      bitcomb = 10;
+	  
+	} else if((A==1) && (B==1)) {
+      bitcomb = 11; 
+	  
+	} else {
+      //printf("Shouldn't get here: 45\n" );
+	}
+	return bitcomb;
+}
+
+unsigned int bitselect_ABC(unsigned int A, unsigned int B, unsigned int C){
+	unsigned int bitsel;
+	
+	if((A==0) && (B==0) && (C==1)) { 
+	  bitsel = 001;
+	  
+	} else if((A==0) && (B==1) && (C==0)) { 
+      bitsel = 010;
+	  
+	} else if((A==1) && (B==0) && (C==0)) {
+      bitsel = 100;
+	  
+	} else {
+      //printf("Shouldn't get here: 45\n" );
+	}
+	return bitsel;
+}
+
+float min_float(float A, float B){
+	if(A<B) { return A; }
+	else { return B; }
+}
+
+vertexdata_t min_type1(vertexdata_t A, vertexdata_t B){
+	if(A<B) { return A; }
+	else { return B; }
+}
+
+unsigned int getpartitionid(unsigned int vid){
+	return (vid % PAGE_BLOCKHEIGHT) / SUB_BLOCK_HEIGHT;
+}
+
+
+
+

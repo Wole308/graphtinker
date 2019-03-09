@@ -1,0 +1,2225 @@
+WARNING: not enough actions
+{
+	"timer_res": 1.000000000000000e-09,,
+	"time_graphread": 1.092665406090673e+02,
+	"time_actionread": 2.942291267712135e+02,
+	"nv": 2097152,
+	"ne": 33766314,
+	"batchsize": 1048576,
+	"nbatch": 94,
+	"naction": 94371840,
+	"num_threads": 1,
+	"time_stinger": 1.598189571592957e+01,
+	"error_code":"0x0",
+	"time_check": 8.455407596193254e-02
+=== First Check : TotaledgesinS : 0 
+printing variables... 
+nbatch : 90 
+batch_size : 1048576 
+nv : 2097152 
+ne : 33766314 
+pass : 1 (test_updatesingleedge) 
+
+ ======= update and analytics : iteration 0 (insert_remove_benchmark) =======
+ edges loaded for batch 0 = 0.000000 
+time lapse for batch 0 = 1.447991 
+throughput for batch 0 = 1344965.808546 
+total edges loaded for iteration 0 : 1947498, nbatch : 90, actno : 0 
+totaledgesloaded_sofar : 2013017 
+totaltimelapse_sofar : 1.44799 
+running throughput for batch 0 = 1390214.026932 
+
+=== totaledgesinS : 1943882 
+
+ edges loaded for batch 1 = 0.000000 
+time lapse for batch 1 = 1.224218 
+throughput for batch 1 = 1590334.277572 
+total edges loaded for iteration 1 : 1946916, nbatch : 90, actno : 1048576 
+totaledgesloaded_sofar : 4025685 
+totaltimelapse_sofar : 2.67221 
+running throughput for batch 1 = 1506500.909567 
+
+=== totaledgesinS : 3880249 
+
+ edges loaded for batch 2 = 0.000000 
+time lapse for batch 2 = 1.297614 
+throughput for batch 2 = 1500569.687153 
+total edges loaded for iteration 2 : 1947160, nbatch : 90, actno : 2097152 
+totaledgesloaded_sofar : 6038435 
+totaltimelapse_sofar : 3.96982 
+running throughput for batch 2 = 1521084.322670 
+
+=== totaledgesinS : 5810821 
+
+ edges loaded for batch 3 = 0.000000 
+time lapse for batch 3 = 1.416393 
+throughput for batch 3 = 1375272.204961 
+total edges loaded for iteration 3 : 1947926, nbatch : 90, actno : 3145728 
+totaledgesloaded_sofar : 8051524 
+totaltimelapse_sofar : 5.38622 
+running throughput for batch 3 = 1494838.758334 
+
+=== totaledgesinS : 7736051 
+
+ edges loaded for batch 4 = 0.000000 
+time lapse for batch 4 = 1.569069 
+throughput for batch 4 = 1240929.165571 
+total edges loaded for iteration 4 : 1947104, nbatch : 90, actno : 4194304 
+totaledgesloaded_sofar : 10064118 
+totaltimelapse_sofar : 6.95529 
+running throughput for batch 4 = 1446974.181922 
+
+=== totaledgesinS : 9655022 
+
+ edges loaded for batch 5 = 0.000000 
+time lapse for batch 5 = 1.724581 
+throughput for batch 5 = 1129101.771050 
+total edges loaded for iteration 5 : 1947228, nbatch : 90, actno : 5242880 
+totaledgesloaded_sofar : 12076995 
+totaltimelapse_sofar : 8.67987 
+running throughput for batch 5 = 1391380.254721 
+
+=== totaledgesinS : 11569135 
+
+ edges loaded for batch 6 = 0.000000 
+time lapse for batch 6 = 1.872321 
+throughput for batch 6 = 1040259.629632 
+total edges loaded for iteration 6 : 1947700, nbatch : 90, actno : 6291456 
+totaledgesloaded_sofar : 14089926 
+totaltimelapse_sofar : 10.55219 
+running throughput for batch 6 = 1335261.129802 
+
+=== totaledgesinS : 13478374 
+
+ edges loaded for batch 7 = 0.000000 
+time lapse for batch 7 = 2.036971 
+throughput for batch 7 = 955845.830836 
+total edges loaded for iteration 7 : 1947030, nbatch : 90, actno : 7340032 
+totaledgesloaded_sofar : 16102648 
+totaltimelapse_sofar : 12.58916 
+running throughput for batch 7 = 1279088.521266 
+
+=== totaledgesinS : 15381402 
+
+ edges loaded for batch 8 = 0.000000 
+time lapse for batch 8 = 2.206969 
+throughput for batch 8 = 882278.012673 
+total edges loaded for iteration 8 : 1947160, nbatch : 90, actno : 8388608 
+totaledgesloaded_sofar : 18115322 
+totaltimelapse_sofar : 14.79613 
+running throughput for batch 8 = 1224328.624779 
+
+=== totaledgesinS : 17280568 
+
+ edges loaded for batch 9 = 0.000000 
+time lapse for batch 9 = 2.375861 
+throughput for batch 9 = 819643.107369 
+total edges loaded for iteration 9 : 1947358, nbatch : 90, actno : 9437184 
+totaledgesloaded_sofar : 20128164 
+totaltimelapse_sofar : 17.17199 
+running throughput for batch 9 = 1172151.061493 
+
+=== totaledgesinS : 19175926 
+
+ edges loaded for batch 10 = 0.000000 
+time lapse for batch 10 = 2.536380 
+throughput for batch 10 = 767763.430144 
+total edges loaded for iteration 10 : 1947340, nbatch : 90, actno : 10485760 
+totaledgesloaded_sofar : 22140861 
+totaltimelapse_sofar : 19.70837 
+running throughput for batch 10 = 1123424.358839 
+
+=== totaledgesinS : 21067349 
+
+ edges loaded for batch 11 = 0.000000 
+time lapse for batch 11 = 2.698784 
+throughput for batch 11 = 721616.953403 
+total edges loaded for iteration 11 : 1947488, nbatch : 90, actno : 11534336 
+totaledgesloaded_sofar : 24153758 
+totaltimelapse_sofar : 22.40715 
+running throughput for batch 11 = 1077948.599944 
+
+=== totaledgesinS : 22954559 
+
+ edges loaded for batch 12 = 0.000000 
+time lapse for batch 12 = 2.878303 
+throughput for batch 12 = 676302.087448 
+total edges loaded for iteration 12 : 1946602, nbatch : 90, actno : 12582912 
+totaledgesloaded_sofar : 26166008 
+totaltimelapse_sofar : 25.28545 
+running throughput for batch 12 = 1034824.511669 
+
+=== totaledgesinS : 24836978 
+
+ edges loaded for batch 13 = 0.000000 
+time lapse for batch 13 = 3.301723 
+throughput for batch 13 = 589841.683979 
+total edges loaded for iteration 13 : 1947494, nbatch : 90, actno : 13631488 
+totaledgesloaded_sofar : 28178860 
+totaltimelapse_sofar : 28.58718 
+running throughput for batch 13 = 985716.755594 
+
+=== totaledgesinS : 26716359 
+
+ edges loaded for batch 14 = 0.000000 
+time lapse for batch 14 = 3.265629 
+throughput for batch 14 = 596459.667872 
+total edges loaded for iteration 14 : 1947816, nbatch : 90, actno : 14680064 
+totaledgesloaded_sofar : 30191867 
+totaltimelapse_sofar : 31.85281 
+running throughput for batch 14 = 947855.782959 
+
+=== totaledgesinS : 28592753 
+
+ edges loaded for batch 15 = 0.000000 
+time lapse for batch 15 = 3.413875 
+throughput for batch 15 = 570384.619660 
+total edges loaded for iteration 15 : 1947222, nbatch : 90, actno : 15728640 
+totaledgesloaded_sofar : 32204615 
+totaltimelapse_sofar : 35.26668 
+running throughput for batch 15 = 913173.940663 
+
+=== totaledgesinS : 30464044 
+
+ edges loaded for batch 16 = 0.000000 
+time lapse for batch 16 = 3.841698 
+throughput for batch 16 = 506980.993465 
+total edges loaded for iteration 16 : 1947668, nbatch : 90, actno : 16777216 
+totaledgesloaded_sofar : 34217478 
+totaltimelapse_sofar : 39.10838 
+running throughput for batch 16 = 874939.789129 
+
+=== totaledgesinS : 32332796 
+
+ edges loaded for batch 17 = 0.000000 
+time lapse for batch 17 = 3.782053 
+throughput for batch 17 = 514952.550720 
+total edges loaded for iteration 17 : 1947578, nbatch : 90, actno : 17825792 
+totaledgesloaded_sofar : 36230159 
+totaltimelapse_sofar : 42.89043 
+running throughput for batch 17 = 844714.216231 
+
+=== totaledgesinS : 34198273 
+
+ edges loaded for batch 18 = 0.000000 
+time lapse for batch 18 = 3.907477 
+throughput for batch 18 = 498372.776358 
+total edges loaded for iteration 18 : 1947380, nbatch : 90, actno : 18874368 
+totaledgesloaded_sofar : 38242838 
+totaltimelapse_sofar : 46.79791 
+running throughput for batch 18 = 817191.147551 
+
+=== totaledgesinS : 36060004 
+
+ edges loaded for batch 19 = 0.000000 
+time lapse for batch 19 = 4.243109 
+throughput for batch 19 = 458983.700089 
+total edges loaded for iteration 19 : 1947518, nbatch : 90, actno : 19922944 
+totaledgesloaded_sofar : 40255616 
+totaltimelapse_sofar : 51.04102 
+running throughput for batch 19 = 788691.455359 
+
+=== totaledgesinS : 37918367 
+
+ edges loaded for batch 20 = 0.000000 
+time lapse for batch 20 = 4.432714 
+throughput for batch 20 = 439538.872725 
+total edges loaded for iteration 20 : 1948350, nbatch : 90, actno : 20971520 
+totaledgesloaded_sofar : 42268891 
+totaltimelapse_sofar : 55.47373 
+running throughput for batch 20 = 761962.256477 
+
+=== totaledgesinS : 39774289 
+
+ edges loaded for batch 21 = 0.000000 
+time lapse for batch 21 = 4.419436 
+throughput for batch 21 = 440739.510236 
+total edges loaded for iteration 21 : 1947820, nbatch : 90, actno : 22020096 
+totaledgesloaded_sofar : 44281822 
+totaltimelapse_sofar : 59.89317 
+running throughput for batch 21 = 739346.783874 
+
+=== totaledgesinS : 41627357 
+
+ edges loaded for batch 22 = 0.000000 
+time lapse for batch 22 = 4.919184 
+throughput for batch 22 = 395720.485525 
+total edges loaded for iteration 22 : 1946622, nbatch : 90, actno : 23068672 
+totaledgesloaded_sofar : 46294040 
+totaltimelapse_sofar : 64.81235 
+running throughput for batch 22 = 714278.027606 
+
+=== totaledgesinS : 43475506 
+
+ edges loaded for batch 23 = 0.000000 
+time lapse for batch 23 = 4.745117 
+throughput for batch 23 = 410313.554050 
+total edges loaded for iteration 23 : 1946986, nbatch : 90, actno : 24117248 
+totaledgesloaded_sofar : 48306310 
+totaltimelapse_sofar : 69.55747 
+running throughput for batch 23 = 694480.540639 
+
+=== totaledgesinS : 45321652 
+
+ edges loaded for batch 24 = 0.000000 
+time lapse for batch 24 = 4.925498 
+throughput for batch 24 = 395266.803449 
+total edges loaded for iteration 24 : 1946886, nbatch : 90, actno : 25165824 
+totaledgesloaded_sofar : 50318490 
+totaltimelapse_sofar : 74.48297 
+running throughput for batch 24 = 675570.408682 
+
+=== totaledgesinS : 47165370 
+
+ edges loaded for batch 25 = 0.000000 
+time lapse for batch 25 = 5.435678 
+throughput for batch 25 = 358289.820236 
+total edges loaded for iteration 25 : 1947548, nbatch : 90, actno : 26214400 
+totaledgesloaded_sofar : 52331180 
+totaltimelapse_sofar : 79.91865 
+running throughput for batch 25 = 654805.629829 
+
+=== totaledgesinS : 49007392 
+
+ edges loaded for batch 26 = 0.000000 
+time lapse for batch 26 = 5.242877 
+throughput for batch 26 = 371464.747663 
+total edges loaded for iteration 26 : 1947544, nbatch : 90, actno : 27262976 
+totaledgesloaded_sofar : 54343893 
+totaltimelapse_sofar : 85.16152 
+running throughput for batch 26 = 638127.295058 
+
+=== totaledgesinS : 50845086 
+
+ edges loaded for batch 27 = 0.000000 
+time lapse for batch 27 = 5.824069 
+throughput for batch 27 = 334181.819552 
+total edges loaded for iteration 27 : 1946298, nbatch : 90, actno : 28311552 
+totaledgesloaded_sofar : 56355887 
+totaltimelapse_sofar : 90.98559 
+running throughput for batch 27 = 619393.522108 
+
+=== totaledgesinS : 52679629 
+
+ edges loaded for batch 28 = 0.000000 
+time lapse for batch 28 = 5.563611 
+throughput for batch 28 = 350037.042267 
+total edges loaded for iteration 28 : 1947470, nbatch : 90, actno : 29360128 
+totaledgesloaded_sofar : 58368402 
+totaltimelapse_sofar : 96.54920 
+running throughput for batch 28 = 604545.655350 
+
+=== totaledgesinS : 54512507 
+
+ edges loaded for batch 29 = 0.000000 
+time lapse for batch 29 = 6.070336 
+throughput for batch 29 = 320908.446730 
+total edges loaded for iteration 29 : 1948022, nbatch : 90, actno : 30408704 
+totaledgesloaded_sofar : 60381445 
+totaltimelapse_sofar : 102.61954 
+running throughput for batch 29 = 588401.049046 
+
+=== totaledgesinS : 56343813 
+
+ edges loaded for batch 30 = 0.000000 
+time lapse for batch 30 = 6.044885 
+throughput for batch 30 = 322189.080482 
+total edges loaded for iteration 30 : 1947596, nbatch : 90, actno : 31457280 
+totaledgesloaded_sofar : 62394097 
+totaltimelapse_sofar : 108.66443 
+running throughput for batch 30 = 574190.650542 
+
+=== totaledgesinS : 58171979 
+
+ edges loaded for batch 31 = 0.000000 
+time lapse for batch 31 = 6.333044 
+throughput for batch 31 = 307631.535698 
+total edges loaded for iteration 31 : 1948244, nbatch : 90, actno : 32505856 
+totaledgesloaded_sofar : 64407200 
+totaltimelapse_sofar : 114.99747 
+running throughput for batch 31 = 560074.935023 
+
+=== totaledgesinS : 59998483 
+
+ edges loaded for batch 32 = 0.000000 
+time lapse for batch 32 = 6.498458 
+throughput for batch 32 = 299541.225534 
+total edges loaded for iteration 32 : 1946556, nbatch : 90, actno : 33554432 
+totaledgesloaded_sofar : 66419253 
+totaltimelapse_sofar : 121.49593 
+running throughput for batch 32 = 546678.845558 
+
+=== totaledgesinS : 61821269 
+
+ edges loaded for batch 33 = 0.000000 
+time lapse for batch 33 = 6.542321 
+throughput for batch 33 = 297521.608102 
+total edges loaded for iteration 33 : 1946482, nbatch : 90, actno : 34603008 
+totaledgesloaded_sofar : 68431263 
+totaltimelapse_sofar : 128.03825 
+running throughput for batch 33 = 534459.537956 
+
+=== totaledgesinS : 63642206 
+
+ edges loaded for batch 34 = 0.000000 
+time lapse for batch 34 = 6.938138 
+throughput for batch 34 = 280596.877760 
+total edges loaded for iteration 34 : 1946820, nbatch : 90, actno : 35651584 
+totaledgesloaded_sofar : 70443672 
+totaltimelapse_sofar : 134.97639 
+running throughput for batch 34 = 521896.264210 
+
+=== totaledgesinS : 65459934 
+
+ edges loaded for batch 35 = 0.000000 
+time lapse for batch 35 = 6.926650 
+throughput for batch 35 = 281195.664037 
+total edges loaded for iteration 35 : 1947744, nbatch : 90, actno : 36700160 
+totaledgesloaded_sofar : 72456338 
+totaltimelapse_sofar : 141.90304 
+running throughput for batch 35 = 510604.561843 
+
+=== totaledgesinS : 67276956 
+
+ edges loaded for batch 36 = 0.000000 
+time lapse for batch 36 = 7.221595 
+throughput for batch 36 = 269616.044921 
+total edges loaded for iteration 36 : 1947058, nbatch : 90, actno : 37748736 
+totaledgesloaded_sofar : 74468742 
+totaltimelapse_sofar : 149.12463 
+running throughput for batch 36 = 499372.510184 
+
+=== totaledgesinS : 69091005 
+
+ edges loaded for batch 37 = 0.000000 
+time lapse for batch 37 = 7.372673 
+throughput for batch 37 = 264323.387815 
+total edges loaded for iteration 37 : 1948770, nbatch : 90, actno : 38797312 
+totaledgesloaded_sofar : 76482207 
+totaltimelapse_sofar : 156.49731 
+running throughput for batch 37 = 488712.611631 
+
+=== totaledgesinS : 70904391 
+
+ edges loaded for batch 38 = 0.000000 
+time lapse for batch 38 = 7.443938 
+throughput for batch 38 = 261603.197811 
+total edges loaded for iteration 38 : 1947358, nbatch : 90, actno : 39845888 
+totaledgesloaded_sofar : 78494830 
+totaltimelapse_sofar : 163.94124 
+running throughput for batch 38 = 478798.551136 
+
+=== totaledgesinS : 72713553 
+
+ edges loaded for batch 39 = 0.000000 
+time lapse for batch 39 = 7.822414 
+throughput for batch 39 = 248974.818139 
+total edges loaded for iteration 39 : 1947584, nbatch : 90, actno : 40894464 
+totaledgesloaded_sofar : 80507551 
+totaltimelapse_sofar : 171.76366 
+running throughput for batch 39 = 468711.206014 
+
+=== totaledgesinS : 74521432 
+
+ edges loaded for batch 40 = 0.000000 
+time lapse for batch 40 = 7.612866 
+throughput for batch 40 = 255737.316575 
+total edges loaded for iteration 40 : 1946894, nbatch : 90, actno : 41943040 
+totaledgesloaded_sofar : 82519849 
+totaltimelapse_sofar : 179.37652 
+running throughput for batch 40 = 460037.062293 
+
+=== totaledgesinS : 76325897 
+
+ edges loaded for batch 41 = 0.000000 
+time lapse for batch 41 = 8.264665 
+throughput for batch 41 = 235613.187280 
+total edges loaded for iteration 41 : 1947264, nbatch : 90, actno : 42991616 
+totaledgesloaded_sofar : 84532270 
+totaltimelapse_sofar : 187.64119 
+running throughput for batch 41 = 450499.544968 
+
+=== totaledgesinS : 78128601 
+
+ edges loaded for batch 42 = 0.000000 
+time lapse for batch 42 = 7.839542 
+throughput for batch 42 = 248341.033161 
+total edges loaded for iteration 42 : 1946880, nbatch : 90, actno : 44040192 
+totaledgesloaded_sofar : 86544562 
+totaltimelapse_sofar : 195.48073 
+running throughput for batch 42 = 442726.818868 
+
+=== totaledgesinS : 79929389 
+
+ edges loaded for batch 43 = 0.000000 
+time lapse for batch 43 = 8.591335 
+throughput for batch 43 = 226709.342930 
+total edges loaded for iteration 43 : 1947736, nbatch : 90, actno : 45088768 
+totaledgesloaded_sofar : 88557387 
+totaltimelapse_sofar : 204.07207 
+running throughput for batch 43 = 433951.538546 
+
+=== totaledgesinS : 81729062 
+
+ edges loaded for batch 44 = 0.000000 
+time lapse for batch 44 = 8.321356 
+throughput for batch 44 = 234039.750817 
+total edges loaded for iteration 44 : 1947528, nbatch : 90, actno : 46137344 
+totaledgesloaded_sofar : 90570167 
+totaltimelapse_sofar : 212.39342 
+running throughput for batch 44 = 426426.422796 
+
+=== totaledgesinS : 83526834 
+
+ edges loaded for batch 45 = 0.000000 
+time lapse for batch 45 = 8.772335 
+throughput for batch 45 = 222026.638616 
+total edges loaded for iteration 45 : 1947692, nbatch : 90, actno : 47185920 
+totaledgesloaded_sofar : 92582865 
+totaltimelapse_sofar : 221.16576 
+running throughput for batch 45 = 418613.019128 
+
+=== totaledgesinS : 85321466 
+
+ edges loaded for batch 46 = 0.000000 
+time lapse for batch 46 = 9.026512 
+throughput for batch 46 = 215747.567007 
+total edges loaded for iteration 46 : 1947448, nbatch : 90, actno : 48234496 
+totaledgesloaded_sofar : 94595429 
+totaltimelapse_sofar : 230.19227 
+running throughput for batch 46 = 410940.948089 
+
+=== totaledgesinS : 87115020 
+
+ edges loaded for batch 47 = 0.000000 
+time lapse for batch 47 = 8.713786 
+throughput for batch 47 = 223463.138785 
+total edges loaded for iteration 47 : 1947210, nbatch : 90, actno : 49283072 
+totaledgesloaded_sofar : 96607827 
+totaltimelapse_sofar : 238.90605 
+running throughput for batch 47 = 404375.800385 
+
+=== totaledgesinS : 88905890 
+
+ edges loaded for batch 48 = 0.000000 
+time lapse for batch 48 = 9.417659 
+throughput for batch 48 = 206781.953449 
+total edges loaded for iteration 48 : 1947402, nbatch : 90, actno : 50331648 
+totaledgesloaded_sofar : 98620374 
+totaltimelapse_sofar : 248.32371 
+running throughput for batch 48 = 397144.406674 
+
+=== totaledgesinS : 90695631 
+
+ edges loaded for batch 49 = 0.000000 
+time lapse for batch 49 = 9.194888 
+throughput for batch 49 = 211888.164753 
+total edges loaded for iteration 49 : 1948288, nbatch : 90, actno : 51380224 
+totaledgesloaded_sofar : 100633362 
+totaltimelapse_sofar : 257.51860 
+running throughput for batch 49 = 390780.942319 
+
+=== totaledgesinS : 92484145 
+
+ edges loaded for batch 50 = 0.000000 
+time lapse for batch 50 = 9.557623 
+throughput for batch 50 = 203781.414497 
+total edges loaded for iteration 50 : 1947666, nbatch : 90, actno : 52428800 
+totaledgesloaded_sofar : 102645959 
+totaltimelapse_sofar : 267.07623 
+running throughput for batch 50 = 384332.071606 
+
+=== totaledgesinS : 94270512 
+
+ edges loaded for batch 51 = 0.000000 
+time lapse for batch 51 = 9.924580 
+throughput for batch 51 = 196268.656105 
+total edges loaded for iteration 51 : 1947884, nbatch : 90, actno : 53477376 
+totaledgesloaded_sofar : 104658836 
+totaltimelapse_sofar : 277.00081 
+running throughput for batch 51 = 377828.634084 
+
+=== totaledgesinS : 96055404 
+
+ edges loaded for batch 52 = 0.000000 
+time lapse for batch 52 = 9.542246 
+throughput for batch 52 = 204032.457674 
+total edges loaded for iteration 52 : 1946928, nbatch : 90, actno : 54525952 
+totaledgesloaded_sofar : 106671029 
+totaltimelapse_sofar : 286.54305 
+running throughput for batch 52 = 372268.768157 
+
+=== totaledgesinS : 97837062 
+
+ edges loaded for batch 53 = 0.000000 
+time lapse for batch 53 = 10.162198 
+throughput for batch 53 = 191624.088877 
+total edges loaded for iteration 53 : 1947322, nbatch : 90, actno : 55574528 
+totaledgesloaded_sofar : 108683469 
+totaltimelapse_sofar : 296.70525 
+running throughput for batch 53 = 366301.131724 
+
+=== totaledgesinS : 99618107 
+
+ edges loaded for batch 54 = 0.000000 
+time lapse for batch 54 = 10.434858 
+throughput for batch 54 = 186595.738378 
+total edges loaded for iteration 54 : 1947100, nbatch : 90, actno : 56623104 
+totaledgesloaded_sofar : 110695740 
+totaltimelapse_sofar : 307.14011 
+running throughput for batch 54 = 360407.960559 
+
+=== totaledgesinS : 101396368 
+
+ edges loaded for batch 55 = 0.000000 
+time lapse for batch 55 = 10.109553 
+throughput for batch 55 = 192543.240608 
+total edges loaded for iteration 55 : 1946526, nbatch : 90, actno : 57671680 
+totaledgesloaded_sofar : 112707787 
+totaltimelapse_sofar : 317.24966 
+running throughput for batch 55 = 355265.272002 
+
+=== totaledgesinS : 103172786 
+
+ edges loaded for batch 56 = 0.000000 
+time lapse for batch 56 = 10.562299 
+throughput for batch 56 = 184222.769249 
+total edges loaded for iteration 56 : 1945816, nbatch : 90, actno : 58720256 
+totaledgesloaded_sofar : 114719476 
+totaltimelapse_sofar : 327.81196 
+running throughput for batch 56 = 349955.126871 
+
+=== totaledgesinS : 104946257 
+
+ edges loaded for batch 57 = 0.000000 
+time lapse for batch 57 = 10.944256 
+throughput for batch 57 = 178004.058919 
+total edges loaded for iteration 57 : 1948122, nbatch : 90, actno : 59768832 
+totaledgesloaded_sofar : 116732408 
+totaltimelapse_sofar : 338.75622 
+running throughput for batch 57 = 344591.191299 
+
+=== totaledgesinS : 106720486 
+
+ edges loaded for batch 58 = 0.000000 
+time lapse for batch 58 = 10.723362 
+throughput for batch 58 = 181639.862503 
+total edges loaded for iteration 58 : 1947790, nbatch : 90, actno : 60817408 
+totaledgesloaded_sofar : 118745108 
+totaltimelapse_sofar : 349.47958 
+running throughput for batch 58 = 339776.958382 
+
+=== totaledgesinS : 108493600 
+
+ edges loaded for batch 59 = 0.000000 
+time lapse for batch 59 = 10.893117 
+throughput for batch 59 = 178775.466516 
+total edges loaded for iteration 59 : 1947422, nbatch : 90, actno : 61865984 
+totaledgesloaded_sofar : 120757655 
+totaltimelapse_sofar : 360.37269 
+running throughput for batch 59 = 335091.023383 
+
+=== totaledgesinS : 110264306 
+
+ edges loaded for batch 60 = 0.000000 
+time lapse for batch 60 = 11.398146 
+throughput for batch 60 = 170849.535617 
+total edges loaded for iteration 60 : 1947368, nbatch : 90, actno : 62914560 
+totaledgesloaded_sofar : 122769974 
+totaltimelapse_sofar : 371.77084 
+running throughput for batch 60 = 330230.240057 
+
+=== totaledgesinS : 112032637 
+
+ edges loaded for batch 61 = 0.000000 
+time lapse for batch 61 = 11.481371 
+throughput for batch 61 = 169609.705441 
+total edges loaded for iteration 61 : 1947352, nbatch : 90, actno : 63963136 
+totaledgesloaded_sofar : 124782398 
+totaltimelapse_sofar : 383.25221 
+running throughput for batch 61 = 325588.200334 
+
+=== totaledgesinS : 113800517 
+
+ edges loaded for batch 62 = 0.000000 
+time lapse for batch 62 = 11.143536 
+throughput for batch 62 = 174712.224437 
+total edges loaded for iteration 62 : 1946912, nbatch : 90, actno : 65011712 
+totaledgesloaded_sofar : 126794731 
+totaltimelapse_sofar : 394.39575 
+running throughput for batch 62 = 321491.120413 
+
+=== totaledgesinS : 115565508 
+
+ edges loaded for batch 63 = 0.000000 
+time lapse for batch 63 = 11.767162 
+throughput for batch 63 = 165554.441710 
+total edges loaded for iteration 63 : 1948106, nbatch : 90, actno : 66060288 
+totaledgesloaded_sofar : 128807470 
+totaltimelapse_sofar : 406.16291 
+running throughput for batch 63 = 317132.526425 
+
+=== totaledgesinS : 117330277 
+
+ edges loaded for batch 64 = 0.000000 
+time lapse for batch 64 = 12.084849 
+throughput for batch 64 = 161195.069473 
+total edges loaded for iteration 64 : 1948018, nbatch : 90, actno : 67108864 
+totaledgesloaded_sofar : 130820224 
+totaltimelapse_sofar : 418.24776 
+running throughput for batch 64 = 312781.649441 
+
+=== totaledgesinS : 119093619 
+
+ edges loaded for batch 65 = 0.000000 
+time lapse for batch 65 = 11.913992 
+throughput for batch 65 = 163423.313116 
+total edges loaded for iteration 65 : 1947024, nbatch : 90, actno : 68157440 
+totaledgesloaded_sofar : 132832643 
+totaltimelapse_sofar : 430.16175 
+running throughput for batch 65 = 308796.964659 
+
+=== totaledgesinS : 120854096 
+
+ edges loaded for batch 66 = 0.000000 
+time lapse for batch 66 = 11.866997 
+throughput for batch 66 = 163994.313051 
+total edges loaded for iteration 66 : 1946120, nbatch : 90, actno : 69206016 
+totaledgesloaded_sofar : 134844387 
+totaltimelapse_sofar : 442.02875 
+running throughput for batch 66 = 305057.957587 
+
+=== totaledgesinS : 122612490 
+
+ edges loaded for batch 67 = 0.000000 
+time lapse for batch 67 = 12.484143 
+throughput for batch 67 = 156035.216976 
+total edges loaded for iteration 67 : 1947966, nbatch : 90, actno : 70254592 
+totaledgesloaded_sofar : 136857231 
+totaltimelapse_sofar : 454.51289 
+running throughput for batch 67 = 301107.479447 
+
+=== totaledgesinS : 124371112 
+
+ edges loaded for batch 68 = 0.000000 
+time lapse for batch 68 = 12.694226 
+throughput for batch 68 = 153313.323091 
+total edges loaded for iteration 68 : 1946194, nbatch : 90, actno : 71303168 
+totaledgesloaded_sofar : 138869136 
+totaltimelapse_sofar : 467.20712 
+running throughput for batch 68 = 297232.492568 
+
+=== totaledgesinS : 126125320 
+
+ edges loaded for batch 69 = 0.000000 
+time lapse for batch 69 = 12.560936 
+throughput for batch 69 = 155069.333931 
+total edges loaded for iteration 69 : 1947816, nbatch : 90, actno : 72351744 
+totaledgesloaded_sofar : 140882015 
+totaltimelapse_sofar : 479.76805 
+running throughput for batch 69 = 293646.094215 
+
+=== totaledgesinS : 127880683 
+
+ edges loaded for batch 70 = 0.000000 
+time lapse for batch 70 = 12.530749 
+throughput for batch 70 = 155359.434359 
+total edges loaded for iteration 70 : 1946770, nbatch : 90, actno : 73400320 
+totaledgesloaded_sofar : 142894281 
+totaltimelapse_sofar : 492.29880 
+running throughput for batch 70 = 290259.249985 
+
+=== totaledgesinS : 129633316 
+
+ edges loaded for batch 71 = 0.000000 
+time lapse for batch 71 = 13.033437 
+throughput for batch 71 = 149399.429805 
+total edges loaded for iteration 71 : 1947188, nbatch : 90, actno : 74448896 
+totaledgesloaded_sofar : 144906607 
+totaltimelapse_sofar : 505.33224 
+running throughput for batch 71 = 286755.120614 
+
+=== totaledgesinS : 131385437 
+
+ edges loaded for batch 72 = 0.000000 
+time lapse for batch 72 = 13.255268 
+throughput for batch 72 = 146874.135955 
+total edges loaded for iteration 72 : 1946856, nbatch : 90, actno : 75497472 
+totaledgesloaded_sofar : 146918715 
+totaltimelapse_sofar : 518.58751 
+running throughput for batch 72 = 283305.542895 
+
+=== totaledgesinS : 133134593 
+
+ edges loaded for batch 73 = 0.000000 
+time lapse for batch 73 = 13.378990 
+throughput for batch 73 = 145530.114968 
+total edges loaded for iteration 73 : 1947046, nbatch : 90, actno : 76546048 
+totaledgesloaded_sofar : 148930992 
+totaltimelapse_sofar : 531.96650 
+running throughput for batch 73 = 279963.104737 
+
+=== totaledgesinS : 134884439 
+
+ edges loaded for batch 74 = 0.000000 
+time lapse for batch 74 = 13.151261 
+throughput for batch 74 = 148054.999183 
+total edges loaded for iteration 74 : 1947110, nbatch : 90, actno : 77594624 
+totaledgesloaded_sofar : 150943419 
+totaltimelapse_sofar : 545.11776 
+running throughput for batch 74 = 276900.571997 
+
+=== totaledgesinS : 136631192 
+
+ edges loaded for batch 75 = 0.000000 
+time lapse for batch 75 = 13.369124 
+throughput for batch 75 = 145671.179300 
+total edges loaded for iteration 75 : 1947496, nbatch : 90, actno : 78643200 
+totaledgesloaded_sofar : 152955857 
+totaltimelapse_sofar : 558.48688 
+running throughput for batch 75 = 273875.469662 
+
+=== totaledgesinS : 138378180 
+
+ edges loaded for batch 76 = 0.000000 
+time lapse for batch 76 = 13.889332 
+throughput for batch 76 = 140149.724761 
+total edges loaded for iteration 76 : 1946586, nbatch : 90, actno : 79691776 
+totaledgesloaded_sofar : 154967758 
+totaltimelapse_sofar : 572.37621 
+running throughput for batch 76 = 270744.580970 
+
+=== totaledgesinS : 140121665 
+
+ edges loaded for batch 77 = 0.000000 
+time lapse for batch 77 = 14.082227 
+throughput for batch 77 = 138259.953478 
+total edges loaded for iteration 77 : 1947008, nbatch : 90, actno : 80740352 
+totaledgesloaded_sofar : 156980048 
+totaltimelapse_sofar : 586.45844 
+running throughput for batch 77 = 267674.633590 
+
+=== totaledgesinS : 141864529 
+
+ edges loaded for batch 78 = 0.000000 
+time lapse for batch 78 = 14.119575 
+throughput for batch 78 = 137963.504358 
+total edges loaded for iteration 78 : 1947986, nbatch : 90, actno : 81788928 
+totaledgesloaded_sofar : 158992837 
+totaltimelapse_sofar : 600.57801 
+running throughput for batch 78 = 264733.029118 
+
+=== totaledgesinS : 143607381 
+
+ edges loaded for batch 79 = 0.000000 
+time lapse for batch 79 = 13.947619 
+throughput for batch 79 = 139681.477207 
+total edges loaded for iteration 79 : 1948224, nbatch : 90, actno : 82837504 
+totaledgesloaded_sofar : 161005714 
+totaltimelapse_sofar : 614.52563 
+running throughput for batch 79 = 261999.996861 
+
+=== totaledgesinS : 145349160 
+
+ edges loaded for batch 80 = 0.000000 
+time lapse for batch 80 = 14.155974 
+throughput for batch 80 = 137639.417688 
+total edges loaded for iteration 80 : 1948420, nbatch : 90, actno : 83886080 
+totaledgesloaded_sofar : 163018864 
+totaltimelapse_sofar : 628.68161 
+running throughput for batch 80 = 259302.741065 
+
+=== totaledgesinS : 147091363 
+
+ edges loaded for batch 81 = 0.000000 
+time lapse for batch 81 = 14.577252 
+throughput for batch 81 = 133627.104943 
+total edges loaded for iteration 81 : 1947916, nbatch : 90, actno : 84934656 
+totaledgesloaded_sofar : 165031484 
+totaltimelapse_sofar : 643.25886 
+running throughput for batch 81 = 256555.322341 
+
+=== totaledgesinS : 148830778 
+
+ edges loaded for batch 82 = 0.000000 
+time lapse for batch 82 = 14.845470 
+throughput for batch 82 = 131167.556081 
+total edges loaded for iteration 82 : 1947244, nbatch : 90, actno : 85983232 
+totaledgesloaded_sofar : 167043930 
+totaltimelapse_sofar : 658.10433 
+running throughput for batch 82 = 253825.909656 
+
+=== totaledgesinS : 150568433 
+
+ edges loaded for batch 83 = 0.000000 
+time lapse for batch 83 = 14.985979 
+throughput for batch 83 = 129949.333772 
+total edges loaded for iteration 83 : 1947418, nbatch : 90, actno : 87031808 
+totaledgesloaded_sofar : 169056357 
+totaltimelapse_sofar : 673.09031 
+running throughput for batch 83 = 251164.449885 
+
+=== totaledgesinS : 152304328 
+
+ edges loaded for batch 84 = 0.000000 
+time lapse for batch 84 = 15.116291 
+throughput for batch 84 = 128861.243350 
+total edges loaded for iteration 84 : 1947904, nbatch : 90, actno : 88080384 
+totaledgesloaded_sofar : 171069060 
+totaltimelapse_sofar : 688.20660 
+running throughput for batch 84 = 248572.246014 
+
+=== totaledgesinS : 154040015 
+
+ edges loaded for batch 85 = 0.000000 
+time lapse for batch 85 = 15.025844 
+throughput for batch 85 = 129616.017818 
+total edges loaded for iteration 85 : 1947590, nbatch : 90, actno : 89128960 
+totaledgesloaded_sofar : 173081552 
+totaltimelapse_sofar : 703.23244 
+running throughput for batch 85 = 246122.820240 
+
+=== totaledgesinS : 155772606 
+
+ edges loaded for batch 86 = 0.000000 
+time lapse for batch 86 = 15.186721 
+throughput for batch 86 = 128161.832984 
+total edges loaded for iteration 86 : 1946358, nbatch : 90, actno : 90177536 
+totaledgesloaded_sofar : 175093354 
+totaltimelapse_sofar : 718.41916 
+running throughput for batch 86 = 243720.327810 
+
+=== totaledgesinS : 157503594 
+
+ edges loaded for batch 87 = 0.000000 
+time lapse for batch 87 = 15.366633 
+throughput for batch 87 = 126760.625137 
+total edges loaded for iteration 87 : 1947884, nbatch : 90, actno : 91226112 
+totaledgesloaded_sofar : 177106106 
+totaltimelapse_sofar : 733.78580 
+running throughput for batch 87 = 241359.408819 
+
+=== totaledgesinS : 159234469 
+
+ edges loaded for batch 88 = 0.000000 
+time lapse for batch 88 = 15.541113 
+throughput for batch 88 = 125240.837393 
+total edges loaded for iteration 88 : 1946382, nbatch : 90, actno : 92274688 
+totaledgesloaded_sofar : 179118254 
+totaltimelapse_sofar : 749.32691 
+running throughput for batch 88 = 239038.865124 
+
+=== totaledgesinS : 160961980 
+
+ edges loaded for batch 89 = 0.000000 
+time lapse for batch 89 = 15.869044 
+throughput for batch 89 = 122727.242876 
+total edges loaded for iteration 89 : 1947564, nbatch : 90, actno : 93323264 
+totaledgesloaded_sofar : 181130754 
+totaltimelapse_sofar : 765.19595 
+running throughput for batch 89 = 236711.594276 
+
+=== totaledgesinS : 162690804 
+validinsertions : 175261688 
+invalidinsertions : 0 
+validdeletions : 2900389 
+invaliddeletions : 0 
+errinsertions : 0 
+errdeletions : 2968677 
+printing result summaries... 
+totaledgesinS : 162690804 
+,
+	"time_updates": 7.651959531337488e+02,
+	"updates_per_sec": 1.233302915593239e+05
+printing batchids 
+[ 
+0, 
+1, 
+2, 
+3, 
+4, 
+5, 
+6, 
+7, 
+8, 
+9, 
+10, 
+11, 
+12, 
+13, 
+14, 
+15, 
+16, 
+17, 
+18, 
+19, 
+20, 
+21, 
+22, 
+23, 
+24, 
+25, 
+26, 
+27, 
+28, 
+29, 
+30, 
+31, 
+32, 
+33, 
+34, 
+35, 
+36, 
+37, 
+38, 
+39, 
+40, 
+41, 
+42, 
+43, 
+44, 
+45, 
+46, 
+47, 
+48, 
+49, 
+50, 
+51, 
+52, 
+53, 
+54, 
+55, 
+56, 
+57, 
+58, 
+59, 
+60, 
+61, 
+62, 
+63, 
+64, 
+65, 
+66, 
+67, 
+68, 
+69, 
+70, 
+71, 
+72, 
+73, 
+74, 
+75, 
+76, 
+77, 
+78, 
+79, 
+80, 
+81, 
+82, 
+83, 
+84, 
+85, 
+86, 
+87, 
+88, 
+89, 
+] 
+
+printing throughputs 
+[ 
+1390214.0, 
+1506500.9, 
+1521084.3, 
+1494838.8, 
+1446974.2, 
+1391380.3, 
+1335261.1, 
+1279088.5, 
+1224328.6, 
+1172151.1, 
+1123424.4, 
+1077948.6, 
+1034824.5, 
+985716.8, 
+947855.8, 
+913173.9, 
+874939.8, 
+844714.2, 
+817191.1, 
+788691.5, 
+761962.3, 
+739346.8, 
+714278.0, 
+694480.5, 
+675570.4, 
+654805.6, 
+638127.3, 
+619393.5, 
+604545.7, 
+588401.0, 
+574190.7, 
+560074.9, 
+546678.8, 
+534459.5, 
+521896.3, 
+510604.6, 
+499372.5, 
+488712.6, 
+478798.6, 
+468711.2, 
+460037.1, 
+450499.5, 
+442726.8, 
+433951.5, 
+426426.4, 
+418613.0, 
+410940.9, 
+404375.8, 
+397144.4, 
+390780.9, 
+384332.1, 
+377828.6, 
+372268.8, 
+366301.1, 
+360408.0, 
+355265.3, 
+349955.1, 
+344591.2, 
+339777.0, 
+335091.0, 
+330230.2, 
+325588.2, 
+321491.1, 
+317132.5, 
+312781.6, 
+308797.0, 
+305058.0, 
+301107.5, 
+297232.5, 
+293646.1, 
+290259.2, 
+286755.1, 
+283305.5, 
+279963.1, 
+276900.6, 
+273875.5, 
+270744.6, 
+267674.6, 
+264733.0, 
+262000.0, 
+259302.7, 
+256555.3, 
+253825.9, 
+251164.4, 
+248572.2, 
+246122.8, 
+243720.3, 
+241359.4, 
+239038.9, 
+236711.6, 
+] 
+,
+	"error_code":"0x0",
+	"time_check": 1.113135803584009e+01
+ ======= update and analytics : iteration 1 (insert_remove_benchmark) =======
+ edges loaded for batch 0 = 0.000000 
+time lapse for batch 0 = 2.090068 
+throughput for batch 0 = 931786.828590 
+total edges loaded for iteration 0 : 1947498, nbatch : 90, actno : 0 
+totaledgesloaded_sofar : 2013017 
+totaltimelapse_sofar : 767.28602 
+running throughput for batch 0 = 2623.554899 
+
+=== totaledgesinS : 160823206 
+
+ edges loaded for batch 1 = 0.000000 
+time lapse for batch 1 = 2.311629 
+throughput for batch 1 = 842227.006613 
+total edges loaded for iteration 1 : 1946916, nbatch : 90, actno : 1048576 
+totaledgesloaded_sofar : 4025685 
+totaltimelapse_sofar : 769.59765 
+running throughput for batch 1 = 5230.895651 
+
+=== totaledgesinS : 158959576 
+
+ edges loaded for batch 2 = 0.000000 
+time lapse for batch 2 = 2.537164 
+throughput for batch 2 = 767455.447781 
+total edges loaded for iteration 2 : 1947160, nbatch : 90, actno : 2097152 
+totaledgesloaded_sofar : 6038435 
+totaltimelapse_sofar : 772.13481 
+running throughput for batch 2 = 7820.441321 
+
+=== totaledgesinS : 157098576 
+
+ edges loaded for batch 3 = 0.000000 
+time lapse for batch 3 = 2.955586 
+throughput for batch 3 = 659065.833343 
+total edges loaded for iteration 3 : 1947926, nbatch : 90, actno : 3145728 
+totaledgesloaded_sofar : 8051524 
+totaltimelapse_sofar : 775.09040 
+running throughput for batch 3 = 10387.851536 
+
+=== totaledgesinS : 155239421 
+
+ edges loaded for batch 4 = 0.000000 
+time lapse for batch 4 = 3.279826 
+throughput for batch 4 = 593660.682362 
+total edges loaded for iteration 4 : 1947104, nbatch : 90, actno : 4194304 
+totaledgesloaded_sofar : 10064118 
+totaltimelapse_sofar : 778.37023 
+running throughput for batch 4 = 12929.731458 
+
+=== totaledgesinS : 153383022 
+
+ edges loaded for batch 5 = 0.000000 
+time lapse for batch 5 = 3.543761 
+throughput for batch 5 = 549480.627508 
+total edges loaded for iteration 5 : 1947228, nbatch : 90, actno : 5242880 
+totaledgesloaded_sofar : 12076995 
+totaltimelapse_sofar : 781.91399 
+running throughput for batch 5 = 15445.426476 
+
+=== totaledgesinS : 151528905 
+
+ edges loaded for batch 6 = 0.000000 
+time lapse for batch 6 = 3.515166 
+throughput for batch 6 = 554084.854458 
+total edges loaded for iteration 6 : 1947700, nbatch : 90, actno : 6291456 
+totaledgesloaded_sofar : 14089926 
+totaltimelapse_sofar : 785.42915 
+running throughput for batch 6 = 17939.143142 
+
+=== totaledgesinS : 149677038 
+
+ edges loaded for batch 7 = 0.000000 
+time lapse for batch 7 = 3.592888 
+throughput for batch 7 = 541912.192234 
+total edges loaded for iteration 7 : 1947030, nbatch : 90, actno : 7340032 
+totaledgesloaded_sofar : 16102648 
+totaltimelapse_sofar : 789.02204 
+running throughput for batch 7 = 20408.362708 
+
+=== totaledgesinS : 147828362 
+
+ edges loaded for batch 8 = 0.000000 
+time lapse for batch 8 = 3.987370 
+throughput for batch 8 = 488331.947437 
+total edges loaded for iteration 8 : 1947160, nbatch : 90, actno : 8388608 
+totaledgesloaded_sofar : 18115322 
+totaltimelapse_sofar : 793.00941 
+running throughput for batch 8 = 22843.766736 
+
+=== totaledgesinS : 145980712 
+
+ edges loaded for batch 9 = 0.000000 
+time lapse for batch 9 = 4.316047 
+throughput for batch 9 = 451190.133311 
+total edges loaded for iteration 9 : 1947358, nbatch : 90, actno : 9437184 
+totaledgesloaded_sofar : 20128164 
+totaltimelapse_sofar : 797.32546 
+running throughput for batch 9 = 25244.602180 
+
+=== totaledgesinS : 144135191 
+
+ edges loaded for batch 10 = 0.000000 
+time lapse for batch 10 = 4.373714 
+throughput for batch 10 = 445237.196760 
+total edges loaded for iteration 10 : 1947340, nbatch : 90, actno : 10485760 
+totaledgesloaded_sofar : 22140861 
+totaltimelapse_sofar : 801.69917 
+running throughput for batch 10 = 27617.417827 
+
+=== totaledgesinS : 142290902 
+
+ edges loaded for batch 11 = 0.000000 
+time lapse for batch 11 = 4.277055 
+throughput for batch 11 = 455333.836282 
+total edges loaded for iteration 11 : 1947488, nbatch : 90, actno : 11534336 
+totaledgesloaded_sofar : 24153758 
+totaltimelapse_sofar : 805.97623 
+running throughput for batch 11 = 29968.325599 
+
+=== totaledgesinS : 140448031 
+
+ edges loaded for batch 12 = 0.000000 
+time lapse for batch 12 = 4.722741 
+throughput for batch 12 = 412176.342802 
+total edges loaded for iteration 12 : 1946602, nbatch : 90, actno : 12582912 
+totaledgesloaded_sofar : 26166008 
+totaltimelapse_sofar : 810.69897 
+running throughput for batch 12 = 32275.861987 
+
+=== totaledgesinS : 138607578 
+
+ edges loaded for batch 13 = 0.000000 
+time lapse for batch 13 = 5.042905 
+throughput for batch 13 = 386184.948643 
+total edges loaded for iteration 13 : 1947494, nbatch : 90, actno : 13631488 
+totaledgesloaded_sofar : 28178860 
+totaltimelapse_sofar : 815.74187 
+running throughput for batch 13 = 34543.844000 
+
+=== totaledgesinS : 136767842 
+
+ edges loaded for batch 14 = 0.000000 
+time lapse for batch 14 = 4.941105 
+throughput for batch 14 = 394206.560491 
+total edges loaded for iteration 14 : 1947816, nbatch : 90, actno : 14680064 
+totaledgesloaded_sofar : 30191867 
+totaltimelapse_sofar : 820.68298 
+running throughput for batch 14 = 36788.708692 
+
+=== totaledgesinS : 134929372 
+
+ edges loaded for batch 15 = 0.000000 
+time lapse for batch 15 = 5.002664 
+throughput for batch 15 = 389237.045548 
+total edges loaded for iteration 15 : 1947222, nbatch : 90, actno : 15728640 
+totaledgesloaded_sofar : 32204615 
+totaltimelapse_sofar : 825.68564 
+running throughput for batch 15 = 39003.481936 
+
+=== totaledgesinS : 133093651 
+
+ edges loaded for batch 16 = 0.000000 
+time lapse for batch 16 = 5.579374 
+throughput for batch 16 = 349083.620770 
+total edges loaded for iteration 16 : 1947668, nbatch : 90, actno : 16777216 
+totaledgesloaded_sofar : 34217478 
+totaltimelapse_sofar : 831.26502 
+running throughput for batch 16 = 41163.139762 
+
+=== totaledgesinS : 131258471 
+
+ edges loaded for batch 17 = 0.000000 
+time lapse for batch 17 = 5.599557 
+throughput for batch 17 = 347809.318557 
+total edges loaded for iteration 17 : 1947578, nbatch : 90, actno : 17825792 
+totaledgesloaded_sofar : 36230159 
+totaltimelapse_sofar : 836.86457 
+running throughput for batch 17 = 43292.738414 
+
+=== totaledgesinS : 129424676 
+
+ edges loaded for batch 18 = 0.000000 
+time lapse for batch 18 = 5.439600 
+throughput for batch 18 = 358000.562678 
+total edges loaded for iteration 18 : 1947380, nbatch : 90, actno : 18874368 
+totaledgesloaded_sofar : 38242838 
+totaltimelapse_sofar : 842.30417 
+running throughput for batch 18 = 45402.645811 
+
+=== totaledgesinS : 127592876 
+
+ edges loaded for batch 19 = 0.000000 
+time lapse for batch 19 = 6.107087 
+throughput for batch 19 = 318894.734134 
+total edges loaded for iteration 19 : 1947518, nbatch : 90, actno : 19922944 
+totaledgesloaded_sofar : 40255616 
+totaltimelapse_sofar : 848.41126 
+running throughput for batch 19 = 47448.234028 
+
+=== totaledgesinS : 125762127 
+
+ edges loaded for batch 20 = 0.000000 
+time lapse for batch 20 = 6.094446 
+throughput for batch 20 = 319692.740444 
+total edges loaded for iteration 20 : 1948350, nbatch : 90, actno : 20971520 
+totaledgesloaded_sofar : 42268891 
+totaltimelapse_sofar : 854.50571 
+running throughput for batch 20 = 49465.896766 
+
+=== totaledgesinS : 123932319 
+
+ edges loaded for batch 21 = 0.000000 
+time lapse for batch 21 = 5.947328 
+throughput for batch 21 = 327511.764718 
+total edges loaded for iteration 21 : 1947820, nbatch : 90, actno : 22020096 
+totaledgesloaded_sofar : 44281822 
+totaltimelapse_sofar : 860.45303 
+running throughput for batch 21 = 51463.380653 
+
+=== totaledgesinS : 122103591 
+
+ edges loaded for batch 22 = 0.000000 
+time lapse for batch 22 = 6.590910 
+throughput for batch 22 = 295349.492132 
+total edges loaded for iteration 22 : 1946622, nbatch : 90, actno : 23068672 
+totaledgesloaded_sofar : 46294040 
+totaltimelapse_sofar : 867.04394 
+running throughput for batch 22 = 53392.956989 
+
+=== totaledgesinS : 120277702 
+
+ edges loaded for batch 23 = 0.000000 
+time lapse for batch 23 = 6.402939 
+throughput for batch 23 = 304076.947610 
+total edges loaded for iteration 23 : 1946986, nbatch : 90, actno : 24117248 
+totaledgesloaded_sofar : 48306310 
+totaltimelapse_sofar : 873.44688 
+running throughput for batch 23 = 55305.378011 
+
+=== totaledgesinS : 118452841 
+
+ edges loaded for batch 24 = 0.000000 
+time lapse for batch 24 = 6.633856 
+throughput for batch 24 = 293477.293214 
+total edges loaded for iteration 24 : 1946886, nbatch : 90, actno : 25165824 
+totaledgesloaded_sofar : 50318490 
+totaltimelapse_sofar : 880.08074 
+running throughput for batch 24 = 57174.856611 
+
+=== totaledgesinS : 116628315 
+
+ edges loaded for batch 25 = 0.000000 
+time lapse for batch 25 = 6.929837 
+throughput for batch 25 = 281038.083849 
+total edges loaded for iteration 25 : 1947548, nbatch : 90, actno : 26214400 
+totaledgesloaded_sofar : 52331180 
+totaltimelapse_sofar : 887.01057 
+running throughput for batch 25 = 58997.244790 
+
+=== totaledgesinS : 114804250 
+
+ edges loaded for batch 26 = 0.000000 
+time lapse for batch 26 = 6.631096 
+throughput for batch 26 = 293698.663653 
+total edges loaded for iteration 26 : 1947544, nbatch : 90, actno : 27262976 
+totaledgesloaded_sofar : 54343893 
+totaltimelapse_sofar : 893.64167 
+running throughput for batch 26 = 60811.726664 
+
+=== totaledgesinS : 112982460 
+
+ edges loaded for batch 27 = 0.000000 
+time lapse for batch 27 = 7.380910 
+throughput for batch 27 = 263693.487173 
+total edges loaded for iteration 27 : 1946298, nbatch : 90, actno : 28311552 
+totaledgesloaded_sofar : 56355887 
+totaltimelapse_sofar : 901.02258 
+running throughput for batch 27 = 62546.586730 
+
+=== totaledgesinS : 111162554 
+
+ edges loaded for batch 28 = 0.000000 
+time lapse for batch 28 = 7.164005 
+throughput for batch 28 = 271840.967036 
+total edges loaded for iteration 28 : 1947470, nbatch : 90, actno : 29360128 
+totaledgesloaded_sofar : 58368402 
+totaltimelapse_sofar : 908.18659 
+running throughput for batch 28 = 64269.174330 
+
+=== totaledgesinS : 109342970 
+
+ edges loaded for batch 29 = 0.000000 
+time lapse for batch 29 = 7.428264 
+throughput for batch 29 = 262244.582354 
+total edges loaded for iteration 29 : 1948022, nbatch : 90, actno : 30408704 
+totaledgesloaded_sofar : 60381445 
+totaltimelapse_sofar : 915.61485 
+running throughput for batch 29 = 65946.336517 
+
+=== totaledgesinS : 107523292 
+
+ edges loaded for batch 30 = 0.000000 
+time lapse for batch 30 = 7.628331 
+throughput for batch 30 = 255310.901634 
+total edges loaded for iteration 30 : 1947596, nbatch : 90, actno : 31457280 
+totaledgesloaded_sofar : 62394097 
+totaltimelapse_sofar : 923.24318 
+running throughput for batch 30 = 67581.432844 
+
+=== totaledgesinS : 105705728 
+
+ edges loaded for batch 31 = 0.000000 
+time lapse for batch 31 = 7.482080 
+throughput for batch 31 = 260388.033109 
+total edges loaded for iteration 31 : 1948244, nbatch : 90, actno : 32505856 
+totaledgesloaded_sofar : 64407200 
+totaltimelapse_sofar : 930.72526 
+running throughput for batch 31 = 69201.087325 
+
+=== totaledgesinS : 103888306 
+
+ edges loaded for batch 32 = 0.000000 
+time lapse for batch 32 = 8.094975 
+throughput for batch 32 = 240464.730143 
+total edges loaded for iteration 32 : 1946556, nbatch : 90, actno : 33554432 
+totaledgesloaded_sofar : 66419253 
+totaltimelapse_sofar : 938.82024 
+running throughput for batch 32 = 70747.572869 
+
+=== totaledgesinS : 102072879 
+
+ edges loaded for batch 33 = 0.000000 
+time lapse for batch 33 = 7.648977 
+throughput for batch 33 = 254476.133391 
+total edges loaded for iteration 33 : 1946482, nbatch : 90, actno : 34603008 
+totaledgesloaded_sofar : 68431263 
+totaltimelapse_sofar : 946.46921 
+running throughput for batch 33 = 72301.626027 
+
+=== totaledgesinS : 100258047 
+
+ edges loaded for batch 34 = 0.000000 
+time lapse for batch 34 = 8.471144 
+throughput for batch 34 = 229817.835756 
+total edges loaded for iteration 34 : 1946820, nbatch : 90, actno : 35651584 
+totaledgesloaded_sofar : 70443672 
+totaltimelapse_sofar : 954.94036 
+running throughput for batch 34 = 73767.614452 
+
+=== totaledgesinS : 98444667 
+
+ edges loaded for batch 35 = 0.000000 
+time lapse for batch 35 = 7.988110 
+throughput for batch 35 = 243830.385323 
+total edges loaded for iteration 35 : 1947744, nbatch : 90, actno : 36700160 
+totaledgesloaded_sofar : 72456338 
+totaltimelapse_sofar : 962.92847 
+running throughput for batch 35 = 75245.815806 
+
+=== totaledgesinS : 96631333 
+
+ edges loaded for batch 36 = 0.000000 
+time lapse for batch 36 = 8.724281 
+throughput for batch 36 = 223176.903848 
+total edges loaded for iteration 36 : 1947058, nbatch : 90, actno : 37748736 
+totaledgesloaded_sofar : 74468742 
+totaltimelapse_sofar : 971.65275 
+running throughput for batch 36 = 76641.312675 
+
+=== totaledgesinS : 94819363 
+
+ edges loaded for batch 37 = 0.000000 
+time lapse for batch 37 = 8.304266 
+throughput for batch 37 = 234670.946552 
+total edges loaded for iteration 37 : 1948770, nbatch : 90, actno : 38797312 
+totaledgesloaded_sofar : 76482207 
+totaltimelapse_sofar : 979.95701 
+running throughput for batch 37 = 78046.491802 
+
+=== totaledgesinS : 93006914 
+
+ edges loaded for batch 38 = 0.000000 
+time lapse for batch 38 = 8.987985 
+throughput for batch 38 = 216662.365020 
+total edges loaded for iteration 38 : 1947358, nbatch : 90, actno : 39845888 
+totaledgesloaded_sofar : 78494830 
+totaltimelapse_sofar : 988.94500 
+running throughput for batch 38 = 79372.290847 
+
+=== totaledgesinS : 91197805 
+
+ edges loaded for batch 39 = 0.000000 
+time lapse for batch 39 = 8.545609 
+throughput for batch 39 = 227904.652809 
+total edges loaded for iteration 39 : 1947584, nbatch : 90, actno : 40894464 
+totaledgesloaded_sofar : 80507551 
+totaltimelapse_sofar : 997.49061 
+running throughput for batch 39 = 80710.084353 
+
+=== totaledgesinS : 89388658 
+
+ edges loaded for batch 40 = 0.000000 
+time lapse for batch 40 = 9.305607 
+throughput for batch 40 = 209217.302379 
+total edges loaded for iteration 40 : 1946894, nbatch : 90, actno : 41943040 
+totaledgesloaded_sofar : 82519849 
+totaltimelapse_sofar : 1006.79621 
+running throughput for batch 40 = 81962.812218 
+
+=== totaledgesinS : 87581646 
+
+ edges loaded for batch 41 = 0.000000 
+time lapse for batch 41 = 8.791262 
+throughput for batch 41 = 221499.951442 
+total edges loaded for iteration 41 : 1947264, nbatch : 90, actno : 42991616 
+totaledgesloaded_sofar : 84532270 
+totaltimelapse_sofar : 1015.58748 
+running throughput for batch 41 = 83234.848861 
+
+=== totaledgesinS : 85775402 
+
+ edges loaded for batch 42 = 0.000000 
+time lapse for batch 42 = 9.591124 
+throughput for batch 42 = 202987.672209 
+total edges loaded for iteration 42 : 1946880, nbatch : 90, actno : 44040192 
+totaledgesloaded_sofar : 86544562 
+totaltimelapse_sofar : 1025.17860 
+running throughput for batch 42 = 84419.009570 
+
+=== totaledgesinS : 83969671 
+
+ edges loaded for batch 43 = 0.000000 
+time lapse for batch 43 = 9.104663 
+throughput for batch 43 = 213927.304684 
+total edges loaded for iteration 43 : 1947736, nbatch : 90, actno : 45088768 
+totaledgesloaded_sofar : 88557387 
+totaltimelapse_sofar : 1034.28326 
+running throughput for batch 43 = 85621.985987 
+
+=== totaledgesinS : 82164479 
+
+ edges loaded for batch 44 = 0.000000 
+time lapse for batch 44 = 9.768690 
+throughput for batch 44 = 199364.304319 
+total edges loaded for iteration 44 : 1947528, nbatch : 90, actno : 46137344 
+totaledgesloaded_sofar : 90570167 
+totaltimelapse_sofar : 1044.05195 
+running throughput for batch 44 = 86748.716698 
+
+=== totaledgesinS : 80360107 
+
+ edges loaded for batch 45 = 0.000000 
+time lapse for batch 45 = 9.594863 
+throughput for batch 45 = 202993.201206 
+total edges loaded for iteration 45 : 1947692, nbatch : 90, actno : 47185920 
+totaledgesloaded_sofar : 92582865 
+totaltimelapse_sofar : 1053.64682 
+running throughput for batch 45 = 87868.974371 
+
+=== totaledgesinS : 78557652 
+
+ edges loaded for batch 46 = 0.000000 
+time lapse for batch 46 = 9.803827 
+throughput for batch 46 = 198641.603995 
+total edges loaded for iteration 46 : 1947448, nbatch : 90, actno : 48234496 
+totaledgesloaded_sofar : 94595429 
+totaltimelapse_sofar : 1063.45064 
+running throughput for batch 46 = 88951.405182 
+
+=== totaledgesinS : 76755354 
+
+ edges loaded for batch 47 = 0.000000 
+time lapse for batch 47 = 10.004228 
+throughput for batch 47 = 194638.702686 
+total edges loaded for iteration 47 : 1947210, nbatch : 90, actno : 49283072 
+totaledgesloaded_sofar : 96607827 
+totaltimelapse_sofar : 1073.45487 
+running throughput for batch 47 = 89997.101534 
+
+=== totaledgesinS : 74954639 
+
+ edges loaded for batch 48 = 0.000000 
+time lapse for batch 48 = 9.841469 
+throughput for batch 48 = 197877.165547 
+total edges loaded for iteration 48 : 1947402, nbatch : 90, actno : 50331648 
+totaledgesloaded_sofar : 98620374 
+totaltimelapse_sofar : 1083.29634 
+running throughput for batch 48 = 91037.300111 
+
+=== totaledgesinS : 73153611 
+
+ edges loaded for batch 49 = 0.000000 
+time lapse for batch 49 = 10.434504 
+throughput for batch 49 = 186715.915715 
+total edges loaded for iteration 49 : 1948288, nbatch : 90, actno : 51380224 
+totaledgesloaded_sofar : 100633362 
+totaltimelapse_sofar : 1093.73084 
+running throughput for batch 49 = 92009.256712 
+
+=== totaledgesinS : 71353150 
+
+ edges loaded for batch 50 = 0.000000 
+time lapse for batch 50 = 10.037292 
+throughput for batch 50 = 194042.969196 
+total edges loaded for iteration 50 : 1947666, nbatch : 90, actno : 52428800 
+totaledgesloaded_sofar : 102645959 
+totaltimelapse_sofar : 1103.76814 
+running throughput for batch 50 = 92995.943281 
+
+=== totaledgesinS : 69553825 
+
+ edges loaded for batch 51 = 0.000000 
+time lapse for batch 51 = 10.737955 
+throughput for batch 51 = 181401.762501 
+total edges loaded for iteration 51 : 1947884, nbatch : 90, actno : 53477376 
+totaledgesloaded_sofar : 104658836 
+totaltimelapse_sofar : 1114.50609 
+running throughput for batch 51 = 93906.024199 
+
+=== totaledgesinS : 67755118 
+
+ edges loaded for batch 52 = 0.000000 
+time lapse for batch 52 = 10.598976 
+throughput for batch 52 = 183690.193021 
+total edges loaded for iteration 52 : 1946928, nbatch : 90, actno : 54525952 
+totaledgesloaded_sofar : 106671029 
+totaltimelapse_sofar : 1125.10507 
+running throughput for batch 52 = 94809.837812 
+
+=== totaledgesinS : 65958639 
+
+ edges loaded for batch 53 = 0.000000 
+time lapse for batch 53 = 10.522262 
+throughput for batch 53 = 185066.858617 
+total edges loaded for iteration 53 : 1947322, nbatch : 90, actno : 55574528 
+totaledgesloaded_sofar : 108683469 
+totaltimelapse_sofar : 1135.62733 
+running throughput for batch 53 = 95703.463746 
+
+=== totaledgesinS : 64162188 
+
+ edges loaded for batch 54 = 0.000000 
+time lapse for batch 54 = 11.140762 
+throughput for batch 54 = 174772.604114 
+total edges loaded for iteration 54 : 1947100, nbatch : 90, actno : 56623104 
+totaledgesloaded_sofar : 110695740 
+totaltimelapse_sofar : 1146.76809 
+running throughput for batch 54 = 96528.444391 
+
+=== totaledgesinS : 62367160 
+
+ edges loaded for batch 55 = 0.000000 
+time lapse for batch 55 = 10.788285 
+throughput for batch 55 = 180429.604789 
+total edges loaded for iteration 55 : 1946526, nbatch : 90, actno : 57671680 
+totaledgesloaded_sofar : 112707787 
+totaltimelapse_sofar : 1157.55638 
+running throughput for batch 55 = 97366.995886 
+
+=== totaledgesinS : 60572724 
+
+ edges loaded for batch 56 = 0.000000 
+time lapse for batch 56 = 11.158654 
+throughput for batch 56 = 174377.300773 
+total edges loaded for iteration 56 : 1945816, nbatch : 90, actno : 58720256 
+totaledgesloaded_sofar : 114719476 
+totaltimelapse_sofar : 1168.71503 
+running throughput for batch 56 = 98158.638278 
+
+=== totaledgesinS : 58780354 
+
+ edges loaded for batch 57 = 0.000000 
+time lapse for batch 57 = 11.411788 
+throughput for batch 57 = 170711.378366 
+total edges loaded for iteration 57 : 1948122, nbatch : 90, actno : 59768832 
+totaledgesloaded_sofar : 116732408 
+totaltimelapse_sofar : 1180.12682 
+running throughput for batch 57 = 98915.138723 
+
+=== totaledgesinS : 56986545 
+
+ edges loaded for batch 58 = 0.000000 
+time lapse for batch 58 = 11.087868 
+throughput for batch 58 = 175668.574243 
+total edges loaded for iteration 58 : 1947790, nbatch : 90, actno : 60817408 
+totaledgesloaded_sofar : 118745108 
+totaltimelapse_sofar : 1191.21469 
+running throughput for batch 58 = 99684.052998 
+
+=== totaledgesinS : 55193076 
+
+ edges loaded for batch 59 = 0.000000 
+time lapse for batch 59 = 11.660332 
+throughput for batch 59 = 167012.566505 
+total edges loaded for iteration 59 : 1947422, nbatch : 90, actno : 61865984 
+totaledgesloaded_sofar : 120757655 
+totaltimelapse_sofar : 1202.87502 
+running throughput for batch 59 = 100390.857793 
+
+=== totaledgesinS : 53401470 
+
+ edges loaded for batch 60 = 0.000000 
+time lapse for batch 60 = 11.748741 
+throughput for batch 60 = 165751.210951 
+total edges loaded for iteration 60 : 1947368, nbatch : 90, actno : 62914560 
+totaledgesloaded_sofar : 122769974 
+totaltimelapse_sofar : 1214.62376 
+running throughput for batch 60 = 101076.545715 
+
+=== totaledgesinS : 51611086 
+
+ edges loaded for batch 61 = 0.000000 
+time lapse for batch 61 = 11.490000 
+throughput for batch 61 = 169482.326590 
+total edges loaded for iteration 61 : 1947352, nbatch : 90, actno : 63963136 
+totaledgesloaded_sofar : 124782398 
+totaltimelapse_sofar : 1226.11376 
+running throughput for batch 61 = 101770.652964 
+
+=== totaledgesinS : 49820273 
+
+ edges loaded for batch 62 = 0.000000 
+time lapse for batch 62 = 11.952434 
+throughput for batch 62 = 162888.324030 
+total edges loaded for iteration 62 : 1946912, nbatch : 90, actno : 65011712 
+totaledgesloaded_sofar : 126794731 
+totaltimelapse_sofar : 1238.06619 
+running throughput for batch 62 = 102413.531313 
+
+=== totaledgesinS : 48031417 
+
+ edges loaded for batch 63 = 0.000000 
+time lapse for batch 63 = 12.191823 
+throughput for batch 63 = 159787.922635 
+total edges loaded for iteration 63 : 1948106, nbatch : 90, actno : 66060288 
+totaledgesloaded_sofar : 128807470 
+totaltimelapse_sofar : 1250.25802 
+running throughput for batch 63 = 103024.710276 
+
+=== totaledgesinS : 46242372 
+
+ edges loaded for batch 64 = 0.000000 
+time lapse for batch 64 = 11.915101 
+throughput for batch 64 = 163491.521048 
+total edges loaded for iteration 64 : 1948018, nbatch : 90, actno : 67108864 
+totaledgesloaded_sofar : 130820224 
+totaltimelapse_sofar : 1262.17312 
+running throughput for batch 64 = 103646.815240 
+
+=== totaledgesinS : 44454300 
+
+ edges loaded for batch 65 = 0.000000 
+time lapse for batch 65 = 12.224102 
+throughput for batch 65 = 159277.461407 
+total edges loaded for iteration 65 : 1947024, nbatch : 90, actno : 68157440 
+totaledgesloaded_sofar : 132832643 
+totaltimelapse_sofar : 1274.39722 
+running throughput for batch 65 = 104231.742533 
+
+=== totaledgesinS : 42667553 
+
+ edges loaded for batch 66 = 0.000000 
+time lapse for batch 66 = 12.643427 
+throughput for batch 66 = 153923.456719 
+total edges loaded for iteration 66 : 1946120, nbatch : 90, actno : 69206016 
+totaledgesloaded_sofar : 134844387 
+totaltimelapse_sofar : 1287.04065 
+running throughput for batch 66 = 104770.884452 
+
+=== totaledgesinS : 40882615 
+
+ edges loaded for batch 67 = 0.000000 
+time lapse for batch 67 = 12.447700 
+throughput for batch 67 = 156492.043147 
+total edges loaded for iteration 67 : 1947966, nbatch : 90, actno : 70254592 
+totaledgesloaded_sofar : 136857231 
+totaltimelapse_sofar : 1299.48835 
+running throughput for batch 67 = 105316.243297 
+
+=== totaledgesinS : 39096784 
+
+ edges loaded for batch 68 = 0.000000 
+time lapse for batch 68 = 12.321126 
+throughput for batch 68 = 157955.861812 
+total edges loaded for iteration 68 : 1946194, nbatch : 90, actno : 71303168 
+totaledgesloaded_sofar : 138869136 
+totaltimelapse_sofar : 1311.80947 
+running throughput for batch 68 = 105860.750988 
+
+=== totaledgesinS : 37313881 
+
+ edges loaded for batch 69 = 0.000000 
+time lapse for batch 69 = 12.971087 
+throughput for batch 69 = 150165.979316 
+total edges loaded for iteration 69 : 1947816, nbatch : 90, actno : 72351744 
+totaledgesloaded_sofar : 140882015 
+totaltimelapse_sofar : 1324.78056 
+running throughput for batch 69 = 106343.661136 
+
+=== totaledgesinS : 35529603 
+
+ edges loaded for batch 70 = 0.000000 
+time lapse for batch 70 = 13.065035 
+throughput for batch 70 = 149006.107910 
+total edges loaded for iteration 70 : 1946770, nbatch : 90, actno : 73400320 
+totaledgesloaded_sofar : 142894281 
+totaltimelapse_sofar : 1337.84560 
+running throughput for batch 70 = 106809.247268 
+
+=== totaledgesinS : 33747125 
+
+ edges loaded for batch 71 = 0.000000 
+time lapse for batch 71 = 12.821859 
+throughput for batch 71 = 151864.712463 
+total edges loaded for iteration 71 : 1947188, nbatch : 90, actno : 74448896 
+totaledgesloaded_sofar : 144906607 
+totaltimelapse_sofar : 1350.66745 
+running throughput for batch 71 = 107285.184436 
+
+=== totaledgesinS : 31964498 
+
+ edges loaded for batch 72 = 0.000000 
+time lapse for batch 72 = 12.834062 
+throughput for batch 72 = 151694.451369 
+total edges loaded for iteration 72 : 1946856, nbatch : 90, actno : 75497472 
+totaledgesloaded_sofar : 146918715 
+totaltimelapse_sofar : 1363.50152 
+running throughput for batch 72 = 107751.046247 
+
+=== totaledgesinS : 30184103 
+
+ edges loaded for batch 73 = 0.000000 
+time lapse for batch 73 = 13.401061 
+throughput for batch 73 = 145290.437926 
+total edges loaded for iteration 73 : 1947046, nbatch : 90, actno : 76546048 
+totaledgesloaded_sofar : 148930992 
+totaltimelapse_sofar : 1376.90258 
+running throughput for batch 73 = 108163.783271 
+
+=== totaledgesinS : 28402240 
+
+ edges loaded for batch 74 = 0.000000 
+time lapse for batch 74 = 13.541200 
+throughput for batch 74 = 143791.539553 
+total edges loaded for iteration 74 : 1947110, nbatch : 90, actno : 77594624 
+totaledgesloaded_sofar : 150943419 
+totaltimelapse_sofar : 1390.44378 
+running throughput for batch 74 = 108557.729135 
+
+=== totaledgesinS : 26622576 
+
+ edges loaded for batch 75 = 0.000000 
+time lapse for batch 75 = 13.348841 
+throughput for batch 75 = 145892.519822 
+total edges loaded for iteration 75 : 1947496, nbatch : 90, actno : 78643200 
+totaledgesloaded_sofar : 152955857 
+totaltimelapse_sofar : 1403.79262 
+running throughput for batch 75 = 108959.012176 
+
+=== totaledgesinS : 24842671 
+
+ edges loaded for batch 76 = 0.000000 
+time lapse for batch 76 = 13.346064 
+throughput for batch 76 = 145854.690153 
+total edges loaded for iteration 76 : 1946586, nbatch : 90, actno : 79691776 
+totaledgesloaded_sofar : 154967758 
+totaltimelapse_sofar : 1417.13868 
+running throughput for batch 76 = 109352.570746 
+
+=== totaledgesinS : 23065380 
+
+ edges loaded for batch 77 = 0.000000 
+time lapse for batch 77 = 13.762151 
+throughput for batch 77 = 141475.556546 
+total edges loaded for iteration 77 : 1947008, nbatch : 90, actno : 80740352 
+totaledgesloaded_sofar : 156980048 
+totaltimelapse_sofar : 1430.90083 
+running throughput for batch 77 = 109707.146951 
+
+=== totaledgesinS : 21287992 
+
+ edges loaded for batch 78 = 0.000000 
+time lapse for batch 78 = 14.012280 
+throughput for batch 78 = 139019.918385 
+total edges loaded for iteration 78 : 1947986, nbatch : 90, actno : 81788928 
+totaledgesloaded_sofar : 158992837 
+totaltimelapse_sofar : 1444.91311 
+running throughput for batch 78 = 110036.261381 
+
+=== totaledgesinS : 19510220 
+
+ edges loaded for batch 79 = 0.000000 
+time lapse for batch 79 = 14.066548 
+throughput for batch 79 = 138500.503379 
+total edges loaded for iteration 79 : 1948224, nbatch : 90, actno : 82837504 
+totaledgesloaded_sofar : 161005714 
+totaltimelapse_sofar : 1458.97966 
+running throughput for batch 79 = 110355.009232 
+
+=== totaledgesinS : 17732801 
+
+ edges loaded for batch 80 = 0.000000 
+time lapse for batch 80 = 13.946269 
+throughput for batch 80 = 139709.048247 
+total edges loaded for iteration 80 : 1948420, nbatch : 90, actno : 83886080 
+totaledgesloaded_sofar : 163018864 
+totaltimelapse_sofar : 1472.92593 
+running throughput for batch 80 = 110676.891901 
+
+=== totaledgesinS : 15954559 
+
+ edges loaded for batch 81 = 0.000000 
+time lapse for batch 81 = 14.037725 
+throughput for batch 81 = 138762.936215 
+total edges loaded for iteration 81 : 1947916, nbatch : 90, actno : 84934656 
+totaledgesloaded_sofar : 165031484 
+totaltimelapse_sofar : 1486.96366 
+running throughput for batch 81 = 110985.553231 
+
+=== totaledgesinS : 14178486 
+
+ edges loaded for batch 82 = 0.000000 
+time lapse for batch 82 = 14.165393 
+throughput for batch 82 = 137464.878636 
+total edges loaded for iteration 82 : 1947244, nbatch : 90, actno : 85983232 
+totaledgesloaded_sofar : 167043930 
+totaltimelapse_sofar : 1501.12905 
+running throughput for batch 82 = 111278.860489 
+
+=== totaledgesinS : 12403008 
+
+ edges loaded for batch 83 = 0.000000 
+time lapse for batch 83 = 14.567063 
+throughput for batch 83 = 133686.380952 
+total edges loaded for iteration 83 : 1947418, nbatch : 90, actno : 87031808 
+totaledgesloaded_sofar : 169056357 
+totaltimelapse_sofar : 1515.69611 
+running throughput for batch 83 = 111537.105377 
+
+=== totaledgesinS : 10628856 
+
+ edges loaded for batch 84 = 0.000000 
+time lapse for batch 84 = 14.698606 
+throughput for batch 84 = 132523.039754 
+total edges loaded for iteration 84 : 1947904, nbatch : 90, actno : 88080384 
+totaledgesloaded_sofar : 171069060 
+totaltimelapse_sofar : 1530.39472 
+running throughput for batch 84 = 111781.005192 
+
+=== totaledgesinS : 8854757 
+
+ edges loaded for batch 85 = 0.000000 
+time lapse for batch 85 = 14.850507 
+throughput for batch 85 = 131146.368016 
+total edges loaded for iteration 85 : 1947590, nbatch : 90, actno : 89128960 
+totaledgesloaded_sofar : 173081552 
+totaltimelapse_sofar : 1545.24523 
+running throughput for batch 85 = 112009.116202 
+
+=== totaledgesinS : 7082701 
+
+ edges loaded for batch 86 = 0.000000 
+time lapse for batch 86 = 14.807059 
+throughput for batch 86 = 131447.980806 
+total edges loaded for iteration 86 : 1946358, nbatch : 90, actno : 90177536 
+totaledgesloaded_sofar : 175093354 
+totaltimelapse_sofar : 1560.05228 
+running throughput for batch 86 = 112235.567852 
+
+=== totaledgesinS : 5311331 
+
+ edges loaded for batch 87 = 0.000000 
+time lapse for batch 87 = 14.813341 
+throughput for batch 87 = 131495.252213 
+total edges loaded for iteration 87 : 1947884, nbatch : 90, actno : 91226112 
+totaledgesloaded_sofar : 177106106 
+totaltimelapse_sofar : 1574.86563 
+running throughput for batch 87 = 112457.915882 
+
+=== totaledgesinS : 3540051 
+
+ edges loaded for batch 88 = 0.000000 
+time lapse for batch 88 = 14.866341 
+throughput for batch 88 = 130925.428021 
+total edges loaded for iteration 88 : 1946382, nbatch : 90, actno : 92274688 
+totaledgesloaded_sofar : 179118254 
+totaltimelapse_sofar : 1589.73197 
+running throughput for batch 88 = 112671.983620 
+
+=== totaledgesinS : 1770624 
+
+ edges loaded for batch 89 = 0.000000 
+time lapse for batch 89 = 14.986262 
+throughput for batch 89 = 129956.625619 
+total edges loaded for iteration 89 : 1947564, nbatch : 90, actno : 93323264 
+totaledgesloaded_sofar : 181130754 
+totaltimelapse_sofar : 1604.71823 
+running throughput for batch 89 = 112873.868388 
+
+=== totaledgesinS : 0 
+validinsertions : 0 
+invalidinsertions : 0 
+validdeletions : 162690804 
+invaliddeletions : 0 
+errinsertions : 0 
+errdeletions : 21408627 
+printing result summaries... 
+totaledgesinS : 0 
+,
+	"time_updates": 8.395222742669284e+02,
+	"updates_per_sec": 1.124113592845474e+05
+printing batchids 
+[ 
+0, 
+1, 
+2, 
+3, 
+4, 
+5, 
+6, 
+7, 
+8, 
+9, 
+10, 
+11, 
+12, 
+13, 
+14, 
+15, 
+16, 
+17, 
+18, 
+19, 
+20, 
+21, 
+22, 
+23, 
+24, 
+25, 
+26, 
+27, 
+28, 
+29, 
+30, 
+31, 
+32, 
+33, 
+34, 
+35, 
+36, 
+37, 
+38, 
+39, 
+40, 
+41, 
+42, 
+43, 
+44, 
+45, 
+46, 
+47, 
+48, 
+49, 
+50, 
+51, 
+52, 
+53, 
+54, 
+55, 
+56, 
+57, 
+58, 
+59, 
+60, 
+61, 
+62, 
+63, 
+64, 
+65, 
+66, 
+67, 
+68, 
+69, 
+70, 
+71, 
+72, 
+73, 
+74, 
+75, 
+76, 
+77, 
+78, 
+79, 
+80, 
+81, 
+82, 
+83, 
+84, 
+85, 
+86, 
+87, 
+88, 
+89, 
+] 
+
+printing throughputs 
+[ 
+2623.6, 
+5230.9, 
+7820.4, 
+10387.9, 
+12929.7, 
+15445.4, 
+17939.1, 
+20408.4, 
+22843.8, 
+25244.6, 
+27617.4, 
+29968.3, 
+32275.9, 
+34543.8, 
+36788.7, 
+39003.5, 
+41163.1, 
+43292.7, 
+45402.6, 
+47448.2, 
+49465.9, 
+51463.4, 
+53393.0, 
+55305.4, 
+57174.9, 
+58997.2, 
+60811.7, 
+62546.6, 
+64269.2, 
+65946.3, 
+67581.4, 
+69201.1, 
+70747.6, 
+72301.6, 
+73767.6, 
+75245.8, 
+76641.3, 
+78046.5, 
+79372.3, 
+80710.1, 
+81962.8, 
+83234.8, 
+84419.0, 
+85622.0, 
+86748.7, 
+87869.0, 
+88951.4, 
+89997.1, 
+91037.3, 
+92009.3, 
+92995.9, 
+93906.0, 
+94809.8, 
+95703.5, 
+96528.4, 
+97367.0, 
+98158.6, 
+98915.1, 
+99684.1, 
+100390.9, 
+101076.5, 
+101770.7, 
+102413.5, 
+103024.7, 
+103646.8, 
+104231.7, 
+104770.9, 
+105316.2, 
+105860.8, 
+106343.7, 
+106809.2, 
+107285.2, 
+107751.0, 
+108163.8, 
+108557.7, 
+108959.0, 
+109352.6, 
+109707.1, 
+110036.3, 
+110355.0, 
+110676.9, 
+110985.6, 
+111278.9, 
+111537.1, 
+111781.0, 
+112009.1, 
+112235.6, 
+112457.9, 
+112672.0, 
+112873.9, 
+] 
+,
+	"error_code":"0x0",
+	"time_check": 4.738552882801741e+00
+}

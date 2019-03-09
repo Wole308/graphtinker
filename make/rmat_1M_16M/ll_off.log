@@ -1,0 +1,138 @@
+started  (updates_test)
+LLFULLDB: OFF
+SGHashing: ON
+VPropUpdate: OFF
+WORK_BLOCK_HEIGHT: 4
+SUB_BLOCK_HEIGHT: 8
+PAGE_BLOCKHEIGHT: 64
+graphbenchmark: rmat16_1048576_15700000.edges
+NO_OF_VERTICES: 1048576
+NO_OF_EDGES: 15700000
+host: GT
+graph direction type: DIRECTEDGRAPH
+graph deletion type: DELETEEDGE
+graph deletion rate: 0
+initializing vertices (vertices) 
+=== insertions started ===
+
+batch : 0
+edges loaded : 1048576 edges
+number of edges : 1048328 edges
+number of unique edges : 1048576 edges
+timelapse (ms) : 1075.08 ms
+total timelapse (ms) : 1075.08 ms
+running throughput : 0.975345 million edges per sec
+
+batch : 1
+edges loaded : 1048576 edges
+number of edges : 2096221 edges
+number of unique edges : 2097152 edges
+timelapse (ms) : 451.203 ms
+total timelapse (ms) : 1526.29 ms
+running throughput : 1.37402 million edges per sec
+
+batch : 2
+edges loaded : 1048576 edges
+number of edges : 3143626 edges
+number of unique edges : 3145728 edges
+timelapse (ms) : 423.526 ms
+total timelapse (ms) : 1949.81 ms
+running throughput : 1.61335 million edges per sec
+
+batch : 3
+edges loaded : 1048576 edges
+number of edges : 4190573 edges
+number of unique edges : 4194304 edges
+timelapse (ms) : 469.411 ms
+total timelapse (ms) : 2419.22 ms
+running throughput : 1.73374 million edges per sec
+
+batch : 4
+edges loaded : 1048576 edges
+number of edges : 5237103 edges
+number of unique edges : 5242880 edges
+timelapse (ms) : 524.737 ms
+total timelapse (ms) : 2943.96 ms
+running throughput : 1.78089 million edges per sec
+
+batch : 5
+edges loaded : 1048576 edges
+number of edges : 6283173 edges
+number of unique edges : 6291456 edges
+timelapse (ms) : 505.614 ms
+total timelapse (ms) : 3449.57 ms
+running throughput : 1.82384 million edges per sec
+
+batch : 6
+edges loaded : 1048576 edges
+number of edges : 7328899 edges
+number of unique edges : 7340032 edges
+timelapse (ms) : 559.51 ms
+total timelapse (ms) : 4009.08 ms
+running throughput : 1.83085 million edges per sec
+
+batch : 7
+edges loaded : 1048576 edges
+number of edges : 8374187 edges
+number of unique edges : 8388608 edges
+timelapse (ms) : 577.25 ms
+total timelapse (ms) : 4586.33 ms
+running throughput : 1.82904 million edges per sec
+
+batch : 8
+edges loaded : 1048576 edges
+number of edges : 9419098 edges
+number of unique edges : 9437184 edges
+timelapse (ms) : 556.195 ms
+total timelapse (ms) : 5142.53 ms
+running throughput : 1.83513 million edges per sec
+
+batch : 9
+edges loaded : 1048576 edges
+number of edges : 10463568 edges
+number of unique edges : 10485760 edges
+timelapse (ms) : 619.861 ms
+total timelapse (ms) : 5762.39 ms
+running throughput : 1.81969 million edges per sec
+
+batch : 10
+edges loaded : 1048576 edges
+number of edges : 11507703 edges
+number of unique edges : 11534336 edges
+timelapse (ms) : 640.299 ms
+total timelapse (ms) : 6402.69 ms
+running throughput : 1.80148 million edges per sec
+
+batch : 11
+edges loaded : 1048576 edges
+number of edges : 12551254 edges
+number of unique edges : 12582912 edges
+timelapse (ms) : 592.863 ms
+total timelapse (ms) : 6995.55 ms
+running throughput : 1.7987 million edges per sec
+
+batch : 12
+edges loaded : 1048576 edges
+number of edges : 13594273 edges
+number of unique edges : 13631488 edges
+timelapse (ms) : 679.311 ms
+total timelapse (ms) : 7674.86 ms
+running throughput : 1.77612 million edges per sec
+
+batch : 13
+edges loaded : 1048576 edges
+number of edges : 14637101 edges
+number of unique edges : 14680064 edges
+timelapse (ms) : 652.765 ms
+total timelapse (ms) : 8327.63 ms
+running throughput : 1.76281 million edges per sec
+finished reading from file (updates_test)
+
+batch : 14
+edges loaded : 1019937 edges
+number of edges : 15651112 edges
+number of unique edges : 15700001 edges
+timelapse (ms) : 687.067 ms
+total timelapse (ms) : 9014.69 ms
+running throughput : 1.7416 million edges per sec
+destroying graphtinker objects 

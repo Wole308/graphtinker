@@ -1,0 +1,68 @@
+#include <string.h>
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <functional>
+#include <sys/time.h>
+#include <time.h>
+#include <sys/time.h>
+#include <stdlib.h>
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <omp.h>
+#include "graphtinker.h"
+using namespace std;
+
+#define OPTIMIZEUSINGPREVADDR 0
+
+void load_unit(				
+			moduleparams_t *moduleparams,
+			loadunitcmd_t loadunitcmd,				
+			insertparams_t *insertparams, 		
+			findparams_t *findparams,
+			margin_t wblkmargin,
+			vertexid_t hvtx_id,
+			edge_t edge,
+			edge_nt *edgeblock,
+			vector<edge_nt> & edge_block_array,
+			unsigned int * prevLoadAddr
+			){	
+	unsigned int trueoffset4rmbase = get_edgeblock_offset(hvtx_id);	
+	unsigned int addr = trueoffset4rmbase + wblkmargin.top/WORK_BLOCK_HEIGHT;
+	
+	#ifdef OPTIMIZEUSINGPREVADDR
+	if(loadunitcmd.load == YES && addr!=*prevLoadAddr){ 
+		#ifdef cpuem_bugs_b1
+		if(addr >= edge_block_array.size()){ cout<<"bug! : addr out-of-range (load_unit) : hvtx_id : "<<hvtx_id<<", wblkmargin.top/WORK_BLOCK_HEIGHT : "<<wblkmargin.top/WORK_BLOCK_HEIGHT<<" addr : "<<addr<<", edge_block_array.size() : "<<edge_block_array.size()<<endl; return;}
+		#endif
+		
+		*edgeblock = edge_block_array[addr];		
+		*prevLoadAddr=NAv; //reset 
+	}
+	#endif
+	#ifndef OPTIMIZEUSINGPREVADDR 
+	if(loadunitcmd.load == YES){ 
+		#ifdef cpuem_bugs_b1		
+		if(addr >= edge_block_array.size()){ cout<<"bug! : addr out-of-range (load_unit) : hvtx_id = "<<hvtx_id<<", wblkmargin.top/WORK_BLOCK_HEIGHT = "<<wblkmargin.top/WORK_BLOCK_HEIGHT<<" addr = "<<(trueoffset4rmbase + wblkmargin.top/WORK_BLOCK_HEIGHT)<<endl; return;}
+		#endif
+		
+		*edgeblock = edge_block_array[addr]; 		
+		*prevLoadAddr=NAv; //reset 
+	}
+	#endif
+	
+	*prevLoadAddr=addr; //assign
+	
+	#ifdef cpuem_bugs_b1
+	if(addr >= edge_block_array.size()){ cout<<"bug! : addr out-of-range (load_unit) (B) : addr = "<<addr<<endl; }
+	#endif
+	
+	clusterinfo_t clusterinfo = edgeblock->clusterinfo; //retreive cluster info
+	if(clusterinfo.flag == VALID) {
+		moduleparams->clustered = YES;	
+		moduleparams->cptr = clusterinfo.data;
+	}
+	return;
+}

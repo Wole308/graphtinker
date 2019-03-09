@@ -1,0 +1,915 @@
+#include <string.h>
+#include <iostream>
+#include <string>
+#include "graphtinker.h"
+using namespace std;
+
+/**
+1. all cmds are set:
+	- moduleparams for this current lcs iteration is made up-to-date
+	- moduleunitcmd for next lcs iteration is set 
+	- loadunitcmd for the next lcs iteration is set
+	- writebackunitcmd for this current lcs iteration is set
+	- intervalunitcmd for this current lcs iteration is set
+	after inference unit returns
+2. margin information (workblock margin) for the next lcs iteration is set
+*/
+
+void inference_unit(
+				unsigned int edgeupdatecmd,
+				moduleunitcmd_t * moduleunitcmd,
+				moduleparams_t * moduleparams,				
+				loadunitcmd_t * loadunitcmd,
+				findparams_t findparams,
+				findreport_t findreport,
+				insertparams_t insertparams, //***
+				insertreport_t insertreport,
+				writebackunitcmd_t * writebackunitcmd,				
+				intervalunitcmd_t * intervalunitcmd,				
+				margin_t * wblkmargin, 
+				margin_t subblkmargin,
+				margin_t start_wblkmargin,				
+				vertexid_t xvtx_id
+				#ifdef EN_LLGDS
+				,llgdsunitcmd_t *llgdsunitcmd
+				#endif
+				#ifdef EN_CRUMPLEINONDELETE
+				,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+				#endif
+				){
+	//infer from search report
+	searchreport_t searchreport; searchreport.searchstop=0; searchreport.searchsuccessful=0; 
+	if(moduleunitcmd->mode==FINDONLYMODE) { searchreport.searchstop = (findreport.entryfound==YES || findreport.foundemptybkt==YES || findreport.maxprobelengthreached==YES)? 1:0; }
+	if(moduleunitcmd->mode==FINDONLYMODE) { searchreport.searchsuccessful = (findreport.entryfound==YES)? 1:0; }
+	
+    unsigned int ONE=1;
+    unsigned int islastworkblock = isthelastworkblock(*wblkmargin, start_wblkmargin, subblkmargin, *moduleparams);
+    
+		#ifdef EN_OTHERS 
+		//cout<<"inference params of tinker = "<< tinkerid <<", batch = "<<batchid<<", chunk = "<<chunkid<<endl;
+		cout<<"searchreport.searchstop = "<<searchreport.searchstop<<endl;
+		cout<<"searchreport.searchsuccessful = "<<searchreport.searchsuccessful<<endl;
+		cout<<"insertreport.exittype = "<<insertreport.exittype<<endl;
+		cout<<"moduleunitcmd->mode = "<<moduleunitcmd->mode<<endl;
+		cout<<"islastworkblock = "<<islastworkblock<<endl<<endl;
+		#endif
+		
+		//|Mode|_|Searchstopped|_|searchsuccessfull_|InsertReport.exittype|_|islastworkblock?|
+		//find-only mode
+		if(moduleunitcmd->mode==FINDONLYMODE && searchreport.searchstop==YES && searchreport.searchsuccessful==NO && ONE==1 && ONE==1){		
+			if(edgeupdatecmd == INSERTEDGE){
+				findonlymode_searchstopped_searchunsuccessful_x_x(
+					moduleunitcmd,
+					moduleparams,
+					loadunitcmd,
+					findparams,
+					writebackunitcmd,
+					intervalunitcmd,
+					*wblkmargin,
+					subblkmargin,
+					xvtx_id
+					#ifdef EN_LLGDS
+					,llgdsunitcmd
+					#endif
+					#ifdef EN_CRUMPLEINONDELETE
+					,heba_popoutpopin_cmd
+					#endif
+				);
+			} 
+			#ifndef EN_CRUMPLEINONDELETE	
+			else if(edgeupdatecmd == DELETEEDGE){
+				findanddeletemode_searchstopped_searchunsuccessful_x_x(
+					moduleunitcmd,	
+					moduleparams,
+					loadunitcmd,
+					findparams,
+					writebackunitcmd,
+					intervalunitcmd,
+					*wblkmargin,
+					subblkmargin,
+					xvtx_id
+					#ifdef EN_LLGDS
+					,llgdsunitcmd
+					#endif
+					#ifdef EN_CRUMPLEINONDELETE
+					,heba_popoutpopin_cmd
+					#endif
+				);
+			}
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE	
+			else if(edgeupdatecmd == DELETEEDGE){
+				findanddeleteandcrumpleinmode_searchstopped_searchunsuccessful_x_x(
+					moduleunitcmd,	
+					moduleparams,
+					loadunitcmd,
+					findparams,
+					writebackunitcmd,
+					intervalunitcmd,
+					*wblkmargin,
+					subblkmargin,
+					xvtx_id
+					#ifdef EN_LLGDS
+					,llgdsunitcmd
+					#endif
+					#ifdef EN_CRUMPLEINONDELETE
+					,heba_popoutpopin_cmd
+					#endif
+				);
+			}
+			#endif
+			else {
+				cout<<"bug! : should never be seen here (inference_unit34)"<<endl;
+			}			
+			
+		} else if (moduleunitcmd->mode==FINDONLYMODE && searchreport.searchstop==YES && searchreport.searchsuccessful==YES && ONE==1 && ONE==1){
+			if(edgeupdatecmd == INSERTEDGE){
+				findonlymode_searchstopped_searchsuccessful_x_x(
+					moduleunitcmd,
+					moduleparams,
+					loadunitcmd,
+					findparams,
+					writebackunitcmd,
+					intervalunitcmd,
+					*wblkmargin,
+					subblkmargin,
+					xvtx_id
+					#ifdef EN_LLGDS
+					,llgdsunitcmd
+					#endif
+					#ifdef EN_CRUMPLEINONDELETE
+					,heba_popoutpopin_cmd
+					#endif
+				);
+			}
+			#ifndef EN_CRUMPLEINONDELETE	
+			else if (edgeupdatecmd == DELETEEDGE){
+				findanddeletemode_searchstopped_searchsuccessful_x_x(
+					moduleunitcmd,
+					moduleparams,
+					loadunitcmd,
+					findparams,
+					findreport,
+					writebackunitcmd,
+					intervalunitcmd,
+					*wblkmargin,
+					subblkmargin,
+					xvtx_id
+					#ifdef EN_LLGDS
+					,llgdsunitcmd
+					#endif
+					#ifdef EN_CRUMPLEINONDELETE
+					,heba_popoutpopin_cmd
+					#endif
+				);				
+			}
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE	
+			else if (edgeupdatecmd == DELETEEDGE){
+				findanddeleteandcrumpleinmode_searchstopped_searchsuccessful_x_x(
+					moduleunitcmd,
+					moduleparams,
+					loadunitcmd,
+					findparams,
+					findreport,
+					writebackunitcmd,
+					intervalunitcmd,
+					*wblkmargin,
+					subblkmargin,
+					xvtx_id
+					#ifdef EN_LLGDS
+					,llgdsunitcmd
+					#endif
+					#ifdef EN_CRUMPLEINONDELETE
+					,heba_popoutpopin_cmd
+					#endif
+				);
+			}
+			#endif
+			else {
+				cout<<"bug! : should never be seen here (inference_unit35)"<<endl;
+			}
+		} else if (moduleunitcmd->mode==FINDONLYMODE && searchreport.searchstop==NO && searchreport.searchsuccessful==NO && ONE==1 && islastworkblock==NO){
+			findonlymode_searchnotstopped_searchnotsuccessful_x_notlastworkblock(
+				moduleunitcmd,
+				moduleparams,			
+				loadunitcmd,
+				findparams,
+				writebackunitcmd,
+				intervalunitcmd,
+				wblkmargin, 
+				subblkmargin,
+				xvtx_id
+				#ifdef EN_LLGDS
+				,llgdsunitcmd
+				#endif
+				#ifdef EN_CRUMPLEINONDELETE
+				,heba_popoutpopin_cmd
+				#endif
+			);
+		} else if (moduleunitcmd->mode==FINDONLYMODE && searchreport.searchstop==NO && searchreport.searchsuccessful==NO && ONE==1 && islastworkblock==YES){
+			findonlymode_searchnotstopped_searchnotsuccessful_x_lastworkblock(
+				moduleunitcmd,	
+				moduleparams,
+				loadunitcmd,
+				findparams,
+				writebackunitcmd,
+				intervalunitcmd,
+				*wblkmargin,
+				subblkmargin,
+				xvtx_id
+				#ifdef EN_LLGDS
+				,llgdsunitcmd
+				#endif
+				#ifdef EN_CRUMPLEINONDELETE
+				,heba_popoutpopin_cmd
+				#endif
+			);
+		//insert-only mode
+		} else if (moduleunitcmd->mode==INSERTONLYMODE && ONE==1 && ONE==1 && insertreport.exittype==PASSEDTHROUGHANDSWAPPEDATSOMEPOINT && islastworkblock==NO){
+			insertonlymode_x_x_passedthroughandswappedatsomepoint_notlastworkblock(
+				moduleunitcmd,
+				moduleparams,			
+				loadunitcmd,
+				insertparams,
+				writebackunitcmd,
+				intervalunitcmd,
+				wblkmargin, 
+				subblkmargin,
+				xvtx_id
+				#ifdef EN_LLGDS
+				,llgdsunitcmd
+				#endif
+				#ifdef EN_CRUMPLEINONDELETE
+				,heba_popoutpopin_cmd
+				#endif
+			);
+		} else if (moduleunitcmd->mode==INSERTONLYMODE && ONE==1 && ONE==1 && insertreport.exittype==PASSEDTHROUGHANDSWAPPEDATSOMEPOINT && islastworkblock==YES){
+			insertonlymode_x_x_passedthroughandswappedatsomepoint_lastworkblock(
+				moduleunitcmd,
+				moduleparams,			
+				loadunitcmd,
+				insertparams,
+				writebackunitcmd,
+				intervalunitcmd,
+				*wblkmargin,
+				subblkmargin,
+				xvtx_id
+				#ifdef EN_LLGDS
+				,llgdsunitcmd
+				#endif
+				#ifdef EN_CRUMPLEINONDELETE
+				,heba_popoutpopin_cmd
+				#endif
+			);
+		} else if (moduleunitcmd->mode==INSERTONLYMODE && ONE==1 && ONE==1 && insertreport.exittype==LOADEDINTOEMPTYBUCKET && ONE==1){
+			insertonlymode_x_x_loadedintoemptybucket_x(
+				moduleunitcmd,
+				moduleparams,
+				loadunitcmd,
+				insertparams,
+				writebackunitcmd,
+				intervalunitcmd,
+				*wblkmargin, 
+				subblkmargin,
+				xvtx_id
+				#ifdef EN_LLGDS
+				,llgdsunitcmd
+				#endif
+				#ifdef EN_CRUMPLEINONDELETE
+				,heba_popoutpopin_cmd
+				#endif
+			);
+		} else if (moduleunitcmd->mode==INSERTONLYMODE && ONE==1 && ONE==1 && insertreport.exittype==FOUNDANDUPDATEDITSELF && ONE==1){
+			insertonlymode_x_x_foundandupdateditself_x(
+				moduleunitcmd,	
+				moduleparams,
+				loadunitcmd,
+				insertparams,
+				writebackunitcmd,
+				intervalunitcmd,
+				*wblkmargin,
+				subblkmargin,
+				xvtx_id
+				#ifdef EN_LLGDS
+				,llgdsunitcmd
+				#endif
+				#ifdef EN_CRUMPLEINONDELETE
+				,heba_popoutpopin_cmd
+				#endif
+			);
+		} else if (moduleunitcmd->mode==INSERTONLYMODE && ONE==1 && ONE==1 && insertreport.exittype==PASSEDTHROUGH && islastworkblock==NO){
+			insertonlymode_x_x_passedthrough_notlastworkblock(
+				moduleunitcmd,
+				moduleparams,	
+				loadunitcmd,
+				insertparams,
+				writebackunitcmd,
+				intervalunitcmd,
+				wblkmargin, 
+				subblkmargin,
+				xvtx_id
+				#ifdef EN_LLGDS
+				,llgdsunitcmd
+				#endif
+				#ifdef EN_CRUMPLEINONDELETE
+				,heba_popoutpopin_cmd
+				#endif
+			);
+		} else if (moduleunitcmd->mode==INSERTONLYMODE && ONE==1 && ONE==1 && insertreport.exittype==PASSEDTHROUGH && islastworkblock==YES){
+			insertonlymode_x_x_passedthrough_lastworkblock(
+				moduleunitcmd,
+				moduleparams,			
+				loadunitcmd,
+				insertparams,
+				writebackunitcmd,
+				intervalunitcmd,
+				*wblkmargin,
+				subblkmargin,
+				xvtx_id
+				#ifdef EN_LLGDS
+				,llgdsunitcmd
+				#endif
+				#ifdef EN_CRUMPLEINONDELETE
+				,heba_popoutpopin_cmd
+				#endif
+			);
+		} else{ cout<<"bug! : should never get here! (inference unit)"<<endl;	}		
+        return;
+}
+
+//|Mode|_|Searchstopped|_|searchsuccessfull_|InsertReport.exittype|_|islastworkblock?|
+//Find-Only Mode
+void findonlymode_searchstopped_searchunsuccessful_x_x(
+			moduleunitcmd_t *moduleunitcmd,	
+			moduleparams_t *moduleparams,
+			loadunitcmd_t *loadunitcmd,
+			findparams_t findparams,
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+    set_moduleunitcmd(moduleunitcmd, INSERTONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, findparams.xadjvtx_id, findparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES);
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, NO, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB
+	set_intervalunitcmd_continue_from_first_generation(intervalunitcmd);	
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, INSERTCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+void findonlymode_searchstopped_searchsuccessful_x_x(
+			moduleunitcmd_t *moduleunitcmd,
+			moduleparams_t *moduleparams, //***
+			loadunitcmd_t *loadunitcmd,
+			findparams_t findparams,
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+    set_moduleunitcmd(moduleunitcmd, FINDONLYMODE); //default mode
+	set_moduleunitparamsedgefields(moduleparams, findparams.xadjvtx_id, findparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //load next EB
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB
+	set_intervalunitcmd_quit_to_next_edge(intervalunitcmd);	
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, UPDATECMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+void findonlymode_searchnotstopped_searchnotsuccessful_x_notlastworkblock(
+			moduleunitcmd_t *moduleunitcmd,
+			moduleparams_t *moduleparams,			
+			loadunitcmd_t *loadunitcmd,
+			findparams_t findparams,
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t *wblkmargin, 
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+    set_moduleunitcmd(moduleunitcmd, FINDONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, findparams.xadjvtx_id, findparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //load next EB 
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, NO, (get_edgeblock_offset(xvtx_id) + wblkmargin->top/WORK_BLOCK_HEIGHT), subblkmargin); //writeback EB
+	set_intervalunitcmd_continue_in_current_generation(
+					intervalunitcmd,
+					wblkmargin,
+					subblkmargin,
+					moduleparams
+	);
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, NOCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+void findonlymode_searchnotstopped_searchnotsuccessful_x_lastworkblock(
+			moduleunitcmd_t *moduleunitcmd,
+			moduleparams_t *moduleparams, //***
+			loadunitcmd_t *loadunitcmd,
+			findparams_t findparams,
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+    set_moduleunitcmd(moduleunitcmd, FINDONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, findparams.xadjvtx_id, findparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //load next EB 
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, NO, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB
+	if(moduleparams->clustered != YES){ setwritebackunitcmd_markasclustered(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT))); } //***???
+	set_intervalunitcmd_continue_in_lower_generation(intervalunitcmd);
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, NOCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+//Insert-Only Mode
+void insertonlymode_x_x_passedthroughandswappedatsomepoint_notlastworkblock(
+			moduleunitcmd_t *moduleunitcmd,
+			moduleparams_t *moduleparams,	//***		
+			loadunitcmd_t *loadunitcmd,
+			insertparams_t insertparams,
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t *wblkmargin, 
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+	set_moduleunitcmd(moduleunitcmd, INSERTONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, insertparams.xadjvtx_id, insertparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //load next EB 
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + wblkmargin->top/WORK_BLOCK_HEIGHT), subblkmargin); //writeback EB
+	set_intervalunitcmd_continue_in_current_generation(
+					intervalunitcmd,
+					wblkmargin,
+					subblkmargin,
+					moduleparams
+	);
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, NOCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+void insertonlymode_x_x_passedthroughandswappedatsomepoint_lastworkblock(
+			moduleunitcmd_t *moduleunitcmd,
+			moduleparams_t *moduleparams,		
+			loadunitcmd_t *loadunitcmd,
+			insertparams_t insertparams, //***
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+	set_moduleunitcmd(moduleunitcmd, INSERTONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, insertparams.xadjvtx_id, insertparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //load next EB 
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB	
+	if(moduleparams->clustered != YES){ setwritebackunitcmd_markasclustered(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT))); } 
+	set_intervalunitcmd_continue_in_lower_generation(intervalunitcmd);
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, NOCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+void insertonlymode_x_x_loadedintoemptybucket_x(
+			moduleunitcmd_t *moduleunitcmd,
+			moduleparams_t *moduleparams,
+			loadunitcmd_t *loadunitcmd,
+			insertparams_t insertparams, //***
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+	set_moduleunitcmd(moduleunitcmd, FINDONLYMODE);	
+	set_moduleunitparamsedgefields(moduleparams, insertparams.xadjvtx_id, insertparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //load next EB 
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB
+	set_intervalunitcmd_quit_to_next_edge(intervalunitcmd);
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, UPDATEEDGEPTRSCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+void insertonlymode_x_x_foundandupdateditself_x(
+			moduleunitcmd_t *moduleunitcmd,	
+			moduleparams_t *moduleparams,
+			loadunitcmd_t *loadunitcmd,
+			insertparams_t insertparams, //***
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+	set_moduleunitcmd(moduleunitcmd, FINDONLYMODE);	
+	set_moduleunitparamsedgefields(moduleparams, insertparams.xadjvtx_id, insertparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //load next EB 
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB
+	set_intervalunitcmd_quit_to_next_edge(intervalunitcmd);
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, NOCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+void insertonlymode_x_x_passedthrough_notlastworkblock(
+			moduleunitcmd_t *moduleunitcmd,
+			moduleparams_t *moduleparams,			
+			loadunitcmd_t *loadunitcmd,
+			insertparams_t insertparams, //***
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t *wblkmargin, 
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+	set_moduleunitcmd(moduleunitcmd, INSERTONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, insertparams.xadjvtx_id, insertparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //load next EB 
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, NO, (get_edgeblock_offset(xvtx_id) + wblkmargin->top/WORK_BLOCK_HEIGHT), subblkmargin); //writeback EB
+	set_intervalunitcmd_continue_in_current_generation(
+					intervalunitcmd,
+					wblkmargin,
+					subblkmargin,
+					moduleparams
+	);
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, NOCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+void insertonlymode_x_x_passedthrough_lastworkblock(
+			moduleunitcmd_t *moduleunitcmd,
+			moduleparams_t *moduleparams,			
+			loadunitcmd_t *loadunitcmd,
+			insertparams_t insertparams, //***
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+	set_moduleunitcmd(moduleunitcmd, INSERTONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, insertparams.xadjvtx_id, insertparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //load next EB
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, NO, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB	
+	if(moduleparams->clustered != YES){ setwritebackunitcmd_markasclustered(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT))); } 
+	set_intervalunitcmd_continue_in_lower_generation(intervalunitcmd);
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, NOCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	return;
+}
+
+//Find-And-Delete Mode
+void findanddeletemode_searchstopped_searchunsuccessful_x_x(
+			moduleunitcmd_t *moduleunitcmd,	
+			moduleparams_t *moduleparams,
+			loadunitcmd_t *loadunitcmd,
+			findparams_t findparams,
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+    set_moduleunitcmd(moduleunitcmd, FINDONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, findparams.xadjvtx_id, findparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //*** NO YES
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, NO, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB
+	set_intervalunitcmd_quit_to_next_edge(intervalunitcmd);	
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, NOCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	
+	#ifdef EN_OTHERS
+	cout<<"bug! find not successfull (inference_unit22)"<<endl; //***
+	#endif
+	return;
+}
+
+void findanddeletemode_searchstopped_searchsuccessful_x_x(
+			moduleunitcmd_t *moduleunitcmd,	
+			moduleparams_t *moduleparams,
+			loadunitcmd_t *loadunitcmd,
+			findparams_t findparams,
+			findreport_t findreport,
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+	set_moduleunitcmd(moduleunitcmd, FINDONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, findparams.xadjvtx_id, findparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //*** NO YES
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB
+	set_intervalunitcmd_quit_to_next_edge(intervalunitcmd);	
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, DELETECMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_NOCMD;
+	#endif
+	
+	#ifdef EN_OTHERS
+	if(findreport.entrydeleted == YES){ cout<<"entry founf but deleted (inference unit)"<<endl; }
+	else if (findreport.entrydeleted == NO) { cout<<"bug! entry actually not found at all (inference unit)"<<endl; }
+	else { cout<<"bug! should not get here (inference_unit55)"<<endl; }
+	#endif
+	return;
+}
+
+//Find-And-Delete-And-Crumplein Mode
+void findanddeleteandcrumpleinmode_searchstopped_searchunsuccessful_x_x(
+			moduleunitcmd_t *moduleunitcmd,	
+			moduleparams_t *moduleparams,
+			loadunitcmd_t *loadunitcmd,
+			findparams_t findparams,
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){
+    set_moduleunitcmd(moduleunitcmd, FINDONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, findparams.xadjvtx_id, findparams.edge_weight); //***
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES); //*** NO YES
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, NO, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin); //writeback EB
+	set_intervalunitcmd_quit_to_next_edge(intervalunitcmd);	
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, NOCMD);
+	#endif
+	#ifdef EN_CRUMPLEINONDELETE
+	heba_popoutpopin_cmd->verdict = DCI_JUSTQUITCMD;
+	#endif
+	
+	#ifdef EN_OTHERS
+	cout<<"bug! find not successfull (inference_unit11)"<<endl; //***
+	#endif
+	return;
+}
+
+void findanddeleteandcrumpleinmode_searchstopped_searchsuccessful_x_x(
+			moduleunitcmd_t *moduleunitcmd,	
+			moduleparams_t *moduleparams,
+			loadunitcmd_t *loadunitcmd,
+			findparams_t findparams,
+			findreport_t findreport,
+			writebackunitcmd_t *writebackunitcmd,
+			intervalunitcmd_t *intervalunitcmd,
+			margin_t wblkmargin,
+			margin_t subblkmargin,
+			vertexid_t xvtx_id
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_popoutpopin_cmd
+			#endif
+){	
+	set_moduleunitcmd(moduleunitcmd, FINDONLYMODE);
+	set_moduleunitparamsedgefields(moduleparams, findparams.xadjvtx_id, findparams.edge_weight);
+	set_loadunitcmd_loadnextEB(loadunitcmd, YES);
+	set_writebackunitcmd_writebackcurrentEB(writebackunitcmd, YES, (get_edgeblock_offset(xvtx_id) + (wblkmargin.top / WORK_BLOCK_HEIGHT)), subblkmargin);
+	set_intervalunitcmd_quit_to_next_edge(intervalunitcmd);	
+	#ifdef EN_LLGDS
+	set_llgdsunitcmd(llgdsunitcmd, DELETEANDCRUMPLEINCMD);
+	#endif	
+	#ifdef EN_CRUMPLEINONDELETE
+	if(moduleparams->clustered == YES){
+		heba_popoutpopin_cmd->verdict = DCI_CRUMPLEINCMD;
+	} else {
+		heba_popoutpopin_cmd->verdict = DCI_JUSTQUITCMD;
+	}
+	#endif
+
+	#ifdef EN_OTHERS
+	if(findreport.entrydeleted == YES){ cout<<"entry founf but deleted (inference unit)"<<endl; }
+	else if (findreport.entrydeleted == NO) { cout<<"bug! entry actually not found at all (inference unit)"<<endl; }
+	else { cout<<"bug! should not get here (inference_unit66)"<<endl; }
+	#endif
+	return;
+}
+//////////////////////////////////////
+
+//verdict functions
+void set_intervalunitcmd_continue_from_first_generation(intervalunitcmd_t *intervalunitcmd){
+	intervalunitcmd->verdict = CONTINUE_FROM_FIRST_GENERATION;
+	return;
+}
+
+void set_intervalunitcmd_continue_in_lower_generation(intervalunitcmd_t *intervalunitcmd){
+	intervalunitcmd->verdict = CONTINUE_IN_LOWER_GENERATION;
+	return;
+}
+
+void set_intervalunitcmd_continue_in_current_generation(intervalunitcmd_t *intervalunitcmd, margin_t *wblkmargin, margin_t subblkmargin, moduleparams_t *moduleparams){
+	intervalunitcmd->verdict = CONTINUE_IN_CURRENT_GENERATION;
+	updatemarginandrolloverstatus(wblkmargin, subblkmargin, moduleparams);
+	return;
+}
+
+void set_intervalunitcmd_quit_to_next_edge(intervalunitcmd_t *intervalunitcmd){
+	intervalunitcmd->verdict = QUIT_TO_NEXT_EDGE;
+	return;
+}
+
+void set_loadunitcmd_loadnextEB(loadunitcmd_t *loadunitcmd, unsigned int cmd){
+	loadunitcmd->load = cmd;
+	return;
+}
+
+void set_moduleunitcmd(moduleunitcmd_t *moduleunitcmd, unsigned int cmd){
+	moduleunitcmd->mode = cmd;
+	return;
+}
+
+void set_moduleunitparamsedgefields(moduleparams_t *moduleparams, vertexid_t xadjvtx_id, edgeweight_t edge_weight){
+	moduleparams->xadjvtx_id = xadjvtx_id;
+	moduleparams->edge_weight = edge_weight;
+	return;
+}
+
+void set_writebackunitcmd_writebackcurrentEB(writebackunitcmd_t *writebackunitcmd, unsigned int cmd, unsigned int addr, margin_t subblkmargin){
+	writebackunitcmd->writeback = cmd; //writeback EB
+	writebackunitcmd->addr =addr;
+	writebackunitcmd->subblockid = subblkmargin.top/SUB_BLOCK_HEIGHT;
+	return;
+}
+
+void setwritebackunitcmd_markasclustered(writebackunitcmd_t *writebackunitcmd, unsigned int cmd, unsigned int addr){
+	writebackunitcmd->markasclustered = cmd; //mark as clustered
+	writebackunitcmd->addr = addr;
+	return;
+}
+
+void set_llgdsunitcmd(llgdsunitcmd_t *llgdsunitcmd, unsigned int cmd){	
+	llgdsunitcmd->verdict = cmd;
+	return;
+}
+	
+//utility functions
+void updatemarginandrolloverstatus(margin_t *wblkmargin, margin_t subblkmargin, moduleparams_t *moduleparams){
+    if(wblkmargin->bottom == subblkmargin.bottom){ //roll over 
+		#ifdef cpuem_l1
+		cout<<"**** reached end of sub-block, rolling over... ****"<<endl; 
+		#endif       
+		wblkmargin->top=subblkmargin.top; 
+		wblkmargin->bottom=subblkmargin.top+(WORK_BLOCK_HEIGHT-1); 
+		moduleparams->rolledover=YES;
+	} else { //move forward
+        wblkmargin->top+=WORK_BLOCK_HEIGHT; 
+        wblkmargin->bottom+=WORK_BLOCK_HEIGHT; 
+	}	
+	return;
+}
+
+unsigned int isthelastworkblock(margin_t wblkmargin, margin_t start_wblkmargin, margin_t subblkmargin, moduleparams_t moduleparams){
+    bucket_t nexttopmargin=0;
+    bucket_t nextbottommargin=0; 
+    unsigned int nextrolloverstatus=0;
+    
+    if(wblkmargin.bottom == subblkmargin.bottom){ //roll over 
+		nexttopmargin=subblkmargin.top; 
+		nextbottommargin=subblkmargin.top+(WORK_BLOCK_HEIGHT-1); //this is correct!
+		nextrolloverstatus=YES;
+	} else { //move forward
+		nexttopmargin = wblkmargin.top+WORK_BLOCK_HEIGHT; 
+        nextbottommargin = wblkmargin.bottom+WORK_BLOCK_HEIGHT; 
+        nextrolloverstatus = moduleparams.rolledover;
+	}	
+  
+	if(moduleparams.rolledover==YES && wblkmargin.top==start_wblkmargin.top) { return 1; } 
+    else { return 0; }
+}
+

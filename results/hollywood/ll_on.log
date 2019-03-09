@@ -1,0 +1,513 @@
+started  (updates_test)
+LLFULLDB: ON
+SGHashing: ON
+VPropUpdate: OFF
+WORK_BLOCK_HEIGHT: 4
+SUB_BLOCK_HEIGHT: 8
+PAGE_BLOCKHEIGHT: 64
+graphbenchmark: hollywood-2009.edges
+NO_OF_VERTICES: 1139905
+NO_OF_EDGES: 57515616
+host: GT
+graph direction type: UNDIRECTEDGRAPH
+graph deletion type: DELETEEDGE
+graph deletion rate: 0
+initializing vertices (vertices) 
+=== insertions started ===
+
+batch : 0
+edges loaded : 2097152 edges
+number of edges : 2060124 edges
+number of unique edges : 2097152 edges
+number of unique edges in ll : 2097152 edges
+timelapse (ms) : 2124.33 ms
+total timelapse (ms) : 2124.33 ms
+running throughput : 0.987207 million edges per sec
+
+batch : 1
+edges loaded : 2097152 edges
+number of edges : 4118926 edges
+number of unique edges : 4194304 edges
+number of unique edges in ll : 4194304 edges
+timelapse (ms) : 948.44 ms
+total timelapse (ms) : 3072.77 ms
+running throughput : 1.36499 million edges per sec
+
+batch : 2
+edges loaded : 2097152 edges
+number of edges : 6184721 edges
+number of unique edges : 6291456 edges
+number of unique edges in ll : 6291456 edges
+timelapse (ms) : 1076.29 ms
+total timelapse (ms) : 4149.06 ms
+running throughput : 1.51636 million edges per sec
+
+batch : 3
+edges loaded : 2097152 edges
+number of edges : 8248516 edges
+number of unique edges : 8388608 edges
+number of unique edges in ll : 8388608 edges
+timelapse (ms) : 1025.4 ms
+total timelapse (ms) : 5174.46 ms
+running throughput : 1.62116 million edges per sec
+
+batch : 4
+edges loaded : 2097152 edges
+number of edges : 10315935 edges
+number of unique edges : 10485760 edges
+number of unique edges in ll : 10485760 edges
+timelapse (ms) : 1026.36 ms
+total timelapse (ms) : 6200.82 ms
+running throughput : 1.69103 million edges per sec
+
+batch : 5
+edges loaded : 2097152 edges
+number of edges : 12395661 edges
+number of unique edges : 12582912 edges
+number of unique edges in ll : 12582912 edges
+timelapse (ms) : 1594.94 ms
+total timelapse (ms) : 7795.77 ms
+running throughput : 1.61407 million edges per sec
+
+batch : 6
+edges loaded : 2097152 edges
+number of edges : 14475332 edges
+number of unique edges : 14680064 edges
+number of unique edges in ll : 14680064 edges
+timelapse (ms) : 1331.06 ms
+total timelapse (ms) : 9126.82 ms
+running throughput : 1.60845 million edges per sec
+
+batch : 7
+edges loaded : 2097152 edges
+number of edges : 16546691 edges
+number of unique edges : 16777216 edges
+number of unique edges in ll : 16777216 edges
+timelapse (ms) : 1281.81 ms
+total timelapse (ms) : 10408.6 ms
+running throughput : 1.61186 million edges per sec
+
+batch : 8
+edges loaded : 2097152 edges
+number of edges : 18614196 edges
+number of unique edges : 18874368 edges
+number of unique edges in ll : 18874368 edges
+timelapse (ms) : 1238.85 ms
+total timelapse (ms) : 11647.5 ms
+running throughput : 1.62047 million edges per sec
+
+batch : 9
+edges loaded : 2097152 edges
+number of edges : 20673774 edges
+number of unique edges : 20971520 edges
+number of unique edges in ll : 20971520 edges
+timelapse (ms) : 1106.2 ms
+total timelapse (ms) : 12753.7 ms
+running throughput : 1.64435 million edges per sec
+
+batch : 10
+edges loaded : 2097152 edges
+number of edges : 22751844 edges
+number of unique edges : 23068672 edges
+number of unique edges in ll : 23068672 edges
+timelapse (ms) : 1424.85 ms
+total timelapse (ms) : 14178.5 ms
+running throughput : 1.62701 million edges per sec
+
+batch : 11
+edges loaded : 2097152 edges
+number of edges : 24830084 edges
+number of unique edges : 25165824 edges
+number of unique edges in ll : 25165824 edges
+timelapse (ms) : 3902.2 ms
+total timelapse (ms) : 18080.7 ms
+running throughput : 1.39186 million edges per sec
+
+batch : 12
+edges loaded : 2097152 edges
+number of edges : 26923120 edges
+number of unique edges : 27262976 edges
+number of unique edges in ll : 27262976 edges
+timelapse (ms) : 2514.76 ms
+total timelapse (ms) : 20595.5 ms
+running throughput : 1.32373 million edges per sec
+
+batch : 13
+edges loaded : 2097152 edges
+number of edges : 28994661 edges
+number of unique edges : 29360128 edges
+number of unique edges in ll : 29360128 edges
+timelapse (ms) : 1626.79 ms
+total timelapse (ms) : 22222.3 ms
+running throughput : 1.3212 million edges per sec
+
+batch : 14
+edges loaded : 2097152 edges
+number of edges : 31064947 edges
+number of unique edges : 31457280 edges
+number of unique edges in ll : 31457280 edges
+timelapse (ms) : 1476.53 ms
+total timelapse (ms) : 23698.8 ms
+running throughput : 1.32738 million edges per sec
+
+batch : 15
+edges loaded : 2097152 edges
+number of edges : 33138260 edges
+number of unique edges : 33554432 edges
+number of unique edges in ll : 33554432 edges
+timelapse (ms) : 1600.31 ms
+total timelapse (ms) : 25299.1 ms
+running throughput : 1.32631 million edges per sec
+
+batch : 16
+edges loaded : 2097152 edges
+number of edges : 35197452 edges
+number of unique edges : 35651584 edges
+number of unique edges in ll : 35651584 edges
+timelapse (ms) : 1076.49 ms
+total timelapse (ms) : 26375.6 ms
+running throughput : 1.35169 million edges per sec
+
+batch : 17
+edges loaded : 2097152 edges
+number of edges : 37269994 edges
+number of unique edges : 37748736 edges
+number of unique edges in ll : 37748736 edges
+timelapse (ms) : 1284.11 ms
+total timelapse (ms) : 27659.7 ms
+running throughput : 1.36475 million edges per sec
+
+batch : 18
+edges loaded : 2097152 edges
+number of edges : 39362769 edges
+number of unique edges : 39845888 edges
+number of unique edges in ll : 39845888 edges
+timelapse (ms) : 1909.81 ms
+total timelapse (ms) : 29569.5 ms
+running throughput : 1.34753 million edges per sec
+
+batch : 19
+edges loaded : 2097152 edges
+number of edges : 41457357 edges
+number of unique edges : 41943040 edges
+number of unique edges in ll : 41943040 edges
+timelapse (ms) : 2180.05 ms
+total timelapse (ms) : 31749.6 ms
+running throughput : 1.32106 million edges per sec
+
+batch : 20
+edges loaded : 2097152 edges
+number of edges : 43549280 edges
+number of unique edges : 44040192 edges
+number of unique edges in ll : 44040192 edges
+timelapse (ms) : 2163.28 ms
+total timelapse (ms) : 33912.9 ms
+running throughput : 1.29863 million edges per sec
+
+batch : 21
+edges loaded : 2097152 edges
+number of edges : 45605577 edges
+number of unique edges : 46137344 edges
+number of unique edges in ll : 46137344 edges
+timelapse (ms) : 1178.31 ms
+total timelapse (ms) : 35091.2 ms
+running throughput : 1.31478 million edges per sec
+
+batch : 22
+edges loaded : 2097152 edges
+number of edges : 47674361 edges
+number of unique edges : 48234496 edges
+number of unique edges in ll : 48234496 edges
+timelapse (ms) : 1314.19 ms
+total timelapse (ms) : 36405.4 ms
+running throughput : 1.32493 million edges per sec
+
+batch : 23
+edges loaded : 2097152 edges
+number of edges : 49756110 edges
+number of unique edges : 50331648 edges
+number of unique edges in ll : 50331648 edges
+timelapse (ms) : 2089.11 ms
+total timelapse (ms) : 38494.5 ms
+running throughput : 1.3075 million edges per sec
+
+batch : 24
+edges loaded : 2097152 edges
+number of edges : 51835977 edges
+number of unique edges : 52428800 edges
+number of unique edges in ll : 52428800 edges
+timelapse (ms) : 1937.53 ms
+total timelapse (ms) : 40432 ms
+running throughput : 1.29671 million edges per sec
+
+batch : 25
+edges loaded : 2097152 edges
+number of edges : 53927416 edges
+number of unique edges : 54525952 edges
+number of unique edges in ll : 54525952 edges
+timelapse (ms) : 1718.19 ms
+total timelapse (ms) : 42150.2 ms
+running throughput : 1.29361 million edges per sec
+
+batch : 26
+edges loaded : 2097152 edges
+number of edges : 56022757 edges
+number of unique edges : 56623104 edges
+number of unique edges in ll : 56623104 edges
+timelapse (ms) : 2235.45 ms
+total timelapse (ms) : 44385.7 ms
+running throughput : 1.27571 million edges per sec
+
+batch : 27
+edges loaded : 2097152 edges
+number of edges : 58118796 edges
+number of unique edges : 58720256 edges
+number of unique edges in ll : 58720256 edges
+timelapse (ms) : 2668.16 ms
+total timelapse (ms) : 47053.8 ms
+running throughput : 1.24794 million edges per sec
+
+batch : 28
+edges loaded : 2097152 edges
+number of edges : 60215116 edges
+number of unique edges : 60817408 edges
+number of unique edges in ll : 60817408 edges
+timelapse (ms) : 3040.86 ms
+total timelapse (ms) : 50094.7 ms
+running throughput : 1.21405 million edges per sec
+
+batch : 29
+edges loaded : 2097152 edges
+number of edges : 62310017 edges
+number of unique edges : 62914560 edges
+number of unique edges in ll : 62914560 edges
+timelapse (ms) : 2493.08 ms
+total timelapse (ms) : 52587.8 ms
+running throughput : 1.19637 million edges per sec
+
+batch : 30
+edges loaded : 2097152 edges
+number of edges : 64370450 edges
+number of unique edges : 65011712 edges
+number of unique edges in ll : 65011712 edges
+timelapse (ms) : 6254.92 ms
+total timelapse (ms) : 58842.7 ms
+running throughput : 1.10484 million edges per sec
+
+batch : 31
+edges loaded : 2097152 edges
+number of edges : 66435782 edges
+number of unique edges : 67108864 edges
+number of unique edges in ll : 67108864 edges
+timelapse (ms) : 1321.16 ms
+total timelapse (ms) : 60163.8 ms
+running throughput : 1.11544 million edges per sec
+
+batch : 32
+edges loaded : 2097152 edges
+number of edges : 68509687 edges
+number of unique edges : 69206016 edges
+number of unique edges in ll : 69206016 edges
+timelapse (ms) : 1559.38 ms
+total timelapse (ms) : 61723.2 ms
+running throughput : 1.12123 million edges per sec
+
+batch : 33
+edges loaded : 2097152 edges
+number of edges : 70578652 edges
+number of unique edges : 71303168 edges
+number of unique edges in ll : 71303168 edges
+timelapse (ms) : 1492.88 ms
+total timelapse (ms) : 63216.1 ms
+running throughput : 1.12793 million edges per sec
+
+batch : 34
+edges loaded : 2097152 edges
+number of edges : 72648016 edges
+number of unique edges : 73400320 edges
+number of unique edges in ll : 73400320 edges
+timelapse (ms) : 1513.07 ms
+total timelapse (ms) : 64729.2 ms
+running throughput : 1.13396 million edges per sec
+
+batch : 35
+edges loaded : 2097152 edges
+number of edges : 74719107 edges
+number of unique edges : 75497472 edges
+number of unique edges in ll : 75497472 edges
+timelapse (ms) : 1626.6 ms
+total timelapse (ms) : 66355.8 ms
+running throughput : 1.13777 million edges per sec
+
+batch : 36
+edges loaded : 2097152 edges
+number of edges : 76813000 edges
+number of unique edges : 77594624 edges
+number of unique edges in ll : 77594624 edges
+timelapse (ms) : 2332.77 ms
+total timelapse (ms) : 68688.5 ms
+running throughput : 1.12966 million edges per sec
+
+batch : 37
+edges loaded : 2097152 edges
+number of edges : 78908681 edges
+number of unique edges : 79691776 edges
+number of unique edges in ll : 79691776 edges
+timelapse (ms) : 2883 ms
+total timelapse (ms) : 71571.5 ms
+running throughput : 1.11346 million edges per sec
+
+batch : 38
+edges loaded : 2097152 edges
+number of edges : 81002797 edges
+number of unique edges : 81788928 edges
+number of unique edges in ll : 81788928 edges
+timelapse (ms) : 2513.66 ms
+total timelapse (ms) : 74085.2 ms
+running throughput : 1.10398 million edges per sec
+
+batch : 39
+edges loaded : 2097152 edges
+number of edges : 83097478 edges
+number of unique edges : 83886080 edges
+number of unique edges in ll : 83886080 edges
+timelapse (ms) : 2625.9 ms
+total timelapse (ms) : 76711.1 ms
+running throughput : 1.09353 million edges per sec
+
+batch : 40
+edges loaded : 2097152 edges
+number of edges : 85192082 edges
+number of unique edges : 85983232 edges
+number of unique edges in ll : 85983232 edges
+timelapse (ms) : 2719.85 ms
+total timelapse (ms) : 79430.9 ms
+running throughput : 1.08249 million edges per sec
+
+batch : 41
+edges loaded : 2097152 edges
+number of edges : 87286372 edges
+number of unique edges : 88080384 edges
+number of unique edges in ll : 88080384 edges
+timelapse (ms) : 2952.28 ms
+total timelapse (ms) : 82383.2 ms
+running throughput : 1.06915 million edges per sec
+
+batch : 42
+edges loaded : 2097152 edges
+number of edges : 89349497 edges
+number of unique edges : 90177536 edges
+number of unique edges in ll : 90177536 edges
+timelapse (ms) : 1782.33 ms
+total timelapse (ms) : 84165.5 ms
+running throughput : 1.07143 million edges per sec
+
+batch : 43
+edges loaded : 2097152 edges
+number of edges : 91402655 edges
+number of unique edges : 92274688 edges
+number of unique edges in ll : 92274688 edges
+timelapse (ms) : 1437.38 ms
+total timelapse (ms) : 85602.9 ms
+running throughput : 1.07794 million edges per sec
+
+batch : 44
+edges loaded : 2097152 edges
+number of edges : 93471500 edges
+number of unique edges : 94371840 edges
+number of unique edges in ll : 94371840 edges
+timelapse (ms) : 1494.91 ms
+total timelapse (ms) : 87097.8 ms
+running throughput : 1.08352 million edges per sec
+
+batch : 45
+edges loaded : 2097152 edges
+number of edges : 95531548 edges
+number of unique edges : 96468992 edges
+number of unique edges in ll : 96468992 edges
+timelapse (ms) : 1301.96 ms
+total timelapse (ms) : 88399.8 ms
+running throughput : 1.09128 million edges per sec
+
+batch : 46
+edges loaded : 2097152 edges
+number of edges : 97625533 edges
+number of unique edges : 98566144 edges
+number of unique edges in ll : 98566144 edges
+timelapse (ms) : 2052.73 ms
+total timelapse (ms) : 90452.5 ms
+running throughput : 1.0897 million edges per sec
+
+batch : 47
+edges loaded : 2097152 edges
+number of edges : 99722178 edges
+number of unique edges : 100663296 edges
+number of unique edges in ll : 100663296 edges
+timelapse (ms) : 3183.2 ms
+total timelapse (ms) : 93635.7 ms
+running throughput : 1.07505 million edges per sec
+
+batch : 48
+edges loaded : 2097152 edges
+number of edges : 101818606 edges
+number of unique edges : 102760448 edges
+number of unique edges in ll : 102760448 edges
+timelapse (ms) : 3376.91 ms
+total timelapse (ms) : 97012.6 ms
+running throughput : 1.05925 million edges per sec
+
+batch : 49
+edges loaded : 2097152 edges
+number of edges : 103910949 edges
+number of unique edges : 104857600 edges
+number of unique edges in ll : 104857600 edges
+timelapse (ms) : 2786.16 ms
+total timelapse (ms) : 99798.8 ms
+running throughput : 1.05069 million edges per sec
+
+batch : 50
+edges loaded : 2097152 edges
+number of edges : 105966959 edges
+number of unique edges : 106954752 edges
+number of unique edges in ll : 106954752 edges
+timelapse (ms) : 1712.69 ms
+total timelapse (ms) : 101511 ms
+running throughput : 1.05362 million edges per sec
+
+batch : 51
+edges loaded : 2097152 edges
+number of edges : 108038302 edges
+number of unique edges : 109051904 edges
+number of unique edges in ll : 109051904 edges
+timelapse (ms) : 1542.58 ms
+total timelapse (ms) : 103054 ms
+running throughput : 1.0582 million edges per sec
+
+batch : 52
+edges loaded : 2097152 edges
+number of edges : 110133715 edges
+number of unique edges : 111149056 edges
+number of unique edges in ll : 111149056 edges
+timelapse (ms) : 2626.23 ms
+total timelapse (ms) : 105680 ms
+running throughput : 1.05175 million edges per sec
+
+batch : 53
+edges loaded : 2097152 edges
+number of edges : 112208443 edges
+number of unique edges : 113246208 edges
+number of unique edges in ll : 113246208 edges
+timelapse (ms) : 1934 ms
+total timelapse (ms) : 107614 ms
+running throughput : 1.05233 million edges per sec
+finished reading from file (updates_test)
+
+batch : 54
+edges loaded : 1785026 edges
+number of edges : 113891327 edges
+number of unique edges : 115031234 edges
+number of unique edges in ll : 115031234 edges
+timelapse (ms) : 1064.57 ms
+total timelapse (ms) : 108679 ms
+running throughput : 1.05845 million edges per sec
+destroying graphtinker objects 

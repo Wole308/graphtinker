@@ -1,0 +1,107 @@
+#include <string.h>
+#include <iostream>
+#include <string>
+#include "graphtinker.h"
+using namespace std;
+
+void interval_unit_updateedge(			
+			moduleunitcmd_t * moduleunitcmd,
+			moduleparams_t * moduleparams,
+			loadunitcmd_t * loadunitcmd,
+			insertparams_t * insertparams, 
+			insertreport_t * insertreport,		
+			findparams_t * findparams,
+			findreport_t * findreport,	
+			writebackunitcmd_t * writebackunitcmd,
+			intervalunitcmd_t intervalunitcmd,				
+			margin_t * wblkmargin,
+			margin_t * subblkmargin,
+			margin_t * start_wblkmargin,
+			margin_t * first_wblkmargin,
+			vertexid_t * xvtx_id,
+			bucket_t * hadjvtx_id,
+			edge_t edge,
+			unsigned int edgeupdatecmd,
+			unsigned int * tripiteration_lcs,
+			unsigned int * geni,
+			unsigned int * quitstatus,
+			unsigned int infiniti
+			#ifdef EN_CRUMPLEINONDELETE
+			,unsigned int *lastgenworkblockaddr
+			#endif
+			#ifdef EN_LLGDS
+			,llgdsunitcmd_t *llgdsunitcmd
+			#endif
+			#ifdef EN_CRUMPLEINONDELETE
+			,deleteandcrumpleincmd_t * heba_deleteandcrumplein_cmd
+			#endif
+			){	
+	if(intervalunitcmd.verdict == QUIT_TO_NEXT_EDGE){
+		// exit
+		*quitstatus = 1;
+		
+	} else if (intervalunitcmd.verdict == CONTINUE_IN_LOWER_GENERATION){
+		
+		#ifdef EN_CRUMPLEINONDELETE
+		// keep track of workblock address before moving to a lower generation (or in first launch) -  might be needed in the lower generation if we decide to share supervertex entry
+		*lastgenworkblockaddr = get_edgeblock_offset(*xvtx_id) + wblkmargin->top/WORK_BLOCK_HEIGHT;
+		#endif
+		
+		// update/initialize appropriate module globals
+		*geni += 1;
+		*xvtx_id = moduleparams->cptr;
+		*tripiteration_lcs = 0;
+		*hadjvtx_id = googlehash(moduleparams->xadjvtx_id, *geni);		
+		findwblkmargin(wblkmargin, *hadjvtx_id);
+		*start_wblkmargin = *wblkmargin;
+		findsubblkmargin(subblkmargin, *hadjvtx_id);
+		
+		// initialize appropriate fields of lcs units
+		// ..2 funcs don't touch edge fields, to avoid overriding any swapping which may have occurred
+		initialize_moduleunit_params2(moduleparams);
+		initialize_loadunit(loadunitcmd);
+		initialize_insertunit2(insertparams, insertreport); 
+		initialize_findunit2(findparams, findreport);
+		initialize_writebackunit(writebackunitcmd);
+		
+	} else if (intervalunitcmd.verdict == CONTINUE_IN_CURRENT_GENERATION){
+		
+		// update/initialize appropriate module globals
+		*tripiteration_lcs += 1;
+		
+	} else if (intervalunitcmd.verdict == CONTINUE_FROM_FIRST_GENERATION){
+		
+		// update/initialize appropriate module globals
+		*geni = 1;
+		*xvtx_id = edge.xvtx_id;
+		*tripiteration_lcs = 0;	
+		*hadjvtx_id = googlehash(edge.xadjvtx_id, *geni);  //calculate hashes
+		findwblkmargin(wblkmargin, *hadjvtx_id); //find margins
+		*start_wblkmargin = *wblkmargin;
+		*first_wblkmargin = *wblkmargin;
+		findsubblkmargin(subblkmargin, *hadjvtx_id);
+
+		//set module cmd 
+		moduleunitcmd->mode=INSERTONLYMODE;
+		
+		// initialize appropriate fields of lcs units
+		// everything is initialized here
+		initialize_moduleunit_params(moduleparams, edge.xadjvtx_id, edge.edgew);
+		initialize_loadunit(loadunitcmd);
+		initialize_insertunit(insertparams, insertreport, edge.xadjvtx_id, *hadjvtx_id, edge.edgew);
+		initialize_findunit(findparams, findreport, edge.xadjvtx_id, *hadjvtx_id, edge.edgew);
+		initialize_writebackunit(writebackunitcmd);		
+		#ifdef EN_LLGDS
+		initialize_llebaverdictcmd(llgdsunitcmd);
+		#endif
+		#ifdef EN_CRUMPLEINONDELETE
+		init_deleteandcrumplein_verdictcmd(heba_deleteandcrumplein_cmd);
+		#endif
+		
+	} else { cout<<"bug! : should never get here (IntervalUnit)"<<endl; }
+	return;
+}
+
+
+
+
