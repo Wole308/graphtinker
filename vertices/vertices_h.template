@@ -18,6 +18,7 @@ class vertices{
 	void writedata(vertexid_t vertexid, vertexdata_t vertexdata);
 	void update_vertex_property(edge_t edge, unsigned int edgeupdatecmd);
 	void initialize();
+	void print_first_n(unsigned int N);
  private:
 };
 

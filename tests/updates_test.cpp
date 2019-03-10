@@ -19,9 +19,9 @@ using namespace std;
 
 /**
 cout<<"NUM_CORES: 1"<<endl;
-cout<<"LLFULLDB: 1"<<endl;
-cout<<"SGHashing: 1"<<endl;
-cout<<"VPropUpdate: 0"<<endl;
+cout<<"LLFULLDB: OFF"<<endl;
+cout<<"SGHashing: OFF"<<endl;
+cout<<"VPropUpdate: ON"<<endl;
 cout<<"graphbenchmark: rmat16_524288_8380000.edges"<<endl;
 cout<<"graph direction type: DIRECTEDGRAPH"<<endl;
 cout<<"NO_OF_VERTICES: 524288"<<endl;
@@ -190,9 +190,9 @@ void deletions(graphtinker & tinker){
 
 int main(){	
 	cout<<"started  (updates_test)"<<endl;	
-	cout<<"LLFULLDB: 1"<<endl;
-	cout<<"SGHashing: 1"<<endl;
-	cout<<"VPropUpdate: 0"<<endl;
+	cout<<"LLFULLDB: OFF"<<endl;
+	cout<<"SGHashing: OFF"<<endl;
+	cout<<"VPropUpdate: ON"<<endl;
 	cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
 	cout<<"SUB_BLOCK_HEIGHT: 8"<<endl;
 	cout<<"PAGE_BLOCKHEIGHT: 64"<<endl;

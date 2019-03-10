@@ -24,8 +24,10 @@ class graphtinker{
 		
 		// vertices 
 		vertices vertices_handler;
+		#ifdef EN_SGHASHING
 		vertex_translator_t * vertex_translator;
 		tracker_t translator_tracker;
+		#endif 
 		
 		// metadata (for delete and crumple in)
 		#ifdef EN_CRUMPLEINONDELETE	

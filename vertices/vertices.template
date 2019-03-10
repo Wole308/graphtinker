@@ -16,13 +16,11 @@
 using namespace std;
 
 vertices::vertices(){ 
-	cout<<"vertices constructor called (vertices)"<<endl;
+	cout<<"vertices::vertices : vertices constructor called"<<endl;
 	vertex_properties.resize(EDGEBLOCKARRAYHEIGHT); 
 	initialize(); 
 }
-vertices::~vertices(){
-		
-}
+vertices::~vertices(){}
 
 vertexdata_t vertices::readdata(vertexid_t vertexid){
 	return vertex_properties[vertexid].data;
@@ -40,10 +38,16 @@ void vertices::writedata(vertexid_t vertexid, vertexdata_t vertexdata){
 void vertices::update_vertex_property(edge_t edge, unsigned int edgeupdatecmd){
 	if(edgeupdatecmd == INSERTEDGE){
 		vertex_properties[edge.xvtx_id].outdegree += 1;
+		#ifdef UNDIRECTEDGRAPH
 		vertex_properties[edge.xvtx_id].indegree += 1;
+		#endif
+		vertex_properties[edge.xvtx_id].flag = VALID;
 	} else if (edgeupdatecmd == DELETEEDGE){		
 		vertex_properties[edge.xvtx_id].outdegree -= 1;
+		#ifdef UNDIRECTEDGRAPH
 		vertex_properties[edge.xvtx_id].indegree -= 1;
+		#endif
+		vertex_properties[edge.xvtx_id].flag = VALID;
 	}  else { cout<<"bug! : should never be seen here (vprop_update)"<<endl; }
 	return;
 }
@@ -55,6 +59,18 @@ void vertices::initialize(){
 		vertex_properties[i].indegree = 0;
 		vertex_properties[i].outdegree = 0;
 		vertex_properties[i].flag = INVALID;
+	}
+	return;
+}
+
+void vertices::print_first_n(unsigned int N){
+	for(unsigned int i=0; i<N; i++){
+		cout<<"vertexid : "<<i<<" ";
+		cout<<"data : "<<vertex_properties[i].data<<" ";
+		cout<<"indegree : "<<vertex_properties[i].indegree<<" ";
+		cout<<"outdegree : "<<vertex_properties[i].outdegree<<" ";
+		cout<<"flag : "<<vertex_properties[i].flag<<" ";
+		cout<<endl;
 	}
 	return;
 }

@@ -14,6 +14,8 @@
 using namespace std;
 
 graphtinker::graphtinker(unsigned int id){
+	printf("graphtinker::graphtinker : graphtinker constructor called \n");
+	
 	// edge block array
 	edge_block_array.resize(EDGEBLOCKARRAYSIZE);
 	lvatracker.mark = EDGEBLOCKARRAYHEIGHT;
@@ -27,8 +29,10 @@ graphtinker::graphtinker(unsigned int id){
 	#endif
 	
 	// vertices & translator
+	#ifdef EN_SGHASHING
 	vertex_translator = new vertex_translator_t[NO_OF_VERTICES];
 	translator_tracker.mark = 0;
+	#endif
 	
 	// metadata (for delete and crumple in)
 	edgeblock_parentinfo.resize(261875);
@@ -46,12 +50,9 @@ graphtinker::~graphtinker(){
 void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew){
 	unsigned int edgeupdatecmd = INSERTEDGE;	
 	#ifdef EN_SGHASHING
-	vertexid_t local_srcvid = get_localvid((vertexid_t)src);
-	// vertexid_t local_dstvid = get_localvid((vertexid_t)dst);
-	src = local_srcvid;
-	// dst = local_dstvid;
-	#endif	
-	// cout<<"src : "<<src<<", dst : "<<dst<<endl;
+	src = get_localvid((vertexid_t)src);
+	dst = get_localvid((vertexid_t)dst);
+	#endif
 	update_edge(src, dst, ew, edgeupdatecmd);
 	return;
 }
@@ -498,6 +499,7 @@ void graphtinker::initialize_lvas(){
 	return;
 }
 
+#ifdef EN_SGHASHING
 vertexid_t graphtinker::get_localvid(vertexid_t globalvid){
 	if(globalvid > NO_OF_VERTICES){ cout<<"bug. out of range5. globalvid : "<<globalvid<<", NO_OF_VERTICES : "<<NO_OF_VERTICES<<" (get_localvid)"<<endl; }
 	if(vertex_translator[globalvid].flag != VALID){
@@ -508,11 +510,13 @@ vertexid_t graphtinker::get_localvid(vertexid_t globalvid){
 	}
 	return vertex_translator[globalvid].localvid;
 }
+#endif 
 
+#ifdef EN_SGHASHING
 tracker_t graphtinker::get_translator_tracker(){
 	return translator_tracker;
 }
-
+#endif
 vertices & graphtinker::get_vertices_handler(){
 	return vertices_handler;
 }

@@ -6,6 +6,7 @@
 using namespace std;
 
 #define CPU 0
+#define EN_UPDATEVERTEXPROPS 0
 
 #define cpuem_bugs_b1 0
 #define EN_BUGCHECK 0
