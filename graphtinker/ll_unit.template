@@ -10,7 +10,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-void ll_unit(
+void graphtinker::ll_unit(
 		llgdsunitcmd_t llgdsunitcmd,
 		moduleparams_t * moduleparams,
 		insertparams_t * insertparams,

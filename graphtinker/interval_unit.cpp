@@ -4,7 +4,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-void interval_unit_updateedge(			
+void graphtinker::interval_unit_updateedge(			
 			moduleunitcmd_t * moduleunitcmd,
 			moduleparams_t * moduleparams,
 			loadunitcmd_t * loadunitcmd,

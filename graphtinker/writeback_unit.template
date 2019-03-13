@@ -15,7 +15,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-void writeback_unit(
+void graphtinker::writeback_unit(
 				moduleparams_t *moduleparams,				
 				writebackunitcmd_t writebackunitcmd,
 				edge_t edge,
@@ -163,7 +163,7 @@ void writeback_unit(
 	#ifdef EN_CRUMPLEINONDELETE
 	if(writebackunitcmd.markasclustered==YES){		
 		unsigned int index = clusterinfo.data - EDGEBLOCKARRAYHEIGHT;
-		if(index > {{context['LVA_OVERFLOW_LENGHT']}}){ cout<<"bug! out of range. writeback_unit"<<endl; }
+		if(index > lva_overflow_length){ cout<<"bug! out of range. writeback_unit"<<endl; }
 		if(edgeblock_parentinfo[index].flag != VALID){
 			edgeblock_parentinfo[index].subblockid = writebackunitcmd.subblockid;
 			edgeblock_parentinfo[index].flag = VALID;

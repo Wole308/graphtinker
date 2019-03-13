@@ -5,7 +5,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-unsigned int getsvtracker(markertracker_t * svtracker){
+unsigned int graphtinker::getsvtracker(markertracker_t * svtracker){
 	unsigned int ret = svtracker->marker;
 	svtracker->marker++;
 	return ret;

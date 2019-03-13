@@ -4,7 +4,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-void findwblkmargin(margin_t *blkmargin, bucket_t hadjvtx_id){
+void graphtinker::findwblkmargin(margin_t *blkmargin, bucket_t hadjvtx_id){
     bucket_t a;
     bucket_t ttop;
     
@@ -16,7 +16,7 @@ void findwblkmargin(margin_t *blkmargin, bucket_t hadjvtx_id){
 	return;
 }
 
-void findsubblkmargin(margin_t *subblkmargin, bucket_t hadjvtx_id){
+void graphtinker::findsubblkmargin(margin_t *subblkmargin, bucket_t hadjvtx_id){
     bucket_t a;
     bucket_t ttop;
     
@@ -28,7 +28,7 @@ void findsubblkmargin(margin_t *subblkmargin, bucket_t hadjvtx_id){
 	return;
 }
 
-unsigned int findsubblkId(vertexid_t vid){
+unsigned int graphtinker::findsubblkId(vertexid_t vid){
 	unsigned int a = vid % PAGE_BLOCKHEIGHT;
 	unsigned int subblockid = a / SUB_BLOCK_HEIGHT;
 	return subblockid;	

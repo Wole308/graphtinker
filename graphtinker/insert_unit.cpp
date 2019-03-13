@@ -6,7 +6,7 @@ using namespace std;
 
 unsigned int debug_totaledgeinsertions;
 
-void insert_unit(
+void graphtinker::insert_unit(
 				moduleparams_t *moduleparams,
 				insertparams_t *insertparams, 
 				insertreport_t *insertreport,
@@ -136,7 +136,7 @@ void insert_unit(
 	return;
 }
 
-bucket_t getdib(bucket_t currbkt, bucket_t initialbucket, margin_t subblkmargin, unsigned int rolledover){
+bucket_t graphtinker::getdib(bucket_t currbkt, bucket_t initialbucket, margin_t subblkmargin, unsigned int rolledover){
 	bucket_t DIB=0;
 	bucket_t rightpad=0;
 	bucket_t leftpad=0;

@@ -4,7 +4,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-void load_params(
+void graphtinker::load_params(
 				moduleparams_t moduleparams,				
 				insertparams_t *insertparams,		
 				findparams_t *findparams,				

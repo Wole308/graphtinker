@@ -15,7 +15,7 @@ using namespace std;
 2. margin information (workblock margin) for the next lcs iteration is set
 */
 
-void inference_unit(
+void graphtinker::inference_unit(
 				unsigned int edgeupdatecmd,
 				moduleunitcmd_t * moduleunitcmd,
 				moduleparams_t * moduleparams,				
@@ -340,7 +340,7 @@ void inference_unit(
 
 //|Mode|_|Searchstopped|_|searchsuccessfull_|InsertReport.exittype|_|islastworkblock?|
 //Find-Only Mode
-void findonlymode_searchstopped_searchunsuccessful_x_x(
+void graphtinker::findonlymode_searchstopped_searchunsuccessful_x_x(
 			moduleunitcmd_t *moduleunitcmd,	
 			moduleparams_t *moduleparams,
 			loadunitcmd_t *loadunitcmd,
@@ -371,7 +371,7 @@ void findonlymode_searchstopped_searchunsuccessful_x_x(
 	return;
 }
 
-void findonlymode_searchstopped_searchsuccessful_x_x(
+void graphtinker::findonlymode_searchstopped_searchsuccessful_x_x(
 			moduleunitcmd_t *moduleunitcmd,
 			moduleparams_t *moduleparams, //***
 			loadunitcmd_t *loadunitcmd,
@@ -402,7 +402,7 @@ void findonlymode_searchstopped_searchsuccessful_x_x(
 	return;
 }
 
-void findonlymode_searchnotstopped_searchnotsuccessful_x_notlastworkblock(
+void graphtinker::findonlymode_searchnotstopped_searchnotsuccessful_x_notlastworkblock(
 			moduleunitcmd_t *moduleunitcmd,
 			moduleparams_t *moduleparams,			
 			loadunitcmd_t *loadunitcmd,
@@ -438,7 +438,7 @@ void findonlymode_searchnotstopped_searchnotsuccessful_x_notlastworkblock(
 	return;
 }
 
-void findonlymode_searchnotstopped_searchnotsuccessful_x_lastworkblock(
+void graphtinker::findonlymode_searchnotstopped_searchnotsuccessful_x_lastworkblock(
 			moduleunitcmd_t *moduleunitcmd,
 			moduleparams_t *moduleparams, //***
 			loadunitcmd_t *loadunitcmd,
@@ -471,7 +471,7 @@ void findonlymode_searchnotstopped_searchnotsuccessful_x_lastworkblock(
 }
 
 //Insert-Only Mode
-void insertonlymode_x_x_passedthroughandswappedatsomepoint_notlastworkblock(
+void graphtinker::insertonlymode_x_x_passedthroughandswappedatsomepoint_notlastworkblock(
 			moduleunitcmd_t *moduleunitcmd,
 			moduleparams_t *moduleparams,	//***		
 			loadunitcmd_t *loadunitcmd,
@@ -507,7 +507,7 @@ void insertonlymode_x_x_passedthroughandswappedatsomepoint_notlastworkblock(
 	return;
 }
 
-void insertonlymode_x_x_passedthroughandswappedatsomepoint_lastworkblock(
+void graphtinker::insertonlymode_x_x_passedthroughandswappedatsomepoint_lastworkblock(
 			moduleunitcmd_t *moduleunitcmd,
 			moduleparams_t *moduleparams,		
 			loadunitcmd_t *loadunitcmd,
@@ -539,7 +539,7 @@ void insertonlymode_x_x_passedthroughandswappedatsomepoint_lastworkblock(
 	return;
 }
 
-void insertonlymode_x_x_loadedintoemptybucket_x(
+void graphtinker::insertonlymode_x_x_loadedintoemptybucket_x(
 			moduleunitcmd_t *moduleunitcmd,
 			moduleparams_t *moduleparams,
 			loadunitcmd_t *loadunitcmd,
@@ -570,7 +570,7 @@ void insertonlymode_x_x_loadedintoemptybucket_x(
 	return;
 }
 
-void insertonlymode_x_x_foundandupdateditself_x(
+void graphtinker::insertonlymode_x_x_foundandupdateditself_x(
 			moduleunitcmd_t *moduleunitcmd,	
 			moduleparams_t *moduleparams,
 			loadunitcmd_t *loadunitcmd,
@@ -601,7 +601,7 @@ void insertonlymode_x_x_foundandupdateditself_x(
 	return;
 }
 
-void insertonlymode_x_x_passedthrough_notlastworkblock(
+void graphtinker::insertonlymode_x_x_passedthrough_notlastworkblock(
 			moduleunitcmd_t *moduleunitcmd,
 			moduleparams_t *moduleparams,			
 			loadunitcmd_t *loadunitcmd,
@@ -637,7 +637,7 @@ void insertonlymode_x_x_passedthrough_notlastworkblock(
 	return;
 }
 
-void insertonlymode_x_x_passedthrough_lastworkblock(
+void graphtinker::insertonlymode_x_x_passedthrough_lastworkblock(
 			moduleunitcmd_t *moduleunitcmd,
 			moduleparams_t *moduleparams,			
 			loadunitcmd_t *loadunitcmd,
@@ -670,7 +670,7 @@ void insertonlymode_x_x_passedthrough_lastworkblock(
 }
 
 //Find-And-Delete Mode
-void findanddeletemode_searchstopped_searchunsuccessful_x_x(
+void graphtinker::findanddeletemode_searchstopped_searchunsuccessful_x_x(
 			moduleunitcmd_t *moduleunitcmd,	
 			moduleparams_t *moduleparams,
 			loadunitcmd_t *loadunitcmd,
@@ -705,7 +705,7 @@ void findanddeletemode_searchstopped_searchunsuccessful_x_x(
 	return;
 }
 
-void findanddeletemode_searchstopped_searchsuccessful_x_x(
+void graphtinker::findanddeletemode_searchstopped_searchsuccessful_x_x(
 			moduleunitcmd_t *moduleunitcmd,	
 			moduleparams_t *moduleparams,
 			loadunitcmd_t *loadunitcmd,
@@ -744,7 +744,7 @@ void findanddeletemode_searchstopped_searchsuccessful_x_x(
 }
 
 //Find-And-Delete-And-Crumplein Mode
-void findanddeleteandcrumpleinmode_searchstopped_searchunsuccessful_x_x(
+void graphtinker::findanddeleteandcrumpleinmode_searchstopped_searchunsuccessful_x_x(
 			moduleunitcmd_t *moduleunitcmd,	
 			moduleparams_t *moduleparams,
 			loadunitcmd_t *loadunitcmd,
@@ -779,7 +779,7 @@ void findanddeleteandcrumpleinmode_searchstopped_searchunsuccessful_x_x(
 	return;
 }
 
-void findanddeleteandcrumpleinmode_searchstopped_searchsuccessful_x_x(
+void graphtinker::findanddeleteandcrumpleinmode_searchstopped_searchsuccessful_x_x(
 			moduleunitcmd_t *moduleunitcmd,	
 			moduleparams_t *moduleparams,
 			loadunitcmd_t *loadunitcmd,
@@ -823,63 +823,63 @@ void findanddeleteandcrumpleinmode_searchstopped_searchsuccessful_x_x(
 //////////////////////////////////////
 
 //verdict functions
-void set_intervalunitcmd_continue_from_first_generation(intervalunitcmd_t *intervalunitcmd){
+void graphtinker::set_intervalunitcmd_continue_from_first_generation(intervalunitcmd_t *intervalunitcmd){
 	intervalunitcmd->verdict = CONTINUE_FROM_FIRST_GENERATION;
 	return;
 }
 
-void set_intervalunitcmd_continue_in_lower_generation(intervalunitcmd_t *intervalunitcmd){
+void graphtinker::set_intervalunitcmd_continue_in_lower_generation(intervalunitcmd_t *intervalunitcmd){
 	intervalunitcmd->verdict = CONTINUE_IN_LOWER_GENERATION;
 	return;
 }
 
-void set_intervalunitcmd_continue_in_current_generation(intervalunitcmd_t *intervalunitcmd, margin_t *wblkmargin, margin_t subblkmargin, moduleparams_t *moduleparams){
+void graphtinker::set_intervalunitcmd_continue_in_current_generation(intervalunitcmd_t *intervalunitcmd, margin_t *wblkmargin, margin_t subblkmargin, moduleparams_t *moduleparams){
 	intervalunitcmd->verdict = CONTINUE_IN_CURRENT_GENERATION;
 	updatemarginandrolloverstatus(wblkmargin, subblkmargin, moduleparams);
 	return;
 }
 
-void set_intervalunitcmd_quit_to_next_edge(intervalunitcmd_t *intervalunitcmd){
+void graphtinker::set_intervalunitcmd_quit_to_next_edge(intervalunitcmd_t *intervalunitcmd){
 	intervalunitcmd->verdict = QUIT_TO_NEXT_EDGE;
 	return;
 }
 
-void set_loadunitcmd_loadnextEB(loadunitcmd_t *loadunitcmd, unsigned int cmd){
+void graphtinker::set_loadunitcmd_loadnextEB(loadunitcmd_t *loadunitcmd, unsigned int cmd){
 	loadunitcmd->load = cmd;
 	return;
 }
 
-void set_moduleunitcmd(moduleunitcmd_t *moduleunitcmd, unsigned int cmd){
+void graphtinker::set_moduleunitcmd(moduleunitcmd_t *moduleunitcmd, unsigned int cmd){
 	moduleunitcmd->mode = cmd;
 	return;
 }
 
-void set_moduleunitparamsedgefields(moduleparams_t *moduleparams, vertexid_t xadjvtx_id, edgeweight_t edge_weight){
+void graphtinker::set_moduleunitparamsedgefields(moduleparams_t *moduleparams, vertexid_t xadjvtx_id, edgeweight_t edge_weight){
 	moduleparams->xadjvtx_id = xadjvtx_id;
 	moduleparams->edge_weight = edge_weight;
 	return;
 }
 
-void set_writebackunitcmd_writebackcurrentEB(writebackunitcmd_t *writebackunitcmd, unsigned int cmd, unsigned int addr, margin_t subblkmargin){
+void graphtinker::set_writebackunitcmd_writebackcurrentEB(writebackunitcmd_t *writebackunitcmd, unsigned int cmd, unsigned int addr, margin_t subblkmargin){
 	writebackunitcmd->writeback = cmd; //writeback EB
 	writebackunitcmd->addr =addr;
 	writebackunitcmd->subblockid = subblkmargin.top/SUB_BLOCK_HEIGHT;
 	return;
 }
 
-void setwritebackunitcmd_markasclustered(writebackunitcmd_t *writebackunitcmd, unsigned int cmd, unsigned int addr){
+void graphtinker::setwritebackunitcmd_markasclustered(writebackunitcmd_t *writebackunitcmd, unsigned int cmd, unsigned int addr){
 	writebackunitcmd->markasclustered = cmd; //mark as clustered
 	writebackunitcmd->addr = addr;
 	return;
 }
 
-void set_llgdsunitcmd(llgdsunitcmd_t *llgdsunitcmd, unsigned int cmd){	
+void graphtinker::set_llgdsunitcmd(llgdsunitcmd_t *llgdsunitcmd, unsigned int cmd){	
 	llgdsunitcmd->verdict = cmd;
 	return;
 }
 	
 //utility functions
-void updatemarginandrolloverstatus(margin_t *wblkmargin, margin_t subblkmargin, moduleparams_t *moduleparams){
+void graphtinker::updatemarginandrolloverstatus(margin_t *wblkmargin, margin_t subblkmargin, moduleparams_t *moduleparams){
     if(wblkmargin->bottom == subblkmargin.bottom){ //roll over 
 		#ifdef cpuem_l1
 		cout<<"**** reached end of sub-block, rolling over... ****"<<endl; 
@@ -894,7 +894,7 @@ void updatemarginandrolloverstatus(margin_t *wblkmargin, margin_t subblkmargin, 
 	return;
 }
 
-unsigned int isthelastworkblock(margin_t wblkmargin, margin_t start_wblkmargin, margin_t subblkmargin, moduleparams_t moduleparams){
+unsigned int graphtinker::isthelastworkblock(margin_t wblkmargin, margin_t start_wblkmargin, margin_t subblkmargin, moduleparams_t moduleparams){
     bucket_t nexttopmargin=0;
     bucket_t nextbottommargin=0; 
     unsigned int nextrolloverstatus=0;

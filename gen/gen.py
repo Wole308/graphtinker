@@ -10,41 +10,21 @@ print('number of arguments : ' + str(len(sys.argv)))
 
 #### system variables
 context['NUM_CORES'] = int(sys.argv[1])
-context['LLFULLDB'] = sys.argv[2] 
-context['SGHashing'] = sys.argv[3]
-context['VPropUpdate'] = sys.argv[4]
-context['graphbenchmark'] = ''+str(sys.argv[5])
-context['graphdirectiontype'] = str(sys.argv[6])
-context['NO_OF_VERTICES'] = int(sys.argv[7]) 
-context['NO_OF_EDGES'] = int(sys.argv[8])
-context['WORK_BLOCK_HEIGHT'] = int(sys.argv[9])
-context['SUB_BLOCK_HEIGHT'] = int(sys.argv[10])  
-context['PAGE_BLOCKHEIGHT'] = int(sys.argv[11])  
-context['BATCH_SIZE'] = int(sys.argv[12])
-context['insertion_rate'] = str(sys.argv[13])
-context['deletion_type'] = str(sys.argv[14])
-context['deletion_rate'] = str(sys.argv[15])
-context['updatefreq_gds'] = str(sys.argv[16])
-context['updatefreq_ge'] = str(sys.argv[17])
+context['LLFULLDB'] = sys.argv[2]
+context['VPropUpdate'] = sys.argv[3]
+context['WORK_BLOCK_HEIGHT'] = int(sys.argv[4])
+context['SUB_BLOCK_HEIGHT'] = int(sys.argv[5])  
+context['PAGE_BLOCKHEIGHT'] = int(sys.argv[6])  
+context['BATCH_SIZE'] = int(sys.argv[7])
 
 print ('GraphTinker configured parameters (Courtesy: Jinja 2.0)...')
 print ('NUM_CORES: ' + str(context['NUM_CORES']))
 print ('LLFULLDB: ' + str(context['LLFULLDB']))
-print ('SGHashing: ' + str(context['SGHashing']))
 print ('VPropUpdate: ' + str(context['VPropUpdate']))
-print ('graphbenchmark: ' + str(context['graphbenchmark']))
-print ('graphdirectiontype: ' + str(context['graphdirectiontype']))
-print ('NO_OF_VERTICES: ' + str(context['NO_OF_VERTICES']))
-print ('NO_OF_EDGES: ' + str(context['NO_OF_EDGES']))
 print ('WORK_BLOCK_HEIGHT: ' + str(context['WORK_BLOCK_HEIGHT']))
 print ('SUB_BLOCK_HEIGHT: ' + str(context['SUB_BLOCK_HEIGHT']))
 print ('PAGE_BLOCKHEIGHT: ' + str(context['PAGE_BLOCKHEIGHT']))
 print ('BATCH_SIZE: ' + str(context['BATCH_SIZE']))
-print ('insertion_rate: ' + str(context['insertion_rate']))
-print ('deletion_type: ' + str(context['deletion_type']))
-print ('deletion_rate: ' + str(context['deletion_rate']))
-print ('gds_update_frequency: ' + str(context['updatefreq_gds']))
-print ('ge_update_frequency: ' + str(context['updatefreq_ge']))
 	
 #================================
 o_path0="../tests/updates_test.cpp"
@@ -177,32 +157,15 @@ templ_path201="../graphtinker/"
 templ_path202="../graphtinker/"
 
 #####################
-### System parameters (General)
-if(context['graphdirectiontype']=='DIRECTEDGRAPH'):
-	context['AVERAGE_GRAPH_DEGREE'] = context['NO_OF_EDGES'] / context['NO_OF_VERTICES']
-elif(context['graphdirectiontype']=='UNDIRECTEDGRAPH'):
-	context['AVERAGE_GRAPH_DEGREE'] = (context['NO_OF_EDGES'] / context['NO_OF_VERTICES']) * 2
-print ('average Graph degree: ' + str(context['AVERAGE_GRAPH_DEGREE']))
-
-#####################
-### System parameters (gds Main)
+### System parameters (gds main)
 context['WORK_BLOCKS_PER_PAGE'] = context['PAGE_BLOCKHEIGHT']/context['WORK_BLOCK_HEIGHT']
 context['SUB_BLOCKS_PER_PAGE'] = context['PAGE_BLOCKHEIGHT']/context['SUB_BLOCK_HEIGHT']
 context['WORK_BLOCKS_PER_SUBBLOCK'] = context['SUB_BLOCK_HEIGHT']/context['WORK_BLOCK_HEIGHT']
-context['EDGEBLOCKARRAYHEIGHT'] = context['NO_OF_VERTICES']
-context['EDGEBLOCKARRAYSIZE'] = context['EDGEBLOCKARRAYHEIGHT'] * context['WORK_BLOCKS_PER_PAGE']
-if(context['graphdirectiontype'] == 'UNDIRECTEDGRAPH'):
-	context['LVA_OVERFLOW_LENGHT'] = (context['NO_OF_EDGES'] * 2) / (context['PAGE_BLOCKHEIGHT'] / 2) #//*** just a rough estimate. correct later
-else :
-	context['LVA_OVERFLOW_LENGHT'] = context['NO_OF_EDGES'] / (context['PAGE_BLOCKHEIGHT'] / 2)
 
 #####################
 ### System parameters (gds LL)
 context['LVACOARSENESSWIDTH'] = 2048
-context['LLLOGICALVERTEXARRAYSIZE'] = context['NO_OF_VERTICES'] + (context['LVACOARSENESSWIDTH'] - 1) / context['LVACOARSENESSWIDTH']
-
 context['LLEDGEBLOCKSIZE'] = 512
-context['LLEDGEBLOCKARRAYSIZE'] = (context['NO_OF_VERTICES'] * context['PAGE_BLOCKHEIGHT'] * 2) / context['LLEDGEBLOCKSIZE']
 		
 #####################
 ### Sequencers		

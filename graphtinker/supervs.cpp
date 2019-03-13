@@ -4,7 +4,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-int sv_get_next_edge(
+int graphtinker::sv_get_next_edge(
 			unsigned int xvtx_id,
 			vector<supervertex_t> &svs,
 			vector<vertexid_t> & freed_edgeblock_list,
@@ -50,7 +50,7 @@ int sv_get_next_edge(
 	return NULLL;
 }
 
-int sv_get_tail_edgeblock(
+int graphtinker::sv_get_tail_edgeblock(
 			vector<supervertex_t> & svs,
 			unsigned int currworkblockaddr,
 			unsigned int *svs_index,
@@ -79,7 +79,7 @@ int sv_get_tail_edgeblock(
 	return hvtx_id;
 }
 
-int sv_pick_edge(
+int graphtinker::sv_pick_edge(
 			unsigned int xvtx_id,
 			unsigned int offset,
 			edge_tt * edgett,

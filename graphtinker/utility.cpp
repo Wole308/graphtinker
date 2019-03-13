@@ -5,7 +5,7 @@ using namespace std;
 
 #include "graphtinker.h"
 
-unsigned int bitcombine_AB(unsigned int A, unsigned int B){
+unsigned int graphtinker::bitcombine_AB(unsigned int A, unsigned int B){
 	unsigned int bitcomb;
 	
 	if((A==0) && (B==0)) { 
@@ -26,7 +26,7 @@ unsigned int bitcombine_AB(unsigned int A, unsigned int B){
 	return bitcomb;
 }
 
-unsigned int bitselect_ABC(unsigned int A, unsigned int B, unsigned int C){
+unsigned int graphtinker::bitselect_ABC(unsigned int A, unsigned int B, unsigned int C){
 	unsigned int bitsel;
 	
 	if((A==0) && (B==0) && (C==1)) { 
@@ -44,17 +44,17 @@ unsigned int bitselect_ABC(unsigned int A, unsigned int B, unsigned int C){
 	return bitsel;
 }
 
-float min_float(float A, float B){
+float graphtinker::min_float(float A, float B){
 	if(A<B) { return A; }
 	else { return B; }
 }
 
-vertexdata_t min_type1(vertexdata_t A, vertexdata_t B){
+vertexdata_t graphtinker::min_type1(vertexdata_t A, vertexdata_t B){
 	if(A<B) { return A; }
 	else { return B; }
 }
 
-unsigned int getpartitionid(unsigned int vid){
+unsigned int graphtinker::getpartitionid(unsigned int vid){
 	return (vid % PAGE_BLOCKHEIGHT) / SUB_BLOCK_HEIGHT;
 }
 

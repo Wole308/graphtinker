@@ -20,17 +20,11 @@ using namespace std;
 /**
 cout<<"NUM_CORES: {{context['NUM_CORES']}}"<<endl;
 cout<<"LLFULLDB: {{context['LLFULLDB']}}"<<endl;
-cout<<"SGHashing: {{context['SGHashing']}}"<<endl;
 cout<<"VPropUpdate: {{context['VPropUpdate']}}"<<endl;
-cout<<"graphbenchmark: {{context['graphbenchmark']}}"<<endl;
-cout<<"graph direction type: {{context['graphdirectiontype']}}"<<endl;
-cout<<"NO_OF_VERTICES: {{context['NO_OF_VERTICES']}}"<<endl;
-cout<<"NO_OF_EDGES: {{context['NO_OF_EDGES']}}"<<endl;
 cout<<"WORK_BLOCK_HEIGHT: {{context['WORK_BLOCK_HEIGHT']}}"<<endl;
 cout<<"SUB_BLOCK_HEIGHT: {{context['SUB_BLOCK_HEIGHT']}}"<<endl;
 cout<<"PAGE_BLOCKHEIGHT: {{context['PAGE_BLOCKHEIGHT']}}"<<endl;
-cout<<"graph deletion type: {{context['deletion_type']}}"<<endl;	
-cout<<"graph deletion rate: {{context['deletion_rate']}}"<<endl; */
+cout<<"BATCH_SIZE: {{context['BATCH_SIZE']}}"<<endl; */
 
 class updates_test
 {
@@ -54,9 +48,9 @@ void insertions(graphtinker & tinker){
 	float runningthroughput = 0;
 	unsigned int batchid = 0;
 	
-	char path[] = "/net/zf15/oj2zf/datasets/{{context['graphbenchmark']}}";
+	char path[] = "/net/zf15/oj2zf/datasets/rmat16_524288_8380000.edges";
 	FILE* file = fopen (path, "r");
-	if (file==NULL)	{ cout<<"error : cannot find the location of input file {{context['graphbenchmark']}} (test_updatesingleedge)"<<endl; }
+	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat16_524288_8380000.edges (test_updatesingleedge)"<<endl; }
 	
 	while(!feof(file)){
 		src_dst_pairs.clear();
@@ -72,9 +66,6 @@ void insertions(graphtinker & tinker){
 			}
 			if(fscanf (file, "%i", &src) < 0){ cout<<"fscan error (updates_test)"<<endl; }
 			if(fscanf (file, "%i", &dst) < 0){ cout<<"fscan error (updates_test)"<<endl; }
-			{%if(context['graphbenchmark']=="kron_g500-logn21.edges")%} 
-			if(fscanf (file, "%d", &ew) < 0){ cout<<"fscan error (updates_test)"<<endl; }
-			{%endif%}
 			
 			tuple_t t;
 			t.A = src;
@@ -89,11 +80,11 @@ void insertions(graphtinker & tinker){
 			edges_inserted += 1;
 			total_edges_inserted += 1;
 			tinker.insert_edge((unsigned int)src_dst_pairs[j].A, (unsigned int)src_dst_pairs[j].B, 1);
-			#ifdef UNDIRECTEDGRAPH
-			edges_inserted += 1;
-			total_edges_inserted += 1;
-			tinker.insert_edge((unsigned int)src_dst_pairs[j].B, (unsigned int)src_dst_pairs[j].A, 1);
-			#endif
+			if(tinker.get_graphdirectiontype() == UNDIRECTEDGRAPH){
+				edges_inserted += 1;
+				total_edges_inserted += 1;
+				tinker.insert_edge((unsigned int)src_dst_pairs[j].B, (unsigned int)src_dst_pairs[j].A, 1);
+			}
 		}
 		insertion_timelapse_ms = 0;
 		insertion_timelapse_ms = (std::clock() - start) / (double) (CLOCKS_PER_SEC / 1000);
@@ -129,9 +120,9 @@ void deletions(graphtinker & tinker){
 	float runningthroughput = 0;
 	unsigned int batchid = 0;
 	
-	char path[] = "/net/zf15/oj2zf/datasets/{{context['graphbenchmark']}}";
+	char path[] = "/net/zf15/oj2zf/datasets/rmat16_524288_8380000.edges";
 	FILE* file = fopen (path, "r");
-	if (file==NULL)	{ cout<<"error : cannot find the location of input file {{context['graphbenchmark']}} (test_updatesingleedge)"<<endl; }
+	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat16_524288_8380000.edges (test_updatesingleedge)"<<endl; }
 	
 	while(!feof(file)){
 		src_dst_pairs.clear();
@@ -147,9 +138,6 @@ void deletions(graphtinker & tinker){
 			}
 			if(fscanf (file, "%i", &src) < 0){ cout<<"fscan error (updates_test)"<<endl; }
 			if(fscanf (file, "%i", &dst) < 0){ cout<<"fscan error (updates_test)"<<endl; }
-			{%if(context['graphbenchmark']=="kron_g500-logn21.edges")%} 
-			if(fscanf (file, "%d", &ew) < 0){ cout<<"fscan error (updates_test)"<<endl; }
-			{%endif%}
 			
 			tuple_t t;
 			t.A = src;
@@ -163,11 +151,11 @@ void deletions(graphtinker & tinker){
 			edges_deleted += 1;
 			total_edges_deleted += 1;
 			tinker.delete_edge((unsigned int)src_dst_pairs[j].A, (unsigned int)src_dst_pairs[j].B, 1);
-			#ifdef UNDIRECTEDGRAPH
-			edges_deleted += 1;
-			total_edges_deleted += 1;
-			tinker.insert_edge((unsigned int)src_dst_pairs[j].B, (unsigned int)src_dst_pairs[j].A, 1);
-			#endif
+			if(tinker.get_graphdirectiontype() == UNDIRECTEDGRAPH){
+				edges_deleted += 1;
+				total_edges_deleted += 1;
+				tinker.insert_edge((unsigned int)src_dst_pairs[j].B, (unsigned int)src_dst_pairs[j].A, 1);
+			}
 		}
 		deletion_timelapse_ms = (std::clock() - start) / (double) (CLOCKS_PER_SEC / 1000);
 		total_deletion_time_lapse_ms += deletion_timelapse_ms;
@@ -196,21 +184,15 @@ void deletions(graphtinker & tinker){
 
 int main(){	
 	cout<<"started  (updates_test)"<<endl;	
+	cout<<"NUM_CORES: {{context['NUM_CORES']}}"<<endl;
 	cout<<"LLFULLDB: {{context['LLFULLDB']}}"<<endl;
-	cout<<"SGHashing: {{context['SGHashing']}}"<<endl;
 	cout<<"VPropUpdate: {{context['VPropUpdate']}}"<<endl;
 	cout<<"WORK_BLOCK_HEIGHT: {{context['WORK_BLOCK_HEIGHT']}}"<<endl;
 	cout<<"SUB_BLOCK_HEIGHT: {{context['SUB_BLOCK_HEIGHT']}}"<<endl;
 	cout<<"PAGE_BLOCKHEIGHT: {{context['PAGE_BLOCKHEIGHT']}}"<<endl;
-	cout<<"graphbenchmark: {{context['graphbenchmark']}}"<<endl;
-	cout<<"NO_OF_VERTICES: {{context['NO_OF_VERTICES']}}"<<endl;
-	cout<<"NO_OF_EDGES: {{context['NO_OF_EDGES']}}"<<endl;
-	cout<<"host: {{context['host']}}"<<endl;
-	cout<<"graph direction type: {{context['graphdirectiontype']}}"<<endl;
-	cout<<"graph deletion type: {{context['deletion_type']}}"<<endl;	
-	cout<<"graph deletion rate: {{context['deletion_rate']}}"<<endl;
+	cout<<"BATCH_SIZE: {{context['BATCH_SIZE']}}"<<endl;
 	
-	graphtinker tinkerA(1);
+	graphtinker tinkerA(0, ON, 524288, 8380000, DIRECTEDGRAPH);
 	insertions(tinkerA);
 	// deletions(tinkerA);
 	return 0;

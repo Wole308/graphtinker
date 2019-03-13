@@ -15,7 +15,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-unsigned int get_edgeblock_offset(vertexid_t vid){
+unsigned int graphtinker::get_edgeblock_offset(vertexid_t vid){
     unsigned int offset4rmbase = vid  * WORK_BLOCKS_PER_PAGE; 
 	return offset4rmbase;
 }

@@ -3,7 +3,7 @@
 
 #define KMULTFACTOR 1
 
-bucket_t googlehash(vertexid_t vid, unsigned int geni){
+bucket_t graphtinker::googlehash(vertexid_t vid, unsigned int geni){
 	bucket_t hashval=0;
 	bucket_t exthashval=0;	
 	unsigned int page_blockheight = PAGE_BLOCKHEIGHT;

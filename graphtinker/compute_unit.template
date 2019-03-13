@@ -4,7 +4,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-void compute_unit(
+void graphtinker::compute_unit(
 				moduleunitcmd_t moduleunitcmd,
 				moduleparams_t * moduleparams,
 				insertparams_t * insertparams, 

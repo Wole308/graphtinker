@@ -15,7 +15,7 @@
 using namespace std;
 
 #ifdef EN_LLGDS	
-void ll_insert(
+void graphtinker::ll_insert(
 			edge_t edge,
 			moduleparams_t * moduleparams,
 			insertparams_t * insertparams,
@@ -32,7 +32,7 @@ void ll_insert(
 	lvaindex = edge.xvtx_id / LVACOARSENESSWIDTH; // find lllvaindex
 
 	#ifdef EN_BUGCHECK
-	if(lvaindex>=LLLOGICALVERTEXARRAYSIZE){cout<<"bug! : out-of-range 1 (GraphTinkerLL). lvaindex = "<<lvaindex<<", LLLOGICALVERTEXARRAYSIZE = "<<LLLOGICALVERTEXARRAYSIZE<<endl;}
+	if(lvaindex>=ll_logicalvertexarray_size){cout<<"bug! : out-of-range 1 (GraphTinkerLL). lvaindex = "<<lvaindex<<", ll_logicalvertexarray_size = "<<ll_logicalvertexarray_size<<endl;}
 	#endif
 	ll_logicalvertexentity_t entity = ll_lva[lvaindex];
 	
@@ -56,7 +56,7 @@ void ll_insert(
 		ll_edge_block_array[currentlocalbaseaddr].metadata.prevcptr = NAv;
 		
 		#ifdef EN_BUGCHECK
-		if((ll_eba_tracker->ptraddr)>=LLEDGEBLOCKARRAYSIZE){cout<<"bug! : out-of-range 3 (GraphTinkerLL)"<<endl;}
+		if((ll_eba_tracker->ptraddr)>=ll_edgeblock_array_size){cout<<"bug! : out-of-range 3 (GraphTinkerLL)"<<endl;}
 		#endif
 		
 		// increment tracker
@@ -85,7 +85,7 @@ void ll_insert(
 			ll_edge_block_array[nextlocalbaseaddr].metadata.prevcptr = ll_edge_block_array[currentlocalbaseaddr].metadata.currcptr;
 			
 			#ifdef EN_BUGCHECK
-			if((ll_eba_tracker->ptraddr)>=LLEDGEBLOCKARRAYSIZE){cout<<"bug! : out-of-range 3 (GraphTinkerLL)"<<endl;}
+			if((ll_eba_tracker->ptraddr)>=ll_edgeblock_array_size){cout<<"bug! : out-of-range 3 (GraphTinkerLL)"<<endl;}
 			#endif
 			
 			// increment
@@ -95,7 +95,7 @@ void ll_insert(
 			// not full, insert	edge
 			
 			#ifdef EN_BUGCHECK
-			if((entity.lastlocalbaseaddr)>=LLEDGEBLOCKARRAYSIZE){ cout<<"bug! : out-of-range 2 (GraphTinkerLL), entity.lastlocalbaseaddr = "<<entity.lastlocalbaseaddr<<", LLEDGEBLOCKARRAYSIZE = "<<LLEDGEBLOCKARRAYSIZE<<endl; }
+			if((entity.lastlocalbaseaddr)>=ll_edgeblock_array_size){ cout<<"bug! : out-of-range 2 (GraphTinkerLL), entity.lastlocalbaseaddr = "<<entity.lastlocalbaseaddr<<", ll_edgeblock_array_size = "<<ll_edgeblock_array_size<<endl; }
 			#endif
 			
 			ll_edge_block_array[entity.lastlocalbaseaddr].ll_edgeblock[entity.lastlocaladdr] = edge;
@@ -116,7 +116,7 @@ void ll_insert(
 	
 	/// submit changes
 	#ifdef EN_BUGCHECK
-	if(lvaindex>=LLLOGICALVERTEXARRAYSIZE){cout<<"bug! : out-of-range 4 (GraphTinkerLL). lvaindex = "<<lvaindex<<", LLLOGICALVERTEXARRAYSIZE = "<<LLLOGICALVERTEXARRAYSIZE<<endl;}
+	if(lvaindex>=ll_logicalvertexarray_size){cout<<"bug! : out-of-range 4 (GraphTinkerLL). lvaindex = "<<lvaindex<<", ll_logicalvertexarray_size = "<<ll_logicalvertexarray_size<<endl;}
 	#endif
 	
 	ll_lva[lvaindex] = entity;
@@ -127,7 +127,7 @@ void ll_insert(
 	return; 
 }
 
-void ll_update(
+void graphtinker::ll_update(
 			edge_t edge,
 			vertexid_t ll_localbaseaddrptr,
 			vertexid_t ll_localaddrptr,
@@ -140,7 +140,7 @@ void ll_update(
 	return; 
 }
 
-void ll_delete(
+void graphtinker::ll_delete(
 			edge_t edge,
 			vertexid_t ll_localbaseaddrptr,
 			vertexid_t ll_localaddrptr,
@@ -150,7 +150,7 @@ void ll_delete(
 	return; 
 }
 
-void ll_deleteandcrumplein(
+void graphtinker::ll_deleteandcrumplein(
 			edge_t edge,
 			vertexid_t ll_localbaseaddrptr,
 			vertexid_t ll_localaddrptr,
@@ -170,7 +170,7 @@ void ll_deleteandcrumplein(
 	// pop-out from end and pop-in to hole where edge was deleted
 			
 	unsigned int lvaindex = edge.xvtx_id / LVACOARSENESSWIDTH;
-	if(lvaindex >= LLLOGICALVERTEXARRAYSIZE){ cout<<"bug! : addr out-of-range11 (gds_ll) "<<endl; }
+	if(lvaindex >= ll_logicalvertexarray_size){ cout<<"bug! : addr out-of-range11 (gds_ll) "<<endl; }
 	ll_logicalvertexentity_t entity = ll_lva[lvaindex];	
 	if(entity.flag != VALID){ cout<<"bug! : something wrong4 (gds_ll) "<<endl; }
 	if(entity.lastlocalbaseaddr == NAv){ return; } //****
@@ -203,9 +203,9 @@ void ll_deleteandcrumplein(
 			entity.totaledgecount = entity.totaledgecount - 1;
 			
 			// pop-out, pop-in
-			if(localbaseaddr >= LLEDGEBLOCKARRAYSIZE){ cout<<"bug! : addr out-of-range7 (gds_ll) "<<endl; }
+			if(localbaseaddr >= ll_edgeblock_array_size){ cout<<"bug! : addr out-of-range7 (gds_ll) "<<endl; }
 			if(localaddrofvalidedge >= LLEDGEBLOCKSIZE){ cout<<"bug! : addr out-of-range88. entity.lastlocaladdr : "<<entity.lastlocaladdr<<", LLEDGEBLOCKSIZE : "<<LLEDGEBLOCKSIZE<<" (gds_ll) "<<endl; }
-			if(ll_localbaseaddrptr >= LLEDGEBLOCKARRAYSIZE){ cout<<"bug! : addr out-of-range9 (gds_ll) "<<endl; }
+			if(ll_localbaseaddrptr >= ll_edgeblock_array_size){ cout<<"bug! : addr out-of-range9 (gds_ll) "<<endl; }
 			if(ll_localaddrptr >= LLEDGEBLOCKSIZE){ cout<<"bug! : addr out-of-range10. ll_localaddrptr : "<<ll_localaddrptr<<", LLEDGEBLOCKSIZE : "<<LLEDGEBLOCKSIZE<<" (gds_ll) "<<endl; }
 			
 			// pop-out
@@ -236,9 +236,9 @@ void ll_deleteandcrumplein(
 		
 		unsigned int localaddrofvalidedge = (LLEDGEBLOCKSIZE - 1);
 		
-		if(entity.lastlocalbaseaddr >= LLEDGEBLOCKARRAYSIZE){ cout<<"bug! : addr out-of-range67 (gds_ll) "<<endl; }
+		if(entity.lastlocalbaseaddr >= ll_edgeblock_array_size){ cout<<"bug! : addr out-of-range67 (gds_ll) "<<endl; }
 		unsigned int prevcptr = ll_edge_block_array[entity.lastlocalbaseaddr].metadata.prevcptr; // next edgeblock location
-		if(prevcptr != NAv){ if(prevcptr >= LLEDGEBLOCKARRAYSIZE){ cout<<"bug! : addr out-of-range69. prevcptr : "<<prevcptr<<", LLEDGEBLOCKARRAYSIZE : "<<LLEDGEBLOCKARRAYSIZE<<" (gds_ll) "<<endl; }}
+		if(prevcptr != NAv){ if(prevcptr >= ll_edgeblock_array_size){ cout<<"bug! : addr out-of-range69. prevcptr : "<<prevcptr<<", ll_edgeblock_array_size : "<<ll_edgeblock_array_size<<" (gds_ll) "<<endl; }}
 		unsigned int prevlocalbaseaddr;
 		if(prevcptr != NAv){ prevlocalbaseaddr = ll_edge_block_array[prevcptr].metadata.currcptr; } //****
 		if(prevcptr != NAv){ if(prevlocalbaseaddr != prevcptr){ cout<<"bug! : incorrect value. prevcptr : "<<prevcptr<<", prevlocalbaseaddr : "<<prevlocalbaseaddr<<" (gds_ll) "<<endl; }}
@@ -270,9 +270,9 @@ void ll_deleteandcrumplein(
 			if(prevcptr != NAv){ ll_edge_block_array[prevcptr].metadata.nextcptr = NAv; } //****
 			
 			// pop-out, pop-in
-			if(localbaseaddr >= LLEDGEBLOCKARRAYSIZE){ cout<<"bug! : addr out-of-range7 (gds_ll) "<<endl; }
+			if(localbaseaddr >= ll_edgeblock_array_size){ cout<<"bug! : addr out-of-range7 (gds_ll) "<<endl; }
 			if(localaddrofvalidedge >= LLEDGEBLOCKSIZE){ cout<<"bug! : addr out-of-range89. entity.lastlocaladdr : "<<entity.lastlocaladdr<<", LLEDGEBLOCKSIZE : "<<LLEDGEBLOCKSIZE<<" (gds_ll) "<<endl; }
-			if(ll_localbaseaddrptr >= LLEDGEBLOCKARRAYSIZE){ cout<<"bug! : addr out-of-range9 (gds_ll) "<<endl; }
+			if(ll_localbaseaddrptr >= ll_edgeblock_array_size){ cout<<"bug! : addr out-of-range9 (gds_ll) "<<endl; }
 			if(ll_localaddrptr >= LLEDGEBLOCKSIZE){ cout<<"bug! : addr out-of-range10. ll_localaddrptr : "<<ll_localaddrptr<<", LLEDGEBLOCKSIZE : "<<LLEDGEBLOCKSIZE<<" (gds_ll) "<<endl; }
 			
 			// pop-out
@@ -302,14 +302,14 @@ void ll_deleteandcrumplein(
 	return;
 }
 
-void ll_updateedgeptrs(
+void graphtinker::ll_updateedgeptrs(
 			edge_t edge,
 			moduleparams_t moduleparams,
 			ll_edgeblock_t * ll_edge_block_array
 			){
 	if(edge.heba_hvtx_id < 0){ cout<<"bug! : invalid454. edge.heba_hvtx_id : "<<edge.heba_hvtx_id<<" (gds_ll) "<<endl; }
 	
-	if(moduleparams.ll_localbaseaddrptr_x >= LLEDGEBLOCKARRAYSIZE){ cout<<"bug! : addr out-of-range4 (gds_ll) "<<endl; }
+	if(moduleparams.ll_localbaseaddrptr_x >= ll_edgeblock_array_size){ cout<<"bug! : addr out-of-range4 (gds_ll) "<<endl; }
 	if(moduleparams.ll_localaddrptr_x >= LLEDGEBLOCKSIZE){ cout<<"bug! : addr out-of-range5. ll_localaddrptr : "<<moduleparams.ll_localaddrptr_x<<", LLEDGEBLOCKSIZE : "<<LLEDGEBLOCKSIZE<<" (gds_ll) "<<endl; }
 	ll_edge_block_array[moduleparams.ll_localbaseaddrptr_x].ll_edgeblock[moduleparams.ll_localaddrptr_x].heba_hvtx_id = edge.heba_hvtx_id;
 	ll_edge_block_array[moduleparams.ll_localbaseaddrptr_x].ll_edgeblock[moduleparams.ll_localaddrptr_x].heba_workblockid = edge.heba_workblockid;

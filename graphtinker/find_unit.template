@@ -6,7 +6,7 @@ using namespace std;
 
 unsigned int debug_totaledgealreadyfound;
 		
-void find_unit(
+void graphtinker::find_unit(
 			moduleparams_t * moduleparams,
 			findparams_t findparams,
 			findreport_t * findreport,				

@@ -1,7 +1,7 @@
 #include <string.h>
 #include "graphtinker.h"
 
-unsigned int max(unsigned int A, unsigned int B){
+unsigned int graphtinker::max(unsigned int A, unsigned int B){
 	if(A>B) { return A; }
 	else { return B; }
 	

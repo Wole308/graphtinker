@@ -17,7 +17,7 @@ using namespace std;
 
 #define OPTIMIZEUSINGPREVADDR 0
 
-void load_unit(				
+void graphtinker::load_unit(				
 			moduleparams_t *moduleparams,
 			loadunitcmd_t loadunitcmd,				
 			insertparams_t *insertparams, 		

@@ -19,18 +19,12 @@ using namespace std;
 
 /**
 cout<<"NUM_CORES: 1"<<endl;
-cout<<"LLFULLDB: OFF"<<endl;
-cout<<"SGHashing: OFF"<<endl;
-cout<<"VPropUpdate: ON"<<endl;
-cout<<"graphbenchmark: rmat16_524288_8380000.edges"<<endl;
-cout<<"graph direction type: DIRECTEDGRAPH"<<endl;
-cout<<"NO_OF_VERTICES: 524288"<<endl;
-cout<<"NO_OF_EDGES: 8380000"<<endl;
+cout<<"LLFULLDB: ON"<<endl;
+cout<<"VPropUpdate: OFF"<<endl;
 cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
 cout<<"SUB_BLOCK_HEIGHT: 8"<<endl;
 cout<<"PAGE_BLOCKHEIGHT: 64"<<endl;
-cout<<"graph deletion type: DELETEEDGE"<<endl;	
-cout<<"graph deletion rate: 0"<<endl; */
+cout<<"BATCH_SIZE: 1048576"<<endl; */
 
 class updates_test
 {
@@ -86,11 +80,11 @@ void insertions(graphtinker & tinker){
 			edges_inserted += 1;
 			total_edges_inserted += 1;
 			tinker.insert_edge((unsigned int)src_dst_pairs[j].A, (unsigned int)src_dst_pairs[j].B, 1);
-			#ifdef UNDIRECTEDGRAPH
-			edges_inserted += 1;
-			total_edges_inserted += 1;
-			tinker.insert_edge((unsigned int)src_dst_pairs[j].B, (unsigned int)src_dst_pairs[j].A, 1);
-			#endif
+			if(tinker.get_graphdirectiontype() == UNDIRECTEDGRAPH){
+				edges_inserted += 1;
+				total_edges_inserted += 1;
+				tinker.insert_edge((unsigned int)src_dst_pairs[j].B, (unsigned int)src_dst_pairs[j].A, 1);
+			}
 		}
 		insertion_timelapse_ms = 0;
 		insertion_timelapse_ms = (std::clock() - start) / (double) (CLOCKS_PER_SEC / 1000);
@@ -157,11 +151,11 @@ void deletions(graphtinker & tinker){
 			edges_deleted += 1;
 			total_edges_deleted += 1;
 			tinker.delete_edge((unsigned int)src_dst_pairs[j].A, (unsigned int)src_dst_pairs[j].B, 1);
-			#ifdef UNDIRECTEDGRAPH
-			edges_deleted += 1;
-			total_edges_deleted += 1;
-			tinker.insert_edge((unsigned int)src_dst_pairs[j].B, (unsigned int)src_dst_pairs[j].A, 1);
-			#endif
+			if(tinker.get_graphdirectiontype() == UNDIRECTEDGRAPH){
+				edges_deleted += 1;
+				total_edges_deleted += 1;
+				tinker.insert_edge((unsigned int)src_dst_pairs[j].B, (unsigned int)src_dst_pairs[j].A, 1);
+			}
 		}
 		deletion_timelapse_ms = (std::clock() - start) / (double) (CLOCKS_PER_SEC / 1000);
 		total_deletion_time_lapse_ms += deletion_timelapse_ms;
@@ -190,21 +184,15 @@ void deletions(graphtinker & tinker){
 
 int main(){	
 	cout<<"started  (updates_test)"<<endl;	
-	cout<<"LLFULLDB: OFF"<<endl;
-	cout<<"SGHashing: OFF"<<endl;
-	cout<<"VPropUpdate: ON"<<endl;
+	cout<<"NUM_CORES: 1"<<endl;
+	cout<<"LLFULLDB: ON"<<endl;
+	cout<<"VPropUpdate: OFF"<<endl;
 	cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
 	cout<<"SUB_BLOCK_HEIGHT: 8"<<endl;
 	cout<<"PAGE_BLOCKHEIGHT: 64"<<endl;
-	cout<<"graphbenchmark: rmat16_524288_8380000.edges"<<endl;
-	cout<<"NO_OF_VERTICES: 524288"<<endl;
-	cout<<"NO_OF_EDGES: 8380000"<<endl;
-	cout<<"host: "<<endl;
-	cout<<"graph direction type: DIRECTEDGRAPH"<<endl;
-	cout<<"graph deletion type: DELETEEDGE"<<endl;	
-	cout<<"graph deletion rate: 0"<<endl;
+	cout<<"BATCH_SIZE: 1048576"<<endl;
 	
-	graphtinker tinkerA(1);
+	graphtinker tinkerA(0, ON, 524288, 8380000, DIRECTEDGRAPH);
 	insertions(tinkerA);
 	// deletions(tinkerA);
 	return 0;

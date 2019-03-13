@@ -15,7 +15,7 @@
 #include "graphtinker.h"
 using namespace std;
 
-void deleteandcrumplein_unit(
+void graphtinker::deleteandcrumplein_unit(
 			writebackunitcmd_t writebackunitcmd,
 			findreport_t findreport,
 			edge_t edge,
@@ -92,7 +92,7 @@ void deleteandcrumplein_unit(
 				}
 				
 				// detatch it from its father subblock
-				unsigned int index = tailhvtx_id - EDGEBLOCKARRAYHEIGHT;
+				unsigned int index = tailhvtx_id - num_vertices;
 				if(index >= edgeblock_parentinfo.size()){ cout<<"bug! : addr out-of-range4 (update_edge) "<<endl; }
 				if(edgeblock_parentinfo[index].flag != VALID){ cout<<"bug! : incorrect (update_edge66)"<<endl; }
 				edgeblock_parentinfo_t parentinfo = edgeblock_parentinfo[index];
