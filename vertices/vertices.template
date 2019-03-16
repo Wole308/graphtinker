@@ -27,35 +27,39 @@ void vertices::init(unsigned int _num_vertices){
 }
 
 vertexdata_t vertices::readdata(vertexid_t vertexid){
+	if(vertexid >= num_vertices){ cout<<"vertices::writedata : out of range4. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
 	return vertex_properties[vertexid].data;
 }
 
 void vertices::writedata(vertexid_t vertexid, vertexdata_t vertexdata){
+	if(vertexid >= num_vertices){ cout<<"vertices::writedata : out of range5. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
 	vertex_properties[vertexid].data = vertexdata;
 	return;
 }
 
 vertexproperty_t vertices::readproperty(vertexid_t vertexid){
+	if(vertexid >= num_vertices){ cout<<"vertices::writedata : out of range6. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
 	return vertex_properties[vertexid];
 }
 
 void vertices::writeproperty(vertexid_t vertexid, vertexproperty_t vertexproperty){
+	if(vertexid >= num_vertices){ cout<<"vertices::writedata : out of range7. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
 	vertex_properties[vertexid] = vertexproperty;
 	return;
 }
 
-void vertices::update_vertex_property(edge_t edge, unsigned int edgeupdatecmd){
+void vertices::update_vertex_property(edge_t edge, unsigned int edgeupdatecmd, unsigned int get_graphdirectiontype){
 	if(edgeupdatecmd == INSERTEDGE){
 		vertex_properties[edge.xvtx_id].outdegree += 1;
-		#ifdef UNDIRECTEDGRAPH
-		vertex_properties[edge.xvtx_id].indegree += 1;
-		#endif
+		if(get_graphdirectiontype == UNDIRECTEDGRAPH){
+			vertex_properties[edge.xvtx_id].indegree += 1;
+		}
 		vertex_properties[edge.xvtx_id].flag = VALID;
 	} else if (edgeupdatecmd == DELETEEDGE){		
 		vertex_properties[edge.xvtx_id].outdegree -= 1;
-		#ifdef UNDIRECTEDGRAPH
-		vertex_properties[edge.xvtx_id].indegree -= 1;
-		#endif
+		if(get_graphdirectiontype == UNDIRECTEDGRAPH){
+			vertex_properties[edge.xvtx_id].indegree -= 1;
+		}
 		vertex_properties[edge.xvtx_id].flag = VALID;
 	}  else { cout<<"bug! : should never be seen here (vprop_update)"<<endl; }
 	return;
@@ -98,34 +102,34 @@ vector<vertexproperty_t> & vertices::get_vertex_properties(){
 	return vertex_properties;
 }
 
-vector<vertexproperty_t> & vertices::get_high_degree_vertices(unsigned int percentage){
+vector<id_t> & vertices::get_high_degree_vertexids(unsigned int percentage){
 	vertexproperty_t highest_degree = get_highest_outdegree_vertex();
 	vertexproperty_t lowest_degree = get_lowest_outdegree_vertex();
 	
 	unsigned int count = (percentage * (highest_degree.outdegree - lowest_degree.outdegree)) / 100;
-	unsigned int threshold = highest_degree.outdegree - count;
+	unsigned int threshold = count; //highest_degree.outdegree - count;
 	
 	for(id_t i=0; i<num_vertices; i++){
-		if(vertex_properties[i].outdegree >= threshold){ 
-			high_degree_vertices.push_back(vertex_properties[i]);
+		if(vertex_properties[i].outdegree >= threshold){
+			high_degree_vertexids.push_back(i);
 		}
 	}
-	return high_degree_vertices;
+	return high_degree_vertexids; 
 }
 
-vector<id_t> & vertices::get_high_degree_vertices_ids(unsigned int percentage){
+vector<id_t> & vertices::get_low_degree_vertexids(unsigned int percentage){
 	vertexproperty_t highest_degree = get_highest_outdegree_vertex();
 	vertexproperty_t lowest_degree = get_lowest_outdegree_vertex();
 	
 	unsigned int count = (percentage * (highest_degree.outdegree - lowest_degree.outdegree)) / 100;
-	unsigned int threshold = highest_degree.outdegree - count;
+	unsigned int threshold = count; //highest_degree.outdegree - count;
 	
 	for(id_t i=0; i<num_vertices; i++){
-		if(vertex_properties[i].outdegree >= threshold){ 
-			high_degree_vertices_ids.push_back(i);
+		if(vertex_properties[i].outdegree <= threshold){
+			low_degree_vertexids.push_back(i);
 		}
 	}
-	return high_degree_vertices_ids; 
+	return low_degree_vertexids; 
 }
 
 vertexproperty_t vertices::get_highest_outdegree_vertex(){
@@ -147,5 +151,34 @@ vertexproperty_t vertices::get_lowest_outdegree_vertex(){
 	return minp;
 }
 
+unsigned int * vertices::classify_vertexids(unsigned int threshold){
+	unsigned int * vertexids_and_degreeclasses = new unsigned int[num_vertices];
+	
+	for(id_t i=0; i<num_vertices; i++){
+		if(vertex_properties[i].outdegree >= threshold){ 
+			vertexids_and_degreeclasses[i] = HIGH_DEGREE_VERTEX;
+		} else {
+			vertexids_and_degreeclasses[i] = LOW_DEGREE_VERTEX;
+		}
+	}
+	return vertexids_and_degreeclasses;
+}
 
+unsigned int * vertices::classify_vertexids2(unsigned int percentage){
+	unsigned int * vertexids_and_degreeclasses = new unsigned int[num_vertices];
+	vertexproperty_t highest_degree = get_highest_outdegree_vertex();
+	vertexproperty_t lowest_degree = get_lowest_outdegree_vertex();
+	
+	unsigned int count = (percentage * (highest_degree.outdegree - lowest_degree.outdegree)) / 100;
+	unsigned int threshold = highest_degree.outdegree - count;
+	
+	for(id_t i=0; i<num_vertices; i++){
+		if(vertex_properties[i].outdegree >= threshold){ 
+			vertexids_and_degreeclasses[i] = HIGH_DEGREE_VERTEX;
+		} else {
+			vertexids_and_degreeclasses[i] = LOW_DEGREE_VERTEX;
+		}
+	}
+	return vertexids_and_degreeclasses;
+}
 

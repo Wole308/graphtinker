@@ -152,6 +152,9 @@ using namespace std;
 #define INSERTEDGE 5
 #define DELETEEDGE 6
 
+#define HIGH_DEGREE_VERTEX 5
+#define LOW_DEGREE_VERTEX 6
+
 typedef unsigned int vertexid_t;
 typedef unsigned int vertexid_t;
 typedef unsigned int bucket_t;

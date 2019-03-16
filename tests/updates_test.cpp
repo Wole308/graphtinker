@@ -19,8 +19,8 @@ using namespace std;
 
 /**
 cout<<"NUM_CORES: 1"<<endl;
-cout<<"LLFULLDB: ON"<<endl;
-cout<<"VPropUpdate: OFF"<<endl;
+cout<<"LLFULLDB: OFF"<<endl;
+cout<<"VPropUpdate: ON"<<endl;
 cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
 cout<<"SUB_BLOCK_HEIGHT: 8"<<endl;
 cout<<"PAGE_BLOCKHEIGHT: 64"<<endl;
@@ -185,8 +185,8 @@ void deletions(graphtinker & tinker){
 int main(){	
 	cout<<"started  (updates_test)"<<endl;	
 	cout<<"NUM_CORES: 1"<<endl;
-	cout<<"LLFULLDB: ON"<<endl;
-	cout<<"VPropUpdate: OFF"<<endl;
+	cout<<"LLFULLDB: OFF"<<endl;
+	cout<<"VPropUpdate: ON"<<endl;
 	cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
 	cout<<"SUB_BLOCK_HEIGHT: 8"<<endl;
 	cout<<"PAGE_BLOCKHEIGHT: 64"<<endl;

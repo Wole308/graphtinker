@@ -6,7 +6,7 @@
 using namespace std;
 
 #define CPU 0
-#define EN_LLGDS 0
+#define EN_UPDATEVERTEXPROPS 0
 
 #define cpuem_bugs_b1 0
 #define EN_BUGCHECK 0
@@ -143,6 +143,9 @@ using namespace std;
 
 #define INSERTEDGE 5
 #define DELETEEDGE 6
+
+#define HIGH_DEGREE_VERTEX 5
+#define LOW_DEGREE_VERTEX 6
 
 typedef unsigned int vertexid_t;
 typedef unsigned int vertexid_t;

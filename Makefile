@@ -44,32 +44,14 @@ TESTARG1=tests/updates_test.cpp
 
 TESTARG=$(TESTARG1)
 GDSARG=$(GDSARG1) $(GDSARG2) $(GDSARG3) $(GDSARG4) $(GDSARG5) $(GDSARG6) $(GDSARG7) $(GDSARG8) $(GDSARG9) $(GDSARG10) $(GDSARG11) $(GDSARG12) $(GDSARG13) $(GDSARG14) $(GDSARG15) $(GDSARG16) $(GDSARG17) $(GDSARG18) $(GDSARG19) $(GDSARG20) $(GDSARG21) $(GDSARG22) $(GDSARG23)
-	
+
+PYARG=$(NUM_CORES) $(LL) $(VUPDATE) 4 8 64 1048576
+
 $(info echo *** started! ***)
 
-all: clean system_config generate_src gt
+all: clean generate_src gt
 
-test: clean system_config generate_src gt run
-
-system_config:
-ifeq ($(rmat_500k_8M), ON)
-PYARG=$(NUM_CORES) $(LL) $(VUPDATE) 4 8 64 1048576
-endif
-ifeq ($(rmat_1M_10M), ON)
-PYARG=$(NUM_CORES) $(LL) $(VUPDATE) 4 8 64 1048576
-endif
-ifeq ($(rmat_1M_16M), ON)
-PYARG=$(NUM_CORES) $(LL) $(VUPDATE) 4 8 64 1048576
-endif
-ifeq ($(rmat_2M_32M), ON)
-PYARG=$(NUM_CORES) $(LL) $(VUPDATE) 4 8 64 1048576
-endif
-ifeq ($(hollywood), ON)
-PYARG=$(NUM_CORES) $(LL) $(VUPDATE) 4 8 64 1048576
-endif
-ifeq ($(kron), ON)
-PYARG=$(NUM_CORES) $(LL) $(VUPDATE) 4 8 64 1048576
-endif
+test: clean generate_src gt run
 	
 generate_src:
 	cd gen; python gen.py $(PYARG)

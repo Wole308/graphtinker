@@ -189,7 +189,7 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 	
 	#ifdef EN_UPDATEVERTEXPROPS
 	// update vertex of first edge
-	vertices_handler.update_vertex_property(edge, edgeupdatecmd);
+	vertices_handler.update_vertex_property(edge, edgeupdatecmd, graphdirectiontype);
 	#endif
 
 	//***
@@ -373,7 +373,7 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 		
 		//***********************************************************************************************// Update Vertex Property (e.g degrees, etc)
 		#ifdef EN_UPDATEVERTEXPROPS
-		vertices_handler.update_vertex_property(edge, edgeupdatecmd);
+		vertices_handler.update_vertex_property(edge, edgeupdatecmd, graphdirectiontype);
 		#endif 		
 		//***********************************************************************************************
 		
@@ -514,7 +514,7 @@ void graphtinker::initialize_lvas(){
 }
 
 vertexid_t graphtinker::get_localvid(vertexid_t globalvid){
-	if(globalvid > num_vertices){ cout<<"graphtinker::get_localvidbug : bug, out of range5. globalvid : "<<globalvid<<", num_vertices : "<<num_vertices<<endl; }
+	if(globalvid > num_vertices){ cout<<"graphtinker::get_localvid : bug, out of range5. globalvid : "<<globalvid<<", num_vertices : "<<num_vertices<<endl; }
 	if(vertex_translator[globalvid].flag != VALID){
 		vertex_translator[translator_tracker.mark].globalvid = globalvid;
 		vertex_translator[globalvid].localvid = translator_tracker.mark;
