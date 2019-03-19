@@ -10,11 +10,12 @@ using namespace std;
 /// classes
 class graphtinker{
 	public:                     
-		graphtinker(unsigned int _id, unsigned int _sgh, unsigned int _num_vertices, unsigned int _num_edges, unsigned int graphdirectiontype);
+		graphtinker(unsigned int _sgh, unsigned int _updatev, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int graphdirectiontype);
 		~graphtinker();
 		
-		id_t id;
 		unsigned int sgh;
+		unsigned int updatev;
+		unsigned int max_vertex;
 		unsigned int num_vertices;
 		unsigned int num_edges;
 		unsigned int edge_block_array_size;
@@ -46,8 +47,10 @@ class graphtinker{
 		
 		// member functions
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew);
+		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
 		void delete_edge(unsigned int src, unsigned int dst, unsigned int ew);
-		void update_edge(unsigned int src, unsigned int dst, unsigned int ew, unsigned int edgeupdatecmd);
+		void delete_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
+		void update_edge(unsigned int src, unsigned int dst, unsigned int ew, unsigned int edgeupdatecmd, vertices & _vertices_handler);
 		vertexid_t retrieve_edges(vertexid_t vid, vector<edge_tt> & edges);
 		vector<edge_nt> & get_edge_block_array();
 		unsigned int printv_edgecount();
@@ -57,11 +60,10 @@ class graphtinker{
 		unsigned int print_svs_size();
 		unsigned int print_freed_edgeblock_list_size();
 		void initialize_lvas();
-		void iterator();
 		vertexid_t get_localvid(vertexid_t globalvid);
-		tracker_t get_translator_tracker();
 		vertices & get_vertices_handler();
 		unsigned int get_graphdirectiontype();
+		vertexid_t read_globalvid(vertexid_t localvid);
 		
 		// compute unit 
 		void compute_unit(

@@ -9,9 +9,6 @@ using namespace std;
 {% if(context['LLFULLDB']=='ON') %}
 #define EN_LLGDS 0
 {%endif%}
-{% if(context['VPropUpdate']=='ON') %}
-#define EN_UPDATEVERTEXPROPS 0
-{%endif%}
 {% if(context['deletion_type']=='DELETEEDGEANDCRUMPLEIN') %}
 #define EN_CRUMPLEINONDELETE
 {%endif%}
@@ -154,6 +151,9 @@ using namespace std;
 
 #define HIGH_DEGREE_VERTEX 5
 #define LOW_DEGREE_VERTEX 6
+
+#define SELF 1
+#define OTHER 2
 
 typedef unsigned int vertexid_t;
 typedef unsigned int vertexid_t;
@@ -331,6 +331,7 @@ typedef struct {
 	vertexid_t globalvid;
 	vertexid_t localvid;
 	flag_t flag;
+	flag_t lflag;
 } vertex_translator_t;
 
 /// LL data structures

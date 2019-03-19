@@ -35,6 +35,7 @@ class vertices{
 	vertexproperty_t get_lowest_outdegree_vertex();
 	unsigned int * classify_vertexids(unsigned int threshold);
 	unsigned int * classify_vertexids2(unsigned int percentage);
+	unsigned int get_num_vertices();
  private:
 };
 

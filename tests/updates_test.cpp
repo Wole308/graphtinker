@@ -20,7 +20,6 @@ using namespace std;
 /**
 cout<<"NUM_CORES: 1"<<endl;
 cout<<"LLFULLDB: OFF"<<endl;
-cout<<"VPropUpdate: ON"<<endl;
 cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
 cout<<"SUB_BLOCK_HEIGHT: 8"<<endl;
 cout<<"PAGE_BLOCKHEIGHT: 64"<<endl;
@@ -48,9 +47,17 @@ void insertions(graphtinker & tinker){
 	float runningthroughput = 0;
 	unsigned int batchid = 0;
 	
-	char path[] = "/net/zf15/oj2zf/datasets/rmat16_524288_8380000.edges";
+	char path[] = "/net/zf15/oj2zf/datasets/rmat500k8m_524288_8380000.edges";
 	FILE* file = fopen (path, "r");
-	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat16_524288_8380000.edges (test_updatesingleedge)"<<endl; }
+	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat500k8m_524288_8380000.edges (test_updatesingleedge)"<<endl; }
+	
+	// char path[] = "/net/zf15/oj2zf/datasets/rmat500k8m_hd_inedges_84081_5038749.edges";
+	// FILE* file = fopen (path, "r");
+	// if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat500k8m_hd_inedges_84081_5038749.edges (test_updatesingleedge)"<<endl; }
+	
+	// char path[] = "/net/zf15/oj2zf/datasets/rmat500k8m_ld_outedges_440207_3341252.edges";
+	// FILE* file = fopen (path, "r");
+	// if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat500k8m_ld_outedges_440207_3341252.edges (test_updatesingleedge)"<<endl; }
 	
 	while(!feof(file)){
 		src_dst_pairs.clear();
@@ -120,9 +127,9 @@ void deletions(graphtinker & tinker){
 	float runningthroughput = 0;
 	unsigned int batchid = 0;
 	
-	char path[] = "/net/zf15/oj2zf/datasets/rmat16_524288_8380000.edges";
+	char path[] = "/net/zf15/oj2zf/datasets/rmat500k8m_524288_8380000.edges";
 	FILE* file = fopen (path, "r");
-	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat16_524288_8380000.edges (test_updatesingleedge)"<<endl; }
+	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat500k8m_524288_8380000.edges (test_updatesingleedge)"<<endl; }
 	
 	while(!feof(file)){
 		src_dst_pairs.clear();
@@ -186,13 +193,14 @@ int main(){
 	cout<<"started  (updates_test)"<<endl;	
 	cout<<"NUM_CORES: 1"<<endl;
 	cout<<"LLFULLDB: OFF"<<endl;
-	cout<<"VPropUpdate: ON"<<endl;
 	cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
 	cout<<"SUB_BLOCK_HEIGHT: 8"<<endl;
 	cout<<"PAGE_BLOCKHEIGHT: 64"<<endl;
 	cout<<"BATCH_SIZE: 1048576"<<endl;
 	
-	graphtinker tinkerA(0, ON, 524288, 8380000, DIRECTEDGRAPH);
+	graphtinker tinkerA(SELF, ON, 524288, 524288, 8380000, DIRECTEDGRAPH);
+	// graphtinker tinkerA(SELF, ON, 524288, 84081, 5038749, DIRECTEDGRAPH);
+	// graphtinker tinkerA(SELF, ON, 524288, 440207, 3341252, DIRECTEDGRAPH);
 	insertions(tinkerA);
 	// deletions(tinkerA);
 	return 0;

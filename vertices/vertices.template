@@ -153,14 +153,19 @@ vertexproperty_t vertices::get_lowest_outdegree_vertex(){
 
 unsigned int * vertices::classify_vertexids(unsigned int threshold){
 	unsigned int * vertexids_and_degreeclasses = new unsigned int[num_vertices];
+	unsigned int hd = 0;
+	unsigned int ld = 0;
 	
 	for(id_t i=0; i<num_vertices; i++){
-		if(vertex_properties[i].outdegree >= threshold){ 
+		if(vertex_properties[i].outdegree >= threshold){
+			hd += 1;
 			vertexids_and_degreeclasses[i] = HIGH_DEGREE_VERTEX;
 		} else {
+			ld += 1;
 			vertexids_and_degreeclasses[i] = LOW_DEGREE_VERTEX;
 		}
 	}
+	cout<<"number of low-degree vertices : "<<ld<<", number of high-degree vertices : "<<hd<<endl;
 	return vertexids_and_degreeclasses;
 }
 
@@ -182,3 +187,6 @@ unsigned int * vertices::classify_vertexids2(unsigned int percentage){
 	return vertexids_and_degreeclasses;
 }
 
+unsigned int vertices::get_num_vertices(){
+	return num_vertices;
+}

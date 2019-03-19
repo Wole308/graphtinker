@@ -6,7 +6,6 @@
 using namespace std;
 
 #define CPU 0
-#define EN_UPDATEVERTEXPROPS 0
 
 #define cpuem_bugs_b1 0
 #define EN_BUGCHECK 0
@@ -146,6 +145,9 @@ using namespace std;
 
 #define HIGH_DEGREE_VERTEX 5
 #define LOW_DEGREE_VERTEX 6
+
+#define SELF 1
+#define OTHER 2
 
 typedef unsigned int vertexid_t;
 typedef unsigned int vertexid_t;
@@ -323,6 +325,7 @@ typedef struct {
 	vertexid_t globalvid;
 	vertexid_t localvid;
 	flag_t flag;
+	flag_t lflag;
 } vertex_translator_t;
 
 /// LL data structures
