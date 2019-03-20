@@ -10,10 +10,11 @@ using namespace std;
 /// classes
 class graphtinker{
 	public:                     
-		graphtinker(unsigned int _sgh, unsigned int _updatev, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int graphdirectiontype);
+		graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype);
 		~graphtinker();
 		
-		unsigned int sgh;
+		unsigned int sgh_for_xvtxid;
+		unsigned int sgh_for_xadjvtxid;
 		unsigned int updatev;
 		unsigned int max_vertex;
 		unsigned int num_vertices;
@@ -53,6 +54,8 @@ class graphtinker{
 		void update_edge(unsigned int src, unsigned int dst, unsigned int ew, unsigned int edgeupdatecmd, vertices & _vertices_handler);
 		vertexid_t retrieve_edges(vertexid_t vid, vector<edge_tt> & edges);
 		vector<edge_nt> & get_edge_block_array();
+		ll_logicalvertexentity_t * get_ll_logicalvertexentity();
+		ll_edgeblock_t * get_ll_edge_block_array();
 		unsigned int printv_edgecount();
 		unsigned int printv_uniqueedgecount();
 		unsigned int printll_uniqueedgecount();
@@ -61,9 +64,13 @@ class graphtinker{
 		unsigned int print_freed_edgeblock_list_size();
 		void initialize_lvas();
 		vertexid_t get_localvid(vertexid_t globalvid);
+		vertexid_t get_globalvid(vertexid_t localvid);
 		vertices & get_vertices_handler();
 		unsigned int get_graphdirectiontype();
 		vertexid_t read_globalvid(vertexid_t localvid);
+		unsigned int get_translator_tracker_mark();
+		void print_first_n_items_of_vertex_translator(unsigned int n);
+		void initialize_vertex_translator();
 		
 		// compute unit 
 		void compute_unit(

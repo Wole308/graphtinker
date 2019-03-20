@@ -24,7 +24,7 @@ class vertices{
 	void writedata(vertexid_t vertexid, vertexdata_t vertexdata);
 	vertexproperty_t readproperty(vertexid_t vertexid);
 	void writeproperty(vertexid_t vertexid, vertexproperty_t vertexproperty);
-	void update_vertex_property(edge_t edge, unsigned int edgeupdatecmd, unsigned int get_graphdirectiontype);
+	void update_vertex_property(vertexid_t xvtx_id, vertexid_t xadjvtx_id, unsigned int edgeupdatecmd, unsigned int graphdirectiontype);
 	void initialize();
 	void print_first_n(unsigned int n);
 	void print_nth_vertex(unsigned int n);

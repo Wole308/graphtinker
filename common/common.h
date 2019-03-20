@@ -194,10 +194,6 @@ typedef struct {
 	flag_t flag;
 } edgeblock_parentinfo_t;
 
-/** 
-- when used in GTC, xvtx_id is a hashed value, relative to the cluster...
-- ... therefore you can find 2 edge_t elements with the same xvtx_id but heading to different clusters,
-- xadjvtx_id in GTC is a raw vertex id */
 typedef struct {
 	vertexid_t xvtx_id;
 	vertexid_t xadjvtx_id;

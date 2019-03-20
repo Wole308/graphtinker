@@ -27,7 +27,7 @@ void vertices::init(unsigned int _num_vertices){
 }
 
 vertexdata_t vertices::readdata(vertexid_t vertexid){
-	if(vertexid >= num_vertices){ cout<<"vertices::writedata : out of range4. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
+	if(vertexid >= num_vertices){ cout<<"vertices::readdata : out of range4. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
 	return vertex_properties[vertexid].data;
 }
 
@@ -38,29 +38,29 @@ void vertices::writedata(vertexid_t vertexid, vertexdata_t vertexdata){
 }
 
 vertexproperty_t vertices::readproperty(vertexid_t vertexid){
-	if(vertexid >= num_vertices){ cout<<"vertices::writedata : out of range6. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
+	if(vertexid >= num_vertices){ cout<<"vertices::readproperty : out of range6. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
 	return vertex_properties[vertexid];
 }
 
 void vertices::writeproperty(vertexid_t vertexid, vertexproperty_t vertexproperty){
-	if(vertexid >= num_vertices){ cout<<"vertices::writedata : out of range7. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
+	if(vertexid >= num_vertices){ cout<<"vertices::writeproperty : out of range7. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
 	vertex_properties[vertexid] = vertexproperty;
 	return;
 }
 
-void vertices::update_vertex_property(edge_t edge, unsigned int edgeupdatecmd, unsigned int get_graphdirectiontype){
+void vertices::update_vertex_property(vertexid_t xvtx_id, vertexid_t xadjvtx_id, unsigned int edgeupdatecmd, unsigned int graphdirectiontype){
 	if(edgeupdatecmd == INSERTEDGE){
-		vertex_properties[edge.xvtx_id].outdegree += 1;
-		if(get_graphdirectiontype == UNDIRECTEDGRAPH){
-			vertex_properties[edge.xvtx_id].indegree += 1;
+		vertex_properties[xvtx_id].outdegree += 1;
+		if(graphdirectiontype == UNDIRECTEDGRAPH){
+			vertex_properties[xvtx_id].indegree += 1;
 		}
-		vertex_properties[edge.xvtx_id].flag = VALID;
+		vertex_properties[xvtx_id].flag = VALID;
 	} else if (edgeupdatecmd == DELETEEDGE){		
-		vertex_properties[edge.xvtx_id].outdegree -= 1;
-		if(get_graphdirectiontype == UNDIRECTEDGRAPH){
-			vertex_properties[edge.xvtx_id].indegree -= 1;
+		vertex_properties[xvtx_id].outdegree -= 1;
+		if(graphdirectiontype == UNDIRECTEDGRAPH){
+			vertex_properties[xvtx_id].indegree -= 1;
 		}
-		vertex_properties[edge.xvtx_id].flag = VALID;
+		vertex_properties[xvtx_id].flag = VALID;
 	}  else { cout<<"bug! : should never be seen here (vprop_update)"<<endl; }
 	return;
 }
