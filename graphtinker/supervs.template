@@ -20,7 +20,7 @@ int graphtinker::sv_get_next_edge(
 	// return 5;
 	// we got here because the current subblock we're in is clustered, this cluster info has our svs index pointer (sv_ptr)
 	unsigned int work_block_height = WORK_BLOCK_HEIGHT;
-	unsigned int work_blocks_per_subblock = WORK_BLOCKS_PER_SUBBLOCK;
+	unsigned int work_blocks_per_subblock = work_blocks_per_subblock;
 	unsigned int currworkblockaddr = get_edgeblock_offset(xvtx_id) + wblkmargin.top/work_block_height;
 	
 	// get tail edgeblock
@@ -88,7 +88,7 @@ int graphtinker::sv_pick_edge(
 			){
 	// edge_tt eedge;
 	unsigned int work_block_height = WORK_BLOCK_HEIGHT;
-	unsigned int work_blocks_per_page = WORK_BLOCKS_PER_PAGE;
+	unsigned int work_blocks_per_page = work_blocks_per_page;
 	*numclusteredworkblocks = 0;
 	
 	for(int addr=offset; addr<(offset+work_blocks_per_page); addr++){

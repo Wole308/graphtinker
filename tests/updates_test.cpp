@@ -19,11 +19,11 @@ using namespace std;
 
 /**
 cout<<"NUM_CORES: 1"<<endl;
-cout<<"LLFULLDB: OFF"<<endl;
+cout<<"LLFULLDB: ON"<<endl;
 cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
-cout<<"SUB_BLOCK_HEIGHT: 8"<<endl;
-cout<<"PAGE_BLOCKHEIGHT: 64"<<endl;
-cout<<"BATCH_SIZE: 1048576"<<endl; */
+cout<<"SUB_BLOCK_HEIGHT: "<<endl;
+cout<<"PAGE_BLOCKHEIGHT: "<<endl;
+cout<<"BATCH_SIZE: "<<endl; */
 
 class updates_test
 {
@@ -192,15 +192,12 @@ void deletions(graphtinker & tinker){
 int main(){	
 	cout<<"started  (updates_test)"<<endl;	
 	cout<<"NUM_CORES: 1"<<endl;
-	cout<<"LLFULLDB: OFF"<<endl;
+	cout<<"LLFULLDB: ON"<<endl;
 	cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
-	cout<<"SUB_BLOCK_HEIGHT: 8"<<endl;
-	cout<<"PAGE_BLOCKHEIGHT: 64"<<endl;
-	cout<<"BATCH_SIZE: 1048576"<<endl;
 	
-	graphtinker tinkerA(SELF, ON, 524288, 524288, 8380000, DIRECTEDGRAPH);
-	// graphtinker tinkerA(SELF, ON, 524288, 84081, 5038749, DIRECTEDGRAPH);
-	// graphtinker tinkerA(SELF, ON, 524288, 440207, 3341252, DIRECTEDGRAPH);
+	graphtinker tinkerA(ON, ON, SELF, 0, 524288, 524288, 8380000, DIRECTEDGRAPH, 8, 64);
+	// graphtinker tinkerA(ON, ON, SELF, 0, 524288, 84081, 5038749, DIRECTEDGRAPH, 8, 64);
+	// graphtinker tinkerA(ON, ON, SELF, 0, 524288, 440207, 3341252, DIRECTEDGRAPH, 8, 64);
 	insertions(tinkerA);
 	// deletions(tinkerA);
 	return 0;

@@ -140,7 +140,7 @@ bucket_t graphtinker::getdib(bucket_t currbkt, bucket_t initialbucket, margin_t 
 	bucket_t DIB=0;
 	bucket_t rightpad=0;
 	bucket_t leftpad=0;
-	unsigned int work_blocks_per_subblock = WORK_BLOCKS_PER_SUBBLOCK;
+	unsigned int work_blocks_per_subblock = work_blocks_per_subblock;
 	unsigned int work_block_height = WORK_BLOCK_HEIGHT;
 	
 	bucket_t diff = currbkt - initialbucket;

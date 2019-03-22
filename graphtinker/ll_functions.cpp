@@ -160,7 +160,7 @@ void graphtinker::ll_deleteandcrumplein(
 			vector<edge_nt> & edge_block_array
 			){
 	// find partiton
-	unsigned int work_blocks_per_subblock = WORK_BLOCKS_PER_SUBBLOCK;	
+	unsigned int work_blocks_per_subblock = work_blocks_per_subblock;	
 	edge_t nedge;
 	
 	// delete edge

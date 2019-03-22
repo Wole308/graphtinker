@@ -32,8 +32,8 @@ void graphtinker::deleteandcrumplein_unit(
 			,vector<supervertex_t> & svs
 			,vector<vertexid_t> & freed_edgeblock_list
 			){
-	unsigned int work_blocks_per_subblock = WORK_BLOCKS_PER_SUBBLOCK;	
-	unsigned int work_blocks_per_page = WORK_BLOCKS_PER_PAGE;
+	unsigned int work_blocks_per_subblock = work_blocks_per_subblock;	
+	unsigned int work_blocks_per_page = work_blocks_per_page;
 		
 	// only when an edge is removed from a clustered region do we have to pop-out and pop-back-in
 	if(deleteandcrumpleincmd.verdict == DCI_CRUMPLEINCMD){

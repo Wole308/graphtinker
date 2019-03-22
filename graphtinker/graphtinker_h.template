@@ -10,15 +10,23 @@ using namespace std;
 /// classes
 class graphtinker{
 	public:                     
-		graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype);
+		graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
+				unsigned int _sub_block_height, unsigned int _page_block_height);
 		~graphtinker();
 		
 		unsigned int sgh_for_xvtxid;
 		unsigned int sgh_for_xadjvtxid;
 		unsigned int updatev;
-		unsigned int max_vertex;
+		unsigned int vertex_range;
 		unsigned int num_vertices;
 		unsigned int num_edges;
+		
+		unsigned int sub_block_height;
+		unsigned int page_block_height;
+		unsigned int work_blocks_per_page;
+		unsigned int sub_blocks_per_page;
+		unsigned int work_blocks_per_subblock;
+		
 		unsigned int edge_block_array_size;
 		unsigned int ll_edgeblock_array_size;
 		unsigned int ll_logicalvertexarray_size;

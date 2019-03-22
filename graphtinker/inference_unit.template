@@ -863,7 +863,7 @@ void graphtinker::set_moduleunitparamsedgefields(moduleparams_t *moduleparams, v
 void graphtinker::set_writebackunitcmd_writebackcurrentEB(writebackunitcmd_t *writebackunitcmd, unsigned int cmd, unsigned int addr, margin_t subblkmargin){
 	writebackunitcmd->writeback = cmd; //writeback EB
 	writebackunitcmd->addr =addr;
-	writebackunitcmd->subblockid = subblkmargin.top/SUB_BLOCK_HEIGHT;
+	writebackunitcmd->subblockid = subblkmargin.top/sub_block_height;
 	return;
 }
 

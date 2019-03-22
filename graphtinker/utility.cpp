@@ -55,7 +55,7 @@ vertexdata_t graphtinker::min_type1(vertexdata_t A, vertexdata_t B){
 }
 
 unsigned int graphtinker::getpartitionid(unsigned int vid){
-	return (vid % PAGE_BLOCKHEIGHT) / SUB_BLOCK_HEIGHT;
+	return (vid % page_block_height) / sub_block_height;
 }
 
 

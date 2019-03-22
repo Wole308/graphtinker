@@ -12,17 +12,11 @@ print('number of arguments : ' + str(len(sys.argv)))
 context['NUM_CORES'] = int(sys.argv[1])
 context['LLFULLDB'] = sys.argv[2]
 context['WORK_BLOCK_HEIGHT'] = int(sys.argv[3])
-context['SUB_BLOCK_HEIGHT'] = int(sys.argv[4])  
-context['PAGE_BLOCKHEIGHT'] = int(sys.argv[5])  
-context['BATCH_SIZE'] = int(sys.argv[6])
 
 print ('GraphTinker configured parameters (Courtesy: Jinja 2.0)...')
 print ('NUM_CORES: ' + str(context['NUM_CORES']))
 print ('LLFULLDB: ' + str(context['LLFULLDB']))
 print ('WORK_BLOCK_HEIGHT: ' + str(context['WORK_BLOCK_HEIGHT']))
-print ('SUB_BLOCK_HEIGHT: ' + str(context['SUB_BLOCK_HEIGHT']))
-print ('PAGE_BLOCKHEIGHT: ' + str(context['PAGE_BLOCKHEIGHT']))
-print ('BATCH_SIZE: ' + str(context['BATCH_SIZE']))
 	
 #================================
 o_path0="../tests/updates_test.cpp"
@@ -156,9 +150,6 @@ templ_path202="../graphtinker/"
 
 #####################
 ### System parameters (gds main)
-context['WORK_BLOCKS_PER_PAGE'] = context['PAGE_BLOCKHEIGHT']/context['WORK_BLOCK_HEIGHT']
-context['SUB_BLOCKS_PER_PAGE'] = context['PAGE_BLOCKHEIGHT']/context['SUB_BLOCK_HEIGHT']
-context['WORK_BLOCKS_PER_SUBBLOCK'] = context['SUB_BLOCK_HEIGHT']/context['WORK_BLOCK_HEIGHT']
 
 #####################
 ### System parameters (gds LL)
@@ -166,10 +157,7 @@ context['LVACOARSENESSWIDTH'] = 2048
 context['LLEDGEBLOCKSIZE'] = 512
 		
 #####################
-### Sequencers		
-context['SUB_BLOCKS_PER_PAGE_seq'] = []
-for i in range (0,context['SUB_BLOCKS_PER_PAGE']):
-		context['SUB_BLOCKS_PER_PAGE_seq'].append(i)
+### Sequencers
 context['NUM_CORES_seq'] = []
 for i in range (1,(context['NUM_CORES']+1)):
 		context['NUM_CORES_seq'].append(i)

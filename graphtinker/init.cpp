@@ -13,9 +13,9 @@ unsigned int graphtinker::add_page(tracker_t * tracker){
 }
 
 unsigned int graphtinker::add_page2(tracker_t * tracker, vector<edge_nt> & edge_block_array){	
-	if((tracker->mark * WORK_BLOCKS_PER_PAGE) >= edge_block_array.size()){ // resize only when filled		
+	if((tracker->mark * work_blocks_per_page) >= edge_block_array.size()){ // resize only when filled		
 		// resize edgeblockarray
-		unsigned int newsz = edge_block_array.size() + (HEBAEXPANSIONADDITIONHEIGTH * WORK_BLOCKS_PER_PAGE);	
+		unsigned int newsz = edge_block_array.size() + (HEBAEXPANSIONADDITIONHEIGTH * work_blocks_per_page);	
 		edge_block_array.resize(newsz);
 	}	
 	unsigned int pos = tracker->mark;

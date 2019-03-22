@@ -13,42 +13,52 @@
 #include "graphtinker.h"
 using namespace std;
 
-graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype){
+graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
+				unsigned int _sub_block_height, unsigned int _page_block_height){
 	printf("graphtinker::graphtinker : graphtinker constructor called \n");
 	cout<<"graphtinker::graphtinker constructor called : parameters : "<<endl;
 	cout<<"sgh_for_xvtxid : "<<_sgh_for_xvtxid<<endl;
 	cout<<"sgh_for_xadjvtxid : "<<_sgh_for_xadjvtxid<<endl;
 	cout<<"updatev : "<<_updatev<<endl;
-	cout<<"max_vertex : "<<_max_vertex<<endl;
+	cout<<"min_vertex : "<<_min_vertex<<endl;
+	cout<<"min_vertex : "<<_min_vertex<<endl;
 	cout<<"num_vertices : "<<_num_vertices<<endl;
 	cout<<"num_edges : "<<_num_edges<<endl;
 	cout<<"graphdirectiontype : "<<_graphdirectiontype<<endl;
+	cout<<"WORK_BLOCK_HEIGHT : "<<WORK_BLOCK_HEIGHT<<endl;
+	cout<<"sub_block_height : "<<_sub_block_height<<endl;
+	cout<<"page_block_height : "<<_page_block_height<<endl;
 	
 	sgh_for_xvtxid = _sgh_for_xvtxid;
 	sgh_for_xadjvtxid = _sgh_for_xadjvtxid;
 	updatev = _updatev;
-	max_vertex = _max_vertex;
+	vertex_range = _max_vertex - _min_vertex;
 	num_vertices = _num_vertices;
 	num_edges = _num_edges;
-	
-	if(sgh_for_xvtxid == ON){
-		edge_block_array_size = num_vertices * 16;
-		ll_edgeblock_array_size = (num_vertices * 64 * 2) / 512;
-		ll_logicalvertexarray_size = num_vertices + (2048 - 1) / 2048;
-		cout<<"edgeblockarray height : "<<num_vertices<<endl;
-	} else if(sgh_for_xvtxid == OFF){
-		edge_block_array_size = max_vertex * 16;
-		ll_edgeblock_array_size = (max_vertex * 64 * 2) / 512;
-		ll_logicalvertexarray_size = max_vertex + (2048 - 1) / 2048;
-		cout<<"edgeblockarray height : "<<max_vertex<<endl;
-	} else { cout<<"graphtinker::graphtinker : error64"<<endl; }
-		
 	graphdirectiontype = _graphdirectiontype;
 	
-	if(_graphdirectiontype == UNDIRECTEDGRAPH){
-		lva_overflow_length = (num_edges * 2) / (64 / 2);
+	sub_block_height = _sub_block_height;
+	page_block_height = _page_block_height;
+	work_blocks_per_page = page_block_height / WORK_BLOCK_HEIGHT;
+	sub_blocks_per_page = page_block_height / sub_block_height;
+	work_blocks_per_subblock = sub_block_height / WORK_BLOCK_HEIGHT;
+
+	if(sgh_for_xvtxid == ON){
+		edge_block_array_size = num_vertices * work_blocks_per_page;
+		ll_edgeblock_array_size = (num_vertices * page_block_height * 2) / 512;
+		ll_logicalvertexarray_size = num_vertices + (2048 - 1) / 2048;
+		cout<<"edgeblockarray height '' : "<<num_vertices<<endl;
+	} else if(sgh_for_xvtxid == OFF){
+		edge_block_array_size = vertex_range * work_blocks_per_page;
+		ll_edgeblock_array_size = (vertex_range * page_block_height * 2) / 512;
+		ll_logicalvertexarray_size = vertex_range + (2048 - 1) / 2048;
+		cout<<"edgeblockarray height ' : "<<vertex_range<<endl;
+	} else { cout<<"graphtinker::graphtinker : error64"<<endl; }
+
+	if(graphdirectiontype == UNDIRECTEDGRAPH){
+		lva_overflow_length = (num_edges * 2) / (page_block_height / 2);
 	} else {
-		lva_overflow_length = num_edges / (64 / 2);
+		lva_overflow_length = num_edges / (page_block_height / 2);
 	}
 	
 	// edge block array
@@ -56,7 +66,7 @@ graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	if(sgh_for_xvtxid == ON){
 		lvatracker.mark = num_vertices;
 	} else if (sgh_for_xvtxid == OFF){
-		lvatracker.mark = max_vertex;
+		lvatracker.mark = vertex_range;
 	} else { cout<<"graphtinker::graphtinker : error63"<<endl; }
 	cout<<"lvatracker start mark : "<<lvatracker.mark<<endl;
 	
@@ -70,15 +80,15 @@ graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	
 	// vertices & translator
 	if(updatev == SELF){
-		vertices_handler.init(max_vertex);
+		vertices_handler.init(vertex_range);
 		/** if(sgh_for_xvtxid == ON){
 			vertices_handler.init(num_vertices); // very important!
 		} else if (sgh_for_xvtxid == OFF){
-			vertices_handler.init(max_vertex); // very important!
+			vertices_handler.init(vertex_range); // very important!
 		} else { cout<<"graphtinker::graphtinker : error65"<<endl; } */
 	} else {}
 	if((sgh_for_xvtxid == ON) || (sgh_for_xadjvtxid == ON)){
-		vertex_translator = new vertex_translator_t[max_vertex];		
+		vertex_translator = new vertex_translator_t[vertex_range];		
 		initialize_vertex_translator();		
 		translator_tracker.mark = 0;
 	}
@@ -107,7 +117,7 @@ void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int e
 
 void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler){
 	unsigned int edgeupdatecmd = INSERTEDGE;
-	if(sgh_for_xvtxid == ON){ src = (unsigned int)get_localvid((vertexid_t)src); if(translator_tracker.mark > num_vertices){ cout<<"graphtinker::insert_edge : something wrong65 : translator_tracker.mark : "<<translator_tracker.mark<<", num_vertices : "<<num_vertices<<", max_vertex : "<<max_vertex<<endl; } }
+	if(sgh_for_xvtxid == ON){ src = (unsigned int)get_localvid((vertexid_t)src); if(translator_tracker.mark > num_vertices){ cout<<"graphtinker::insert_edge : something wrong65 : translator_tracker.mark : "<<translator_tracker.mark<<", num_vertices : "<<num_vertices<<", vertex_range : "<<vertex_range<<endl; } }
 	if(sgh_for_xadjvtxid == ON){ dst = (unsigned int)get_localvid((vertexid_t)dst); }
 	update_edge(src, dst, ew, edgeupdatecmd, external_vertices_handler);
 	return;
@@ -470,7 +480,7 @@ vertexid_t graphtinker::retrieve_edges(vertexid_t vid, vector<edge_tt> & edges){
 	// load edges
 	clusterptrs.push_back(vid);
 	unsigned int len = clusterptrs.size();	
-	unsigned int wps = WORK_BLOCKS_PER_SUBBLOCK;
+	unsigned int wps = work_blocks_per_subblock;
 	
 	while(true){
 		for(unsigned int i=0; i<len; i++){		
@@ -478,7 +488,7 @@ vertexid_t graphtinker::retrieve_edges(vertexid_t vid, vector<edge_tt> & edges){
 			clusterptrs.pop_back();
 			
 			unsigned int ebaoffset = get_edgeblock_offset(vid);
-			for(unsigned int t=0; t<WORK_BLOCKS_PER_PAGE; t++){
+			for(unsigned int t=0; t<work_blocks_per_page; t++){
 				edge_nt edgeset = edge_block_array[(ebaoffset + t)];
 				
 				for(unsigned int k=0; k<WORK_BLOCK_HEIGHT; k++){
@@ -515,7 +525,7 @@ unsigned int graphtinker::printv_edgecount(){
 	unsigned int edgecount = 0;
 	for(vertexid_t vid=0; vid<lvatracker.mark; vid++){
 		unsigned int offset = get_edgeblock_offset(vid);		
-		for(unsigned int j=offset; j<(offset+WORK_BLOCKS_PER_PAGE); j++){ 
+		for(unsigned int j=offset; j<(offset+work_blocks_per_page); j++){ 
 			for(unsigned int k=0; k<WORK_BLOCK_HEIGHT; k++){
 				if (edge_block_array[j].edges[k].flag == VALID){ edgecount += 1; }
 			}
@@ -528,7 +538,7 @@ unsigned int graphtinker::printv_uniqueedgecount(){
 	unsigned int edgecount = 0;
 	for(vertexid_t vid=0; vid<lvatracker.mark; vid++){
 		unsigned int offset = get_edgeblock_offset(vid);		
-		for(unsigned int j=offset; j<(offset+WORK_BLOCKS_PER_PAGE); j++){ 
+		for(unsigned int j=offset; j<(offset+work_blocks_per_page); j++){ 
 			for(unsigned int k=0; k<WORK_BLOCK_HEIGHT; k++){
 				if (edge_block_array[j].edges[k].flag == VALID){ edgecount += edge_block_array[j].edges[k].edge_weight; }
 			}
@@ -577,8 +587,8 @@ void graphtinker::initialize_lvas(){
 }
 
 vertexid_t graphtinker::get_localvid(vertexid_t globalvid){
-	if(globalvid > max_vertex){ cout<<"graphtinker::get_localvid : bug, out of range5. globalvid : "<<globalvid<<", max_vertex : "<<max_vertex<<endl; }
-	if(translator_tracker.mark > max_vertex){ cout<<"graphtinker::get_localvid : bug, out of range6. globalvid : "<<globalvid<<", max_vertex : "<<max_vertex<<endl; }
+	if(globalvid > vertex_range){ cout<<"graphtinker::get_localvid : bug, out of range5. globalvid : "<<globalvid<<", vertex_range : "<<vertex_range<<endl; }
+	if(translator_tracker.mark > vertex_range){ cout<<"graphtinker::get_localvid : bug, out of range6. globalvid : "<<globalvid<<", vertex_range : "<<vertex_range<<endl; }
 	if(vertex_translator[globalvid].flag != VALID){
 		vertex_translator[translator_tracker.mark].globalvid = globalvid;
 		vertex_translator[translator_tracker.mark].lflag = VALID;		
@@ -604,7 +614,7 @@ unsigned int graphtinker::get_graphdirectiontype(){
 }
 
 vertexid_t graphtinker::read_globalvid(vertexid_t localvid){
-	if(localvid > max_vertex){ cout<<"graphtinker::read_globalvid : bug, out of range. localvid : "<<localvid<<", max_vertex : "<<max_vertex<<endl; }
+	if(localvid > vertex_range){ cout<<"graphtinker::read_globalvid : bug, out of range. localvid : "<<localvid<<", vertex_range : "<<vertex_range<<endl; }
 	return vertex_translator[localvid].globalvid;
 }
 
@@ -627,7 +637,7 @@ void graphtinker::print_first_n_items_of_vertex_translator(unsigned int n){
 
 void graphtinker::initialize_vertex_translator(){
 	cout<<"graphtinker::initialize_vertex_translator : initializing vertex translator"<<endl;
-	for(unsigned int i=0; i<max_vertex; i++){
+	for(unsigned int i=0; i<vertex_range; i++){
 		vertex_translator[i].globalvid = 0;
 		vertex_translator[i].localvid = 0;
 		vertex_translator[i].flag = INVALID;

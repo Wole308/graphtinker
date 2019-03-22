@@ -65,7 +65,7 @@ void graphtinker::writeback_unit(
 	if(edgeupdatecmd != DELETEEDGE){
 		if(writebackunitcmd.markasclustered == YES){
 			unsigned int subblockid = subblkmargin.top/SUB_BLOCK_HEIGHT;
-			unsigned int subblocksperpage = SUB_BLOCKS_PER_PAGE;
+			unsigned int subblocksperpage = sub_blocks_per_page;
 			if((subblockid == (subblocksperpage-1)) && (geni == 1)){
 				
 				// super vertex doesn't exist. create one
@@ -154,8 +154,8 @@ void graphtinker::writeback_unit(
 	
 	/** write cluster info to all workblocks in given subblock */
 	if(writebackunitcmd.markasclustered==YES){
-		unsigned int subblockbaseaddr = get_edgeblock_offset(hvtx_id) + (writebackunitcmd.subblockid * WORK_BLOCKS_PER_SUBBLOCK);
-		for(unsigned int id=0;id<WORK_BLOCKS_PER_SUBBLOCK;id++){
+		unsigned int subblockbaseaddr = get_edgeblock_offset(hvtx_id) + (writebackunitcmd.subblockid * work_blocks_per_subblock);
+		for(unsigned int id=0;id<work_blocks_per_subblock;id++){
 				edge_block_array[(subblockbaseaddr + id)].clusterinfo = clusterinfo;
 		}
 	}

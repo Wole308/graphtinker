@@ -16,6 +16,6 @@
 using namespace std;
 
 unsigned int graphtinker::get_edgeblock_offset(vertexid_t vid){
-    unsigned int offset4rmbase = vid  * WORK_BLOCKS_PER_PAGE; 
+    unsigned int offset4rmbase = vid  * work_blocks_per_page; 
 	return offset4rmbase;
 }

@@ -6,7 +6,7 @@
 bucket_t graphtinker::googlehash(vertexid_t vid, unsigned int geni){
 	bucket_t hashval=0;
 	bucket_t exthashval=0;	
-	unsigned int page_blockheight = PAGE_BLOCKHEIGHT;
+	unsigned int page_blockheight = page_block_height;
 	
 	// get extended edgeblock range
 	unsigned int ext_edgeblock_range = page_blockheight + (KMULTFACTOR * (geni-1));
