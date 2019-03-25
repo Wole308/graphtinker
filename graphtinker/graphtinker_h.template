@@ -79,6 +79,8 @@ class graphtinker{
 		unsigned int get_translator_tracker_mark();
 		void print_first_n_items_of_vertex_translator(unsigned int n);
 		void initialize_vertex_translator();
+		unsigned int get_work_blocks_per_page();
+		unsigned int get_work_blocks_per_subblock();
 		
 		// compute unit 
 		void compute_unit(

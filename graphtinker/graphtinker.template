@@ -433,15 +433,6 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 		
 		//***********************************************************************************************
 		
-		//***********************************************************************************************// Update Vertex Property (e.g degrees, etc)
-		if(updatev != OFF){
-			xvtxid = edge.xvtx_id; xadjvtxid = edge.xadjvtx_id;
-			if(sgh_for_xvtxid == ON){ xvtxid = get_globalvid(edge.xvtx_id); }
-			if(sgh_for_xadjvtxid == ON){ xadjvtxid = get_globalvid(edge.xadjvtx_id); }		
-			external_vertices_handler.update_vertex_property(xvtxid, xadjvtxid, edgeupdatecmd, graphdirectiontype);
-		}		
-		//***********************************************************************************************
-		
 		if(quitstatus==1){ 
 			#ifdef cpuem_l7
 			cout<<endl<<"successful. exiting... exiting... (update_singleedge)"<<endl; 
@@ -646,3 +637,10 @@ void graphtinker::initialize_vertex_translator(){
 	return;
 }
 
+unsigned int graphtinker::get_work_blocks_per_page(){
+	return work_blocks_per_page;
+}
+
+unsigned int graphtinker::get_work_blocks_per_subblock(){
+	return work_blocks_per_subblock;
+}

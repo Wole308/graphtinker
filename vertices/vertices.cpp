@@ -50,18 +50,26 @@ void vertices::writeproperty(vertexid_t vertexid, vertexproperty_t vertexpropert
 
 void vertices::update_vertex_property(vertexid_t xvtx_id, vertexid_t xadjvtx_id, unsigned int edgeupdatecmd, unsigned int graphdirectiontype){
 	if(edgeupdatecmd == INSERTEDGE){
-		vertex_properties[xvtx_id].outdegree += 1;
-		if(graphdirectiontype == UNDIRECTEDGRAPH){
-			vertex_properties[xvtx_id].indegree += 1;
-		}
-		vertex_properties[xvtx_id].flag = VALID;
-	} else if (edgeupdatecmd == DELETEEDGE){		
-		vertex_properties[xvtx_id].outdegree -= 1;
-		if(graphdirectiontype == UNDIRECTEDGRAPH){
-			vertex_properties[xvtx_id].indegree -= 1;
-		}
-		vertex_properties[xvtx_id].flag = VALID;
-	}  else { cout<<"bug! : should never be seen here (vprop_update)"<<endl; }
+		if(graphdirectiontype == DIRECTEDGRAPH){
+			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].outdegree += 1; }
+			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].indegree += 1; }
+		} else if (graphdirectiontype == UNDIRECTEDGRAPH){
+			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].outdegree += 1; }
+			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].indegree += 1; }
+			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].outdegree += 1; }
+			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].indegree += 1; }
+		} else { cout<<"vertices::update_vertex_property : error1"<<endl; }
+	} else if (edgeupdatecmd == DELETEEDGE){
+		if(graphdirectiontype == DIRECTEDGRAPH){
+			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].outdegree -= 1; }
+			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].indegree -= 1; }
+		} else if (graphdirectiontype == UNDIRECTEDGRAPH){
+			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].outdegree -= 1; }
+			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].indegree -= 1; }
+			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].outdegree -= 1; }
+			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].indegree -= 1; }
+		} else { cout<<"vertices::update_vertex_property : error2"<<endl; }
+	}
 	return;
 }
 
@@ -100,91 +108,6 @@ void vertices::print_nth_vertex(unsigned int n){
 
 vector<vertexproperty_t> & vertices::get_vertex_properties(){
 	return vertex_properties;
-}
-
-vector<id_t> & vertices::get_high_degree_vertexids(unsigned int percentage){
-	vertexproperty_t highest_degree = get_highest_outdegree_vertex();
-	vertexproperty_t lowest_degree = get_lowest_outdegree_vertex();
-	
-	unsigned int count = (percentage * (highest_degree.outdegree - lowest_degree.outdegree)) / 100;
-	unsigned int threshold = count; //highest_degree.outdegree - count;
-	
-	for(id_t i=0; i<num_vertices; i++){
-		if(vertex_properties[i].outdegree >= threshold){
-			high_degree_vertexids.push_back(i);
-		}
-	}
-	return high_degree_vertexids; 
-}
-
-vector<id_t> & vertices::get_low_degree_vertexids(unsigned int percentage){
-	vertexproperty_t highest_degree = get_highest_outdegree_vertex();
-	vertexproperty_t lowest_degree = get_lowest_outdegree_vertex();
-	
-	unsigned int count = (percentage * (highest_degree.outdegree - lowest_degree.outdegree)) / 100;
-	unsigned int threshold = count; //highest_degree.outdegree - count;
-	
-	for(id_t i=0; i<num_vertices; i++){
-		if(vertex_properties[i].outdegree <= threshold){
-			low_degree_vertexids.push_back(i);
-		}
-	}
-	return low_degree_vertexids; 
-}
-
-vertexproperty_t vertices::get_highest_outdegree_vertex(){
-	vertexproperty_t maxp;
-	maxp.outdegree = 0;
-	for(id_t i=0; i<num_vertices; i++){
-		if(vertex_properties[i].outdegree > maxp.outdegree){ maxp = vertex_properties[i]; }
-	}
-	return maxp;
-}
-
-vertexproperty_t vertices::get_lowest_outdegree_vertex(){
-	vertexproperty_t minp;
-	minp.outdegree = INFINITI;
-	cout<<"vertex_properties[0].outdegree : "<<vertex_properties[0].outdegree<<endl;
-	for(id_t i=0; i<num_vertices; i++){
-		if(vertex_properties[i].outdegree < minp.outdegree){ minp = vertex_properties[i]; }
-	}
-	return minp;
-}
-
-unsigned int * vertices::classify_vertexids(unsigned int threshold){
-	unsigned int * vertexids_and_degreeclasses = new unsigned int[num_vertices];
-	unsigned int hd = 0;
-	unsigned int ld = 0;
-	
-	for(id_t i=0; i<num_vertices; i++){
-		if(vertex_properties[i].outdegree >= threshold){
-			hd += 1;
-			vertexids_and_degreeclasses[i] = HIGH_DEGREE_VERTEX;
-		} else {
-			ld += 1;
-			vertexids_and_degreeclasses[i] = LOW_DEGREE_VERTEX;
-		}
-	}
-	cout<<"number of low-degree vertices : "<<ld<<", number of high-degree vertices : "<<hd<<endl;
-	return vertexids_and_degreeclasses;
-}
-
-unsigned int * vertices::classify_vertexids2(unsigned int percentage){
-	unsigned int * vertexids_and_degreeclasses = new unsigned int[num_vertices];
-	vertexproperty_t highest_degree = get_highest_outdegree_vertex();
-	vertexproperty_t lowest_degree = get_lowest_outdegree_vertex();
-	
-	unsigned int count = (percentage * (highest_degree.outdegree - lowest_degree.outdegree)) / 100;
-	unsigned int threshold = highest_degree.outdegree - count;
-	
-	for(id_t i=0; i<num_vertices; i++){
-		if(vertex_properties[i].outdegree >= threshold){ 
-			vertexids_and_degreeclasses[i] = HIGH_DEGREE_VERTEX;
-		} else {
-			vertexids_and_degreeclasses[i] = LOW_DEGREE_VERTEX;
-		}
-	}
-	return vertexids_and_degreeclasses;
 }
 
 unsigned int vertices::get_num_vertices(){
