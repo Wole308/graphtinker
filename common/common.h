@@ -6,6 +6,7 @@
 using namespace std;
 
 #define CPU 0
+#define EN_LLGDS 0
 
 #define cpuem_bugs_b1 0
 #define EN_BUGCHECK 0
@@ -154,14 +155,6 @@ typedef unsigned int clusterptr_t;
 typedef unsigned int id_t;
 
 /// struct declarations
-
-typedef struct {
-	string path;
-	unsigned int min_vertex;
-	unsigned int max_vertex;
-    unsigned int num_vertices;
-	unsigned int num_edges;
-} dataset_t;
 
 typedef struct {
 	vertexid_t xadjvtx_id;

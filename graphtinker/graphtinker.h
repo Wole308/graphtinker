@@ -57,6 +57,7 @@ class graphtinker{
 		// member functions
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
+		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker);
 		void delete_edge(unsigned int src, unsigned int dst, unsigned int ew);
 		void delete_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
 		void update_edge(unsigned int src, unsigned int dst, unsigned int ew, unsigned int edgeupdatecmd, vertices & _vertices_handler);
@@ -66,13 +67,14 @@ class graphtinker{
 		ll_edgeblock_t * get_ll_edge_block_array();
 		unsigned int printv_edgecount();
 		unsigned int printv_uniqueedgecount();
-		unsigned int printll_uniqueedgecount();
-		unsigned int ll_countuniqueedges(ll_edgeblock_t * ll_edge_block_array);
+		unsigned int printll_edgecount();
+		unsigned int ll_countedges(ll_edgeblock_t * ll_edge_block_array);
 		unsigned int print_svs_size();
 		unsigned int print_freed_edgeblock_list_size();
 		void initialize_lvas();
 		vertexid_t get_localvid(vertexid_t globalvid);
 		vertexid_t get_globalvid(vertexid_t localvid);
+		vertexid_t get_localvid(vertexid_t globalvid, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker);
 		vertices & get_vertices_handler();
 		unsigned int get_graphdirectiontype();
 		vertexid_t read_globalvid(vertexid_t localvid);
@@ -81,6 +83,7 @@ class graphtinker{
 		void initialize_vertex_translator();
 		unsigned int get_work_blocks_per_page();
 		unsigned int get_work_blocks_per_subblock();
+		void print_edgeblockarray(vertexid_t begin, vertexid_t end);
 		
 		// compute unit 
 		void compute_unit(

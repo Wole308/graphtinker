@@ -103,7 +103,7 @@ void insertions(graphtinker & tinker){
 		cout<<"number of edges : "<<tinker.printv_edgecount()<<" edges"<<endl;
 		cout<<"number of unique edges : "<<tinker.printv_uniqueedgecount()<<" edges"<<endl;
 		#ifdef EN_LLGDS
-		cout<<"number of unique edges in ll : "<<tinker.printll_uniqueedgecount()<<" edges"<<endl;
+		cout<<"number of edges in ll : "<<tinker.printll_edgecount()<<" edges"<<endl;
 		#endif
 		cout<<"timelapse (ms) : "<<(float)insertion_timelapse_ms<<" ms"<<endl;
 		cout<<"total timelapse (ms) : "<<(float)total_insertion_time_lapse_ms<<" ms"<<endl;
@@ -173,7 +173,7 @@ void deletions(graphtinker & tinker){
 		cout<<"number of edges : "<<tinker.printv_edgecount()<<" edges"<<endl;
 		cout<<"number of unique edges : "<<tinker.printv_uniqueedgecount()<<" edges"<<endl;
 		#ifdef EN_LLGDS
-		cout<<"number of unique edges in ll : "<<tinker.printll_uniqueedgecount()<<" edges"<<endl;
+		cout<<"number of unique edges in ll : "<<tinker.printll_edgecount()<<" edges"<<endl;
 		#endif
 		cout<<"timelapse (ms) : "<<(float)deletion_timelapse_ms<<" ms"<<endl;
 		cout<<"running throughput : "<<(float)runningthroughput<<" million edges per sec"<<endl;
@@ -195,9 +195,9 @@ int main(){
 	cout<<"LLFULLDB: {{context['LLFULLDB']}}"<<endl;
 	cout<<"WORK_BLOCK_HEIGHT: {{context['WORK_BLOCK_HEIGHT']}}"<<endl;
 	
-	graphtinker tinkerA(ON, ON, SELF, 0, 524288, 524288, 8380000, DIRECTEDGRAPH, 8, 64);
-	// graphtinker tinkerA(ON, ON, SELF, 0, 524288, 84081, 5038749, DIRECTEDGRAPH, 8, 64);
-	// graphtinker tinkerA(ON, ON, SELF, 0, 524288, 440207, 3341252, DIRECTEDGRAPH, 8, 64);
+	graphtinker tinkerA(SELF, SELF, SELF, 0, 524288, 524288, 8380000, DIRECTEDGRAPH, 8, 64);
+	// graphtinker tinkerA(SELF, SELF, SELF, 0, 524288, 84081, 5038749, DIRECTEDGRAPH, 8, 64);
+	// graphtinker tinkerA(SELF, SELF, SELF, 0, 524288, 440207, 3341252, DIRECTEDGRAPH, 8, 64);
 	insertions(tinkerA);
 	// deletions(tinkerA);
 	return 0;
