@@ -12,6 +12,7 @@ class graphtinker{
 	public:                     
 		graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
 				unsigned int _sub_block_height, unsigned int _page_block_height);
+		graphtinker();
 		~graphtinker();
 		
 		unsigned int sgh_for_xvtxid;
@@ -52,9 +53,13 @@ class graphtinker{
 		vector<supervertex_t> svs;
 		vector<vertexid_t> freed_edgeblock_list;
 		#endif
+		#ifdef EN_CRUMPLEINONDELETE
 		vector<edgeblock_parentinfo_t> edgeblock_parentinfo;
+		#endif
 		
 		// member functions
+		void create(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
+				unsigned int _sub_block_height, unsigned int _page_block_height);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker);
@@ -409,7 +414,7 @@ class graphtinker{
 		void updatemarginandrolloverstatus(margin_t *wblkmargin, margin_t subblkmargin, moduleparams_t *moduleparams);
 		unsigned int isthelastworkblock(margin_t wblkmargin, margin_t start_wblkmargin, margin_t subblkmargin, moduleparams_t moduleparams);
 
-		// init 
+		// initialize 
 		unsigned int add_page(tracker_t * tracker);
 		unsigned int add_page2(tracker_t * tracker, vector<edge_nt> & edge_block_array);
 
@@ -584,8 +589,10 @@ class graphtinker{
 				writebackunitcmd_t writebackunitcmd,
 				edge_t edge,
 				edge_nt * edgeblock,
-				vector<edge_nt> & edge_block_array, 
+				vector<edge_nt> & edge_block_array,
+				#ifdef EN_CRUMPLEINONDELETE
 				vector<edgeblock_parentinfo_t> & edgeblock_parentinfo,
+				#endif
 				tracker_t *lvatracker,
 				vertexid_t hvtx_id,
 				margin_t first_wblkmargin,
@@ -598,7 +605,7 @@ class graphtinker{
 				#endif
 				);
 						
-		// delete and crumple in unit 
+		// delete and crumple in unit
 		void deleteandcrumplein_unit(
 					writebackunitcmd_t writebackunitcmd,
 					findreport_t findreport,

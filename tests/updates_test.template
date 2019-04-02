@@ -47,9 +47,9 @@ void insertions(graphtinker & tinker){
 	float runningthroughput = 0;
 	unsigned int batchid = 0;
 	
-	char path[] = "/net/zf15/oj2zf/datasets/rmat500k8m_524288_8380000.edges";
+	char path[] = "/net/zf15/oj2zf/datasets/rmat500k8m.edges";
 	FILE* file = fopen (path, "r");
-	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat500k8m_524288_8380000.edges (test_updatesingleedge)"<<endl; }
+	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat500k8m.edges (test_updatesingleedge)"<<endl; }
 	
 	// char path[] = "/net/zf15/oj2zf/datasets/rmat500k8m_hd_inedges_84081_5038749.edges";
 	// FILE* file = fopen (path, "r");
@@ -127,9 +127,9 @@ void deletions(graphtinker & tinker){
 	float runningthroughput = 0;
 	unsigned int batchid = 0;
 	
-	char path[] = "/net/zf15/oj2zf/datasets/rmat500k8m_524288_8380000.edges";
+	char path[] = "/net/zf15/oj2zf/datasets/rmat500k8m.edges";
 	FILE* file = fopen (path, "r");
-	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat500k8m_524288_8380000.edges (test_updatesingleedge)"<<endl; }
+	if (file==NULL)	{ cout<<"error : cannot find the location of input file rmat500k8m.edges (test_updatesingleedge)"<<endl; }
 	
 	while(!feof(file)){
 		src_dst_pairs.clear();

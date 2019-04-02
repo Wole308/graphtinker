@@ -21,7 +21,9 @@ void graphtinker::writeback_unit(
 				edge_t edge,
 				edge_nt * edgeblock,
 				vector<edge_nt> & edge_block_array, 
+				#ifdef EN_CRUMPLEINONDELETE
 				vector<edgeblock_parentinfo_t> & edgeblock_parentinfo,
+				#endif
 				tracker_t *lvatracker,
 				vertexid_t hvtx_id,
 				margin_t first_wblkmargin,

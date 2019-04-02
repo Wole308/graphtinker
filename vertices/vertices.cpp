@@ -20,10 +20,10 @@ vertices::vertices(){
 }
 vertices::~vertices(){}
 
-void vertices::init(unsigned int _num_vertices){
+void vertices::initialize(unsigned int _num_vertices, float initvalue){
 	num_vertices = _num_vertices;
 	vertex_properties.resize(_num_vertices); 
-	initialize();
+	initialize(initvalue);
 }
 
 vertexdata_t vertices::readdata(vertexid_t vertexid){
@@ -73,10 +73,10 @@ void vertices::update_vertex_property(vertexid_t xvtx_id, vertexid_t xadjvtx_id,
 	return;
 }
 
-void vertices::initialize(){
+void vertices::initialize(float initvalue){
 	cout<<"initializing vertices (vertices) "<<endl;
 	for(unsigned int i=0; i<num_vertices; i++){
-		vertex_properties[i].data = 0.15; //** change later (this is for PR) 
+		vertex_properties[i].data = initvalue;
 		vertex_properties[i].indegree = 0;
 		vertex_properties[i].outdegree = 0;
 		vertex_properties[i].flag = INVALID;

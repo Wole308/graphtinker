@@ -14,6 +14,22 @@
 using namespace std;
 
 graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
+				unsigned int _sub_block_height, unsigned int _page_block_height){	
+	create(_sgh_for_xvtxid, _sgh_for_xadjvtxid, _updatev, _min_vertex, _max_vertex, _num_vertices, _num_edges, _graphdirectiontype,
+				_sub_block_height, _page_block_height);
+}
+graphtinker::graphtinker(){};
+graphtinker::~graphtinker(){
+	printf("graphtinker::~graphtinker : graphtinker destructor called \n");
+	/** edge_block_array.clear();
+	delete [] vertex_translator;
+	#ifdef EN_LLGDS	
+	delete [] ll_edge_block_array;
+	delete [] ll_lva;
+	#endif */
+}
+
+void graphtinker::create(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
 				unsigned int _sub_block_height, unsigned int _page_block_height){
 	printf("graphtinker::graphtinker : graphtinker constructor called \n");
 	cout<<"graphtinker::graphtinker constructor called : parameters : "<<endl;
@@ -42,18 +58,18 @@ graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	work_blocks_per_page = page_block_height / WORK_BLOCK_HEIGHT;
 	sub_blocks_per_page = page_block_height / sub_block_height;
 	work_blocks_per_subblock = sub_block_height / WORK_BLOCK_HEIGHT;
-
-	if(sgh_for_xvtxid == SELF){
+	
+	if((sgh_for_xvtxid == SELF) || (sgh_for_xvtxid == OTHER)){
 		edge_block_array_size = num_vertices * work_blocks_per_page;
 		ll_edgeblock_array_size = (num_vertices * page_block_height * 2) / {{context['LLEDGEBLOCKSIZE']}};
 		ll_logicalvertexarray_size = num_vertices + ({{context['LVACOARSENESSWIDTH']}} - 1) / {{context['LVACOARSENESSWIDTH']}};
 		cout<<"edgeblockarray height '' : "<<num_vertices<<endl;
-	} else if(sgh_for_xvtxid != SELF){
+	} else {
 		edge_block_array_size = vertex_range * work_blocks_per_page;
 		ll_edgeblock_array_size = (vertex_range * page_block_height * 2) / {{context['LLEDGEBLOCKSIZE']}};
 		ll_logicalvertexarray_size = vertex_range + ({{context['LVACOARSENESSWIDTH']}} - 1) / {{context['LVACOARSENESSWIDTH']}};
 		cout<<"edgeblockarray height ' : "<<vertex_range<<endl;
-	} else { cout<<"graphtinker::graphtinker : error64"<<endl; }
+	}
 
 	if(graphdirectiontype == UNDIRECTEDGRAPH){
 		lva_overflow_length = (num_edges * 2) / (page_block_height / 2);
@@ -63,12 +79,11 @@ graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	
 	// edge block array
 	edge_block_array.resize(edge_block_array_size);
-	if(sgh_for_xvtxid == SELF){
+	if((sgh_for_xvtxid == SELF) || (sgh_for_xvtxid == OTHER)){
 		lvatracker.mark = num_vertices;
-	} else if (sgh_for_xvtxid != SELF){
+	} else {
 		lvatracker.mark = vertex_range;
-	} else { cout<<"graphtinker::graphtinker : error63"<<endl; }
-	cout<<"lvatracker start mark : "<<lvatracker.mark<<endl;
+	} cout<<"lvatracker start mark : "<<lvatracker.mark<<endl;
 	
 	// ll edge block array
 	#ifdef EN_LLGDS
@@ -80,7 +95,7 @@ graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	
 	// vertices & translator
 	if(updatev == SELF){
-		vertices_handler.init(vertex_range);
+		vertices_handler.initialize(vertex_range, 0.15);
 	} else {}
 	if((sgh_for_xvtxid == SELF) || (sgh_for_xadjvtxid == SELF)){
 		vertex_translator = new vertex_translator_t[vertex_range];		
@@ -90,16 +105,10 @@ graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	translator_tracker.mark = 0;
 	
 	// metadata (for delete and crumple in)
+	#ifdef EN_CRUMPLEINONDELETE
 	edgeblock_parentinfo.resize(lva_overflow_length);
-}
-graphtinker::~graphtinker(){
-	printf("graphtinker::~graphtinker : graphtinker destructor called \n");
-	/** edge_block_array.clear();
-	delete [] vertex_translator;
-	#ifdef EN_LLGDS	
-	delete [] ll_edge_block_array;
-	delete [] ll_lva;
-	#endif */
+	#endif
+	return;	
 }
 
 void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew){
@@ -346,7 +355,9 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 					edge,
 					&edgeblock,
 					edge_block_array,
+					#ifdef EN_CRUMPLEINONDELETE
 					edgeblock_parentinfo,
+					#endif
 					&lvatracker,
 					xvtx_id,
 					first_wblkmargin,
