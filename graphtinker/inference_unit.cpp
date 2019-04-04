@@ -164,7 +164,7 @@ void graphtinker::inference_unit(
 				);				
 			}
 			#endif
-			#ifdef EN_CRUMPLEINONDELETE	
+			#ifdef EN_CRUMPLEINONDELETE
 			else if (edgeupdatecmd == DELETEEDGE){
 				findanddeleteandcrumpleinmode_searchstopped_searchsuccessful_x_x(
 					moduleunitcmd,
@@ -820,7 +820,6 @@ void graphtinker::findanddeleteandcrumpleinmode_searchstopped_searchsuccessful_x
 	#endif
 	return;
 }
-//////////////////////////////////////
 
 //verdict functions
 void graphtinker::set_intervalunitcmd_continue_from_first_generation(intervalunitcmd_t *intervalunitcmd){

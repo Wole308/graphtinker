@@ -8,6 +8,8 @@ using namespace std;
 #define CPU 0
 #define EN_LLGDS 0
 
+#define EN_CRUMPLEINONDELETE
+
 #define cpuem_bugs_b1 0
 #define EN_BUGCHECK 0
 #define EN_PROCESSLOWERGENCLUSTERS 0 //don't turn off!!!
@@ -134,8 +136,6 @@ using namespace std;
 #define OUTEDGE 6
 #define NOEDGE 7
 
-#define HEBAEXPANSIONADDITIONHEIGTH 100
-
 #define INSERTEDGE 5
 #define DELETEEDGE 6
 
@@ -186,6 +186,8 @@ typedef struct {
 } edge_nt;
 
 typedef struct {
+	unsigned int gen_of_parent;
+	vertexid_t xvtx_id; //***^
 	unsigned int subblockid;
 	flag_t flag;
 } edgeblock_parentinfo_t;
@@ -199,6 +201,9 @@ typedef struct {
 	int heba_hvtx_id;
 	int heba_workblockid;
 	int heba_loffset;
+	#ifdef EN_CRUMPLEINONDELETE
+	int which_gen_is_the_main_copy_located;
+	#endif
 	#endif
 } edge_t;
 

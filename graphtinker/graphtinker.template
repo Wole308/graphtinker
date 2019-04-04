@@ -13,15 +13,81 @@
 #include "graphtinker.h"
 using namespace std;
 
-graphtinker::graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
-				unsigned int _sub_block_height, unsigned int _page_block_height){	
-	create(_sgh_for_xvtxid, _sgh_for_xadjvtxid, _updatev, _min_vertex, _max_vertex, _num_vertices, _num_edges, _graphdirectiontype,
-				_sub_block_height, _page_block_height);
+graphtinker::graphtinker(
+			unsigned int _sgh_for_xvtxid, 
+			unsigned int _sgh_for_xadjvtxid, 
+			unsigned int _updatev, 
+			unsigned int _min_vertex, 
+			unsigned int _max_vertex, 
+			unsigned int _num_vertices, 
+			unsigned int _num_edges, 
+			unsigned int _graphdirectiontype,
+			unsigned int _sub_block_height, 
+			unsigned int _page_block_height,
+			unsigned int _eba_m_expansion_addition_height,
+			unsigned int _eba_c_expansion_addition_height,
+			unsigned int _ll_eba_expansion_addition_height,
+			unsigned int _ll_lva_expansion_addition_height,
+			unsigned int _eba_expansion_padding
+			){				
+	create(
+		_sgh_for_xvtxid, 
+		_sgh_for_xadjvtxid, 
+		_updatev, 
+		_min_vertex, 
+		_max_vertex, 
+		_num_vertices,
+		_num_edges, 
+		_graphdirectiontype,
+		_sub_block_height, 
+		_page_block_height,
+		_eba_m_expansion_addition_height,
+		_eba_c_expansion_addition_height,
+		_ll_eba_expansion_addition_height,
+		_ll_lva_expansion_addition_height,
+		_eba_expansion_padding
+		);
+}
+graphtinker::graphtinker(
+			unsigned int _sgh_for_xvtxid, 
+			unsigned int _sgh_for_xadjvtxid, 
+			unsigned int _updatev, 
+			unsigned int _min_vertex, 
+			unsigned int _max_vertex, 
+			unsigned int _num_vertices, 
+			unsigned int _num_edges, 
+			unsigned int _graphdirectiontype,
+			unsigned int _sub_block_height, 
+			unsigned int _page_block_height
+			){
+	unsigned int _eba_m_expansion_addition_height = 100000;
+	unsigned int _eba_c_expansion_addition_height = 100000;
+	unsigned int _ll_eba_expansion_addition_height = 1000;
+	unsigned int _ll_lva_expansion_addition_height = 100;
+	unsigned int _eba_expansion_padding = 10000;		
+	create(
+		_sgh_for_xvtxid, 
+		_sgh_for_xadjvtxid, 
+		_updatev, 
+		_min_vertex, 
+		_max_vertex, 
+		_num_vertices,
+		_num_edges, 
+		_graphdirectiontype,
+		_sub_block_height, 
+		_page_block_height,
+		_eba_m_expansion_addition_height,
+		_eba_c_expansion_addition_height,
+		_ll_eba_expansion_addition_height,
+		_ll_lva_expansion_addition_height,
+		_eba_expansion_padding
+		);
 }
 graphtinker::graphtinker(){};
 graphtinker::~graphtinker(){
 	printf("graphtinker::~graphtinker : graphtinker destructor called \n");
-	/** edge_block_array.clear();
+	/** edge_block_array_m.clear();
+	edge_block_array_c.clear();
 	delete [] vertex_translator;
 	#ifdef EN_LLGDS	
 	delete [] ll_edge_block_array;
@@ -29,8 +95,23 @@ graphtinker::~graphtinker(){
 	#endif */
 }
 
-void graphtinker::create(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
-				unsigned int _sub_block_height, unsigned int _page_block_height){
+void graphtinker::create(
+			unsigned int _sgh_for_xvtxid, 
+			unsigned int _sgh_for_xadjvtxid, 
+			unsigned int _updatev, 
+			unsigned int _min_vertex, 
+			unsigned int _max_vertex, 
+			unsigned int _num_vertices, 
+			unsigned int _num_edges,
+			unsigned int _graphdirectiontype,
+			unsigned int _sub_block_height, 
+			unsigned int _page_block_height,			
+			unsigned int _eba_m_expansion_addition_height,
+			unsigned int _eba_c_expansion_addition_height,
+			unsigned int _ll_eba_expansion_addition_height,
+			unsigned int _ll_lva_expansion_addition_height,
+			unsigned int _eba_expansion_padding
+			){
 	printf("graphtinker::graphtinker : graphtinker constructor called \n");
 	cout<<"graphtinker::graphtinker constructor called : parameters : "<<endl;
 	cout<<"sgh_for_xvtxid : "<<_sgh_for_xvtxid<<endl;
@@ -43,7 +124,17 @@ void graphtinker::create(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	cout<<"graphdirectiontype : "<<_graphdirectiontype<<endl;
 	cout<<"WORK_BLOCK_HEIGHT : "<<WORK_BLOCK_HEIGHT<<endl;
 	cout<<"sub_block_height : "<<_sub_block_height<<endl;
-	cout<<"page_block_height : "<<_page_block_height<<endl;
+	cout<<"page_block_height : "<<_page_block_height<<endl;	
+	cout<<"eba_m_expansion_addition_height : "<<_eba_m_expansion_addition_height<<endl;
+	cout<<"eba_c_expansion_addition_height : "<<_eba_c_expansion_addition_height<<endl;
+	cout<<"ll_eba_expansion_addition_height : "<<_ll_eba_expansion_addition_height<<endl;
+	cout<<"ll_lva_expansion_addition_height : "<<_ll_lva_expansion_addition_height<<endl;
+	cout<<"eba_expansion_padding : "<<_eba_expansion_padding<<endl;
+	
+	unsigned int edge_block_array_size = 0;
+	unsigned int ll_edgeblock_array_size = 0;
+	unsigned int ll_logicalvertexarray_size = 0;
+	unsigned int lva_overflow_length = 0;
 	
 	sgh_for_xvtxid = _sgh_for_xvtxid;
 	sgh_for_xadjvtxid = _sgh_for_xadjvtxid;
@@ -53,6 +144,12 @@ void graphtinker::create(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	num_edges = _num_edges;
 	graphdirectiontype = _graphdirectiontype;
 	
+	eba_m_expansion_addition_height = _eba_m_expansion_addition_height;
+	eba_c_expansion_addition_height = _eba_c_expansion_addition_height;
+	ll_eba_expansion_addition_height = _ll_eba_expansion_addition_height;
+	ll_lva_expansion_addition_height = _ll_lva_expansion_addition_height;
+	eba_expansion_padding = _eba_expansion_padding;
+	
 	sub_block_height = _sub_block_height;
 	page_block_height = _page_block_height;
 	work_blocks_per_page = page_block_height / WORK_BLOCK_HEIGHT;
@@ -61,14 +158,12 @@ void graphtinker::create(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	
 	if((sgh_for_xvtxid == SELF) || (sgh_for_xvtxid == OTHER)){
 		edge_block_array_size = num_vertices * work_blocks_per_page;
-		ll_edgeblock_array_size = (num_vertices * page_block_height * 2) / {{context['LLEDGEBLOCKSIZE']}};
-		ll_logicalvertexarray_size = num_vertices + ({{context['LVACOARSENESSWIDTH']}} - 1) / {{context['LVACOARSENESSWIDTH']}};
-		cout<<"edgeblockarray height '' : "<<num_vertices<<endl;
+		ll_edgeblock_array_size = (num_vertices * page_block_height) / {{context['LLEDGEBLOCKSIZE']}};
+		ll_logicalvertexarray_size = (num_vertices + ({{context['LVACOARSENESSWIDTH']}} - 1)) / {{context['LVACOARSENESSWIDTH']}};
 	} else {
 		edge_block_array_size = vertex_range * work_blocks_per_page;
-		ll_edgeblock_array_size = (vertex_range * page_block_height * 2) / {{context['LLEDGEBLOCKSIZE']}};
-		ll_logicalvertexarray_size = vertex_range + ({{context['LVACOARSENESSWIDTH']}} - 1) / {{context['LVACOARSENESSWIDTH']}};
-		cout<<"edgeblockarray height ' : "<<vertex_range<<endl;
+		ll_edgeblock_array_size = (vertex_range * page_block_height) / {{context['LLEDGEBLOCKSIZE']}};
+		ll_logicalvertexarray_size = (vertex_range + ({{context['LVACOARSENESSWIDTH']}} - 1)) / {{context['LVACOARSENESSWIDTH']}};
 	}
 
 	if(graphdirectiontype == UNDIRECTEDGRAPH){
@@ -78,17 +173,15 @@ void graphtinker::create(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xad
 	}
 	
 	// edge block array
-	edge_block_array.resize(edge_block_array_size);
-	if((sgh_for_xvtxid == SELF) || (sgh_for_xvtxid == OTHER)){
-		lvatracker.mark = num_vertices;
-	} else {
-		lvatracker.mark = vertex_range;
-	} cout<<"lvatracker start mark : "<<lvatracker.mark<<endl;
+	edge_block_array_m.resize(edge_block_array_size);
+	edge_block_array_c.resize(10000);
+	lvatracker.mark = 10000;
+	cout<<"lvatracker start mark : "<<lvatracker.mark<<endl;
 	
 	// ll edge block array
 	#ifdef EN_LLGDS
-	ll_edge_block_array = new ll_edgeblock_t[ll_edgeblock_array_size];
-	ll_lva = new ll_logicalvertexentity_t[ll_logicalvertexarray_size];
+	ll_edge_block_array.resize(ll_edgeblock_array_size);	
+	ll_lva.resize(ll_logicalvertexarray_size);
 	ll_eba_tracker.ptraddr=0;	
 	initialize_lvas();
 	#endif
@@ -115,6 +208,7 @@ void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int e
 	unsigned int edgeupdatecmd = INSERTEDGE;	
 	if(sgh_for_xvtxid == SELF){ src = get_localvid((vertexid_t)src); }
 	if(sgh_for_xadjvtxid == SELF){ dst = get_localvid((vertexid_t)dst); }
+	check_whether_to_resize_edgeblockarray_m(src);
 	update_edge(src, dst, ew, edgeupdatecmd, vertices_handler);
 	return;
 }
@@ -278,6 +372,7 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 	for(infiniti=0; infiniti<SOMELARGENO; infiniti++){
 		
 		//***********************************************************************************************//Load unit
+		if(geni == 1){
 		load_unit(
 				&moduleparams,
 				loadunitcmd,				
@@ -287,9 +382,25 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 				xvtx_id,
 				edge,
 				&edgeblock,
-				edge_block_array,
-				&prevLoadAddr		
+				edge_block_array_m,
+				&prevLoadAddr,
+				geni
 				);
+		} else {
+		load_unit(
+				&moduleparams,
+				loadunitcmd,				
+				&insertparams, 		
+				&findparams,
+				wblkmargin,
+				xvtx_id,
+				edge,
+				&edgeblock,
+				edge_block_array_c,
+				&prevLoadAddr,
+				geni
+				);
+		}
 		//***********************************************************************************************
 		
 		//***********************************************************************************************//load compute-params unit
@@ -319,7 +430,8 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 					&edge,
 					xvtx_id,
 					moduleparams.rolledover,
-					edgeupdatecmd
+					edgeupdatecmd,
+					geni
 					);
 		//***********************************************************************************************
 		
@@ -354,7 +466,8 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 					writebackunitcmd,
 					edge,
 					&edgeblock,
-					edge_block_array,
+					edge_block_array_m,
+					edge_block_array_c,
 					#ifdef EN_CRUMPLEINONDELETE
 					edgeblock_parentinfo,
 					#endif
@@ -367,6 +480,9 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 					#ifdef EN_CRUMPLEINONDELETE
 					,lastgenworkblockaddr
 					,svs
+					#ifdef EN_LLGDS
+					,ll_edge_block_array
+					#endif
 					#endif
 					);
 		//***********************************************************************************************
@@ -377,7 +493,8 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 			writebackunitcmd,
 			findreport,
 			edge,
-			edge_block_array,
+			edge_block_array_m,
+			edge_block_array_c,
 			#ifdef EN_LLGDS
 			ll_edge_block_array,
 			#endif
@@ -402,7 +519,9 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 			&moduleparams,
 			&insertparams,
 			edge,
-			edge_block_array
+			edge_block_array_m,
+			edge_block_array_c,
+			geni
 			#ifdef EN_LLGDS
 			,ll_edge_block_array
 			,ll_lva
@@ -482,6 +601,7 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 vertexid_t graphtinker::retrieve_edges(vertexid_t vid, vector<edge_tt> & edges){
 	vector<clusterptr_t> clusterptrs;	
 	vertexid_t basevid = vid;
+	unsigned int geni=1;
 	
 	// load edges
 	clusterptrs.push_back(vid);
@@ -489,13 +609,15 @@ vertexid_t graphtinker::retrieve_edges(vertexid_t vid, vector<edge_tt> & edges){
 	unsigned int wps = work_blocks_per_subblock;
 	
 	while(true){
-		for(unsigned int i=0; i<len; i++){		
+		for(unsigned int i=0; i<len; i++){
 			vid = clusterptrs.back();
 			clusterptrs.pop_back();
 			
 			unsigned int ebaoffset = get_edgeblock_offset(vid);
 			for(unsigned int t=0; t<work_blocks_per_page; t++){
-				edge_nt edgeset = edge_block_array[(ebaoffset + t)];
+				edge_nt edgeset;
+				if(geni==1){ edgeset = edge_block_array_m[(ebaoffset + t)]; }
+				else { edgeset = edge_block_array_c[(ebaoffset + t)]; }
 				
 				for(unsigned int k=0; k<WORK_BLOCK_HEIGHT; k++){
 					if(edgeset.edges[k].flag == VALID){
@@ -510,30 +632,41 @@ vertexid_t graphtinker::retrieve_edges(vertexid_t vid, vector<edge_tt> & edges){
 		}
 	
 		len = clusterptrs.size();
-		if(len==0){ break; }
+		if(len==0){ break; } else{ geni+=1; }
 	}
 	return basevid;
 }
 
-vector<edge_nt> & graphtinker::get_edge_block_array(){
-	return edge_block_array;
+vector<edge_nt> & graphtinker::get_edge_block_array_m(){
+	return edge_block_array_m;
 }
 
-ll_logicalvertexentity_t * graphtinker::get_ll_logicalvertexentity(){
+vector<edge_nt> & graphtinker::get_edge_block_array_c(){
+	return edge_block_array_c;
+}
+
+vector<ll_logicalvertexentity_t> & graphtinker::get_ll_logicalvertexentity(){
 	return ll_lva;
 }
 
-ll_edgeblock_t * graphtinker::get_ll_edge_block_array(){
+vector<ll_edgeblock_t> & graphtinker::get_ll_edge_block_array(){
 	return ll_edge_block_array;
 }
 		
 unsigned int graphtinker::printv_edgecount(){
 	unsigned int edgecount = 0;
-	for(vertexid_t vid=0; vid<lvatracker.mark; vid++){
+	edgecount += graphtinker::get_edgecount(edge_block_array_m, get_edge_block_array_height(edge_block_array_m));
+	edgecount += graphtinker::get_edgecount(edge_block_array_c, lvatracker.mark);
+	return edgecount;
+}
+
+unsigned int graphtinker::get_edgecount(vector<edge_nt> edge_block_array_x, unsigned int height){
+	unsigned int edgecount = 0;
+	for(vertexid_t vid=0; vid<height; vid++){
 		unsigned int offset = get_edgeblock_offset(vid);		
 		for(unsigned int j=offset; j<(offset+work_blocks_per_page); j++){ 
 			for(unsigned int k=0; k<WORK_BLOCK_HEIGHT; k++){
-				if (edge_block_array[j].edges[k].flag == VALID){ edgecount += edge_block_array[j].edges[k].edge_weight; }
+				if (edge_block_array_x[j].edges[k].flag == VALID){ edgecount += edge_block_array_x[j].edges[k].edge_weight; }
 			}
 		}
 	}
@@ -542,11 +675,18 @@ unsigned int graphtinker::printv_edgecount(){
 
 unsigned int graphtinker::printv_uniqueedgecount(){
 	unsigned int edgecount = 0;
-	for(vertexid_t vid=0; vid<lvatracker.mark; vid++){
+	edgecount += graphtinker::get_uniqueedgecount(edge_block_array_m, get_edge_block_array_height(edge_block_array_m));
+	edgecount += graphtinker::get_uniqueedgecount(edge_block_array_c, lvatracker.mark);
+	return edgecount;
+}
+
+unsigned int graphtinker::get_uniqueedgecount(vector<edge_nt> edge_block_array_x, unsigned int height){
+	unsigned int edgecount = 0;
+	for(vertexid_t vid=0; vid<height; vid++){
 		unsigned int offset = get_edgeblock_offset(vid);		
 		for(unsigned int j=offset; j<(offset+work_blocks_per_page); j++){ 
 			for(unsigned int k=0; k<WORK_BLOCK_HEIGHT; k++){
-				if (edge_block_array[j].edges[k].flag == VALID){ edgecount += 1; }
+				if (edge_block_array_x[j].edges[k].flag == VALID){ edgecount += 1; }
 			}
 		}
 	}
@@ -559,9 +699,9 @@ unsigned int graphtinker::printll_edgecount(){
 	return uniqueedgecount;
 }
 
-unsigned int graphtinker::ll_countedges(ll_edgeblock_t * ll_edge_block_array){
+unsigned int graphtinker::ll_countedges(vector<ll_edgeblock_t> & ll_edge_block_array){
 	unsigned int uniqueedgecount = 0;
-	for(unsigned int i=0;i<ll_edgeblock_array_size;i++){
+	for(unsigned int i=0;i<ll_edge_block_array.size();i++){ //ll_edgeblock_array_size
 		for(unsigned int j=0;j<LLEDGEBLOCKSIZE;j++){
 			if(ll_edge_block_array[i].ll_edgeblock[j].flag==VALID){ uniqueedgecount += ll_edge_block_array[i].ll_edgeblock[j].edgew; }
 		}
@@ -582,7 +722,7 @@ unsigned int graphtinker::print_freed_edgeblock_list_size(){
 #endif
 
 void graphtinker::initialize_lvas(){
-	for(unsigned int i=0;i<ll_logicalvertexarray_size;i++){	
+	for(unsigned int i=0; i<ll_lva.size(); i++){	
 		ll_lva[i].baseaddr=0;
 		ll_lva[i].lastlocalbaseaddr=0;
 		ll_lva[i].lastlocaladdr=0;
@@ -606,8 +746,8 @@ vertexid_t graphtinker::get_localvid(vertexid_t globalvid){
 }
 
 vertexid_t graphtinker::get_globalvid(vertexid_t localvid){
-	if(localvid > num_vertices){ cout<<"graphtinker::get_globalvid : bug. out of range7 (localvid > num_vertices). localvid : "<<localvid<<", num_vertices : "<<num_vertices<<endl; } 
-	/// if(vertex_translator[localvid].lflag != VALID){ cout<<"graphtinker::get_globalvid : bug. out of range8 (lflag != VALID). localvid : "<<localvid<<", num_vertices : "<<num_vertices<<", vertex_translator["<<localvid<<"].globalvid : "<<vertex_translator[localvid].globalvid<<endl; } 
+	if(localvid > vertex_range){ cout<<"graphtinker::get_globalvid : bug. out of range7 (localvid > vertex_range). localvid : "<<localvid<<", vertex_range : "<<vertex_range<<endl; } 
+	/// if(vertex_translator[localvid].lflag != VALID){ cout<<"graphtinker::get_globalvid : bug. out of range8 (lflag != VALID). localvid : "<<localvid<<", vertex_range : "<<vertex_range<<", vertex_translator["<<localvid<<"].globalvid : "<<vertex_translator[localvid].globalvid<<endl; } 
 	return vertex_translator[localvid].globalvid;
 }
 
@@ -686,8 +826,18 @@ void graphtinker::print_edgeblockarray(vertexid_t begin, vertexid_t end){
 	return;
 }
 
+unsigned int graphtinker::get_edge_block_array_height(vector<edge_nt> & edge_block_array){
+	return (edge_block_array.size() / work_blocks_per_page);
+}
 
-
+void graphtinker::check_whether_to_resize_edgeblockarray_m(unsigned int vid){
+	if(vid >= get_edge_block_array_height(edge_block_array_m)){
+		unsigned int newsz = (vid + eba_m_expansion_addition_height) * work_blocks_per_page;
+		edge_block_array_m.resize(newsz);
+		cout<<"graphtinker::resize_edgeblockarray_m : resizing... : vid : "<<vid<<", new edge_block_array_m size : "<<edge_block_array_m.size()<<", new edge_block_array_m height : "<<get_edge_block_array_height(edge_block_array_m)<<endl;	
+	}
+	return;
+}
 
 
 

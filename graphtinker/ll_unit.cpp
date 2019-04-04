@@ -15,10 +15,12 @@ void graphtinker::ll_unit(
 		moduleparams_t * moduleparams,
 		insertparams_t * insertparams,
 		edge_t edge,
-		vector<edge_nt> & edge_block_array
+		vector<edge_nt> & edge_block_array_m,
+		vector<edge_nt> & edge_block_array_c,
+		unsigned int geni
 		#ifdef EN_LLGDS
-		,ll_edgeblock_t * ll_edge_block_array
-		,ll_logicalvertexentity_t * ll_lva
+		,vector<ll_edgeblock_t> & ll_edge_block_array
+		,vector<ll_logicalvertexentity_t> & ll_lva
 		,ll_eba_tracker_t * ll_eba_tracker
 		#endif
 		){
@@ -33,8 +35,9 @@ void graphtinker::ll_unit(
 			moduleparams,
 			insertparams,
 			ll_edge_block_array,
-			ll_lva,		
-			ll_eba_tracker
+			ll_lva,
+			ll_eba_tracker,
+			geni
 			);
 	} else if (llgdsunitcmd.verdict == UPDATECMD){
 		ll_update(
@@ -58,7 +61,9 @@ void graphtinker::ll_unit(
 			ll_edge_block_array,
 			ll_lva,		
 			ll_eba_tracker,
-			edge_block_array
+			edge_block_array_m,
+			edge_block_array_c,
+			geni
 			);
 	} else if (llgdsunitcmd.verdict == UPDATEEDGEPTRSCMD){
 		ll_updateedgeptrs(

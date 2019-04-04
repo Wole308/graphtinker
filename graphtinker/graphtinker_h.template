@@ -10,8 +10,35 @@ using namespace std;
 /// classes
 class graphtinker{
 	public:                     
-		graphtinker(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
-				unsigned int _sub_block_height, unsigned int _page_block_height);
+		graphtinker(
+			unsigned int _sgh_for_xvtxid, 
+			unsigned int _sgh_for_xadjvtxid, 
+			unsigned int _updatev, 
+			unsigned int _min_vertex, 
+			unsigned int _max_vertex, 
+			unsigned int _num_vertices, 
+			unsigned int _num_edges, 
+			unsigned int _graphdirectiontype,
+			unsigned int _sub_block_height, 
+			unsigned int _page_block_height,
+			unsigned int _eba_m_expansion_addition_height,
+			unsigned int _eba_c_expansion_addition_height,
+			unsigned int _ll_eba_expansion_addition_height,
+			unsigned int _ll_lva_expansion_addition_height,
+			unsigned int _eba_expansion_padding
+			);
+		graphtinker(
+			unsigned int _sgh_for_xvtxid, 
+			unsigned int _sgh_for_xadjvtxid, 
+			unsigned int _updatev, 
+			unsigned int _min_vertex, 
+			unsigned int _max_vertex, 
+			unsigned int _num_vertices, 
+			unsigned int _num_edges, 
+			unsigned int _graphdirectiontype,
+			unsigned int _sub_block_height, 
+			unsigned int _page_block_height
+			);
 		graphtinker();
 		~graphtinker();
 		
@@ -21,6 +48,7 @@ class graphtinker{
 		unsigned int vertex_range;
 		unsigned int num_vertices;
 		unsigned int num_edges;
+		unsigned int graphdirectiontype;
 		
 		unsigned int sub_block_height;
 		unsigned int page_block_height;
@@ -28,19 +56,20 @@ class graphtinker{
 		unsigned int sub_blocks_per_page;
 		unsigned int work_blocks_per_subblock;
 		
-		unsigned int edge_block_array_size;
-		unsigned int ll_edgeblock_array_size;
-		unsigned int ll_logicalvertexarray_size;
-		unsigned int lva_overflow_length;
-		unsigned int graphdirectiontype;
+		unsigned int eba_m_expansion_addition_height;
+		unsigned int eba_c_expansion_addition_height;
+		unsigned int ll_eba_expansion_addition_height;
+		unsigned int ll_lva_expansion_addition_height;
+		unsigned int eba_expansion_padding;
 
 		// edge block array
-		vector<edge_nt> edge_block_array;
+		vector<edge_nt> edge_block_array_m;
+		vector<edge_nt> edge_block_array_c;
 		tracker_t lvatracker;
 		
 		// ll edge block array
-		ll_edgeblock_t * ll_edge_block_array;
-		ll_logicalvertexentity_t * ll_lva;
+		vector<ll_edgeblock_t> ll_edge_block_array;
+		vector<ll_logicalvertexentity_t> ll_lva;
 		ll_eba_tracker_t ll_eba_tracker;
 		
 		// vertices 
@@ -58,8 +87,23 @@ class graphtinker{
 		#endif
 		
 		// member functions
-		void create(unsigned int _sgh_for_xvtxid, unsigned int _sgh_for_xadjvtxid, unsigned int _updatev, unsigned int _min_vertex, unsigned int _max_vertex, unsigned int _num_vertices, unsigned int _num_edges, unsigned int _graphdirectiontype,
-				unsigned int _sub_block_height, unsigned int _page_block_height);
+		void create(
+			unsigned int _sgh_for_xvtxid, 
+			unsigned int _sgh_for_xadjvtxid, 
+			unsigned int _updatev, 
+			unsigned int _min_vertex, 
+			unsigned int _max_vertex, 
+			unsigned int _num_vertices, 
+			unsigned int _num_edges, 
+			unsigned int _graphdirectiontype,
+			unsigned int _sub_block_height, 
+			unsigned int _page_block_height,			
+			unsigned int _eba_m_expansion_addition_height,
+			unsigned int _eba_c_expansion_addition_height,
+			unsigned int _ll_eba_expansion_addition_height,
+			unsigned int _ll_lva_expansion_addition_height,
+			unsigned int _eba_expansion_padding
+			);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker);
@@ -67,13 +111,16 @@ class graphtinker{
 		void delete_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
 		void update_edge(unsigned int src, unsigned int dst, unsigned int ew, unsigned int edgeupdatecmd, vertices & _vertices_handler);
 		vertexid_t retrieve_edges(vertexid_t vid, vector<edge_tt> & edges);
-		vector<edge_nt> & get_edge_block_array();
-		ll_logicalvertexentity_t * get_ll_logicalvertexentity();
-		ll_edgeblock_t * get_ll_edge_block_array();
+		vector<edge_nt> & get_edge_block_array_m();
+		vector<edge_nt> & get_edge_block_array_c();
+		vector<ll_logicalvertexentity_t> & get_ll_logicalvertexentity();
+		vector<ll_edgeblock_t> & get_ll_edge_block_array();
 		unsigned int printv_edgecount();
+		unsigned int get_edgecount(vector<edge_nt> edge_block_array_x, unsigned int height);
 		unsigned int printv_uniqueedgecount();
+		unsigned int get_uniqueedgecount(vector<edge_nt> edge_block_array_x, unsigned int height);
 		unsigned int printll_edgecount();
-		unsigned int ll_countedges(ll_edgeblock_t * ll_edge_block_array);
+		unsigned int ll_countedges(vector<ll_edgeblock_t> & ll_edge_block_array);
 		unsigned int print_svs_size();
 		unsigned int print_freed_edgeblock_list_size();
 		void initialize_lvas();
@@ -89,6 +136,8 @@ class graphtinker{
 		unsigned int get_work_blocks_per_page();
 		unsigned int get_work_blocks_per_subblock();
 		void print_edgeblockarray(vertexid_t begin, vertexid_t end);
+		unsigned int get_edge_block_array_height(vector<edge_nt> & edge_block_array);
+		void check_whether_to_resize_edgeblockarray_m(unsigned int vid);
 		
 		// compute unit 
 		void compute_unit(
@@ -106,7 +155,8 @@ class graphtinker{
 				edge_t * edge,
 				vertexid_t xvtx_id,
 				unsigned int rolledover,
-				unsigned int edgeupdatecmd
+				unsigned int edgeupdatecmd,
+				unsigned int geni
 				);
 				
 		// find margin 
@@ -414,22 +464,23 @@ class graphtinker{
 		void updatemarginandrolloverstatus(margin_t *wblkmargin, margin_t subblkmargin, moduleparams_t *moduleparams);
 		unsigned int isthelastworkblock(margin_t wblkmargin, margin_t start_wblkmargin, margin_t subblkmargin, moduleparams_t moduleparams);
 
-		// initialize 
-		unsigned int add_page(tracker_t * tracker);
-		unsigned int add_page2(tracker_t * tracker, vector<edge_nt> & edge_block_array);
+		// initialize
+		unsigned int add_page(tracker_t * tracker, vector<edge_nt> & edge_block_array);
 
 		// insert unit 
 		void insert_unit(
-						moduleparams_t *moduleparams,
-						insertparams_t *insertparams, 
-						insertreport_t *insertreport,
-						margin_t wblkmargin, 
-						margin_t subblkmargin,
-						bucket_t hadjvtx_id, 
-						edge_nt * edgeblock,
-						edge_t * edge,
-						vertexid_t xvtx_id,
-						unsigned int rolledover);
+					moduleparams_t *moduleparams,
+					insertparams_t *insertparams, 
+					insertreport_t *insertreport,
+					margin_t wblkmargin, 
+					margin_t subblkmargin,
+					bucket_t hadjvtx_id, 
+					edge_nt * edgeblock,
+					edge_t * edge,
+					vertexid_t xvtx_id,
+					unsigned int rolledover,
+					unsigned int geni
+					);
 		bucket_t getdib(bucket_t currbkt, bucket_t initialbucket, margin_t subblkmargin, unsigned int rolledover);
 
 		// interval unit 
@@ -487,35 +538,38 @@ class graphtinker{
 					edge_t edge,
 					moduleparams_t * moduleparams,
 					insertparams_t * insertparams,
-					ll_edgeblock_t * ll_edge_block_array,
-					ll_logicalvertexentity_t * ll_lva,
-					ll_eba_tracker_t * ll_eba_tracker
+					vector<ll_edgeblock_t> & ll_edge_block_array,
+					vector<ll_logicalvertexentity_t> & ll_lva,
+					ll_eba_tracker_t * ll_eba_tracker,
+					unsigned int geni
 					);			
 		void ll_update(
 					edge_t edge,
 					vertexid_t ll_localbaseaddrptr,
 					vertexid_t ll_localaddrptr,
-					ll_edgeblock_t *ll_edge_block_array
+					vector<ll_edgeblock_t> & ll_edge_block_array
 					);			
 		void ll_delete(
 					edge_t edge,
 					vertexid_t ll_localbaseaddrptr,
 					vertexid_t ll_localaddrptr,
-					ll_edgeblock_t * ll_edge_block_array
-					);			
+					vector<ll_edgeblock_t> & ll_edge_block_array
+					);
 		void ll_deleteandcrumplein(
 					edge_t edge,
 					vertexid_t ll_localbaseaddrptr,
 					vertexid_t ll_localaddrptr,
-					ll_edgeblock_t * ll_edge_block_array,
-					ll_logicalvertexentity_t * ll_lva,
+					vector<ll_edgeblock_t> & ll_edge_block_array,
+					vector<ll_logicalvertexentity_t> & ll_lva,
 					ll_eba_tracker_t * ll_eba_tracker,
-					vector<edge_nt> & edge_block_array
-					);			
+					vector<edge_nt> & edge_block_array_m,
+					vector<edge_nt> & edge_block_array_c,
+					unsigned int geni
+					);
 		void ll_updateedgeptrs(
 					edge_t edge,
 					moduleparams_t moduleparams,
-					ll_edgeblock_t * ll_edge_block_array
+					vector<ll_edgeblock_t> & ll_edge_block_array
 					);
 
 		// load parameters 
@@ -538,7 +592,8 @@ class graphtinker{
 					edge_t edge,
 					edge_nt *edgeblock,
 					vector<edge_nt> & edge_block_array,
-					unsigned int * prevLoadAddr
+					unsigned int * prevLoadAddr,
+					unsigned int geni
 					);
 
 		// super vertices 
@@ -553,14 +608,16 @@ class graphtinker{
 					unsigned int * svs_index,
 					unsigned int * numclusteredworkblocks,
 					unsigned int geni,
-					vector<edge_nt> & edge_block_array
+					vector<edge_nt> & edge_block_array_m,
+					vector<edge_nt> & edge_block_array_c
 					);
 		int sv_get_tail_edgeblock(
 					vector<supervertex_t> & svs,
 					unsigned int currworkblockaddr,
 					unsigned int *svs_index,
 					unsigned int geni,
-					vector<edge_nt> & edge_block_array 
+					vector<edge_nt> & edge_block_array_m,
+					vector<edge_nt> & edge_block_array_c
 					);
 		int sv_pick_edge(
 					unsigned int xvtx_id,
@@ -589,7 +646,8 @@ class graphtinker{
 				writebackunitcmd_t writebackunitcmd,
 				edge_t edge,
 				edge_nt * edgeblock,
-				vector<edge_nt> & edge_block_array,
+				vector<edge_nt> & edge_block_array_m,
+				vector<edge_nt> & edge_block_array_c,
 				#ifdef EN_CRUMPLEINONDELETE
 				vector<edgeblock_parentinfo_t> & edgeblock_parentinfo,
 				#endif
@@ -602,27 +660,31 @@ class graphtinker{
 				#ifdef EN_CRUMPLEINONDELETE
 				,unsigned int lastgenworkblockaddr
 				,vector<supervertex_t> & svs
+				#ifdef EN_LLGDS
+				,vector<ll_edgeblock_t> & ll_edge_block_array
+				#endif 
 				#endif
 				);
 						
 		// delete and crumple in unit
 		void deleteandcrumplein_unit(
-					writebackunitcmd_t writebackunitcmd,
-					findreport_t findreport,
-					edge_t edge,
-					vector<edge_nt> & edge_block_array,
-					#ifdef EN_LLGDS
-					ll_edgeblock_t * ll_edge_block_array{{k}},
-					#endif
-					vector<edgeblock_parentinfo_t> & edgeblock_parentinfo,
-					vertexid_t xvtx_id,
-					margin_t wblkmargin,
-					margin_t subblkmargin,
-					unsigned int geni
-					,deleteandcrumpleincmd_t deleteandcrumpleincmd
-					,vector<supervertex_t> & svs
-					,vector<vertexid_t> & freed_edgeblock_list
-					);
+				writebackunitcmd_t writebackunitcmd,
+				findreport_t findreport,
+				edge_t edge,
+				vector<edge_nt> & edge_block_array_m,
+				vector<edge_nt> & edge_block_array_c,
+				#ifdef EN_LLGDS
+				vector<ll_edgeblock_t> & ll_edge_block_array,
+				#endif
+				vector<edgeblock_parentinfo_t> & edgeblock_parentinfo,
+				vertexid_t xvtx_id,
+				margin_t wblkmargin,
+				margin_t subblkmargin,
+				unsigned int geni
+				,deleteandcrumpleincmd_t deleteandcrumpleincmd
+				,vector<supervertex_t> & svs
+				,vector<vertexid_t> & freed_edgeblock_list
+				);
 					
 		// ll unit 
 		void ll_unit(
@@ -630,10 +692,12 @@ class graphtinker{
 				moduleparams_t * moduleparams,
 				insertparams_t * insertparams,
 				edge_t edge,
-				vector<edge_nt> & edge_block_array
+				vector<edge_nt> & edge_block_array_m,
+				vector<edge_nt> & edge_block_array_c,
+				unsigned int geni
 				#ifdef EN_LLGDS
-				,ll_edgeblock_t * ll_edge_block_array
-				,ll_logicalvertexentity_t * ll_lva
+				,vector<ll_edgeblock_t> & ll_edge_block_array
+				,vector<ll_logicalvertexentity_t> & ll_lva
 				,ll_eba_tracker_t * ll_eba_tracker
 				#endif
 				);

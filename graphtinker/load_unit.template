@@ -27,7 +27,8 @@ void graphtinker::load_unit(
 			edge_t edge,
 			edge_nt *edgeblock,
 			vector<edge_nt> & edge_block_array,
-			unsigned int * prevLoadAddr
+			unsigned int * prevLoadAddr,
+			unsigned int geni
 			){	
 	unsigned int trueoffset4rmbase = get_edgeblock_offset(hvtx_id);	
 	unsigned int addr = trueoffset4rmbase + wblkmargin.top/WORK_BLOCK_HEIGHT;
@@ -35,7 +36,7 @@ void graphtinker::load_unit(
 	#ifdef OPTIMIZEUSINGPREVADDR
 	if(loadunitcmd.load == YES && addr!=*prevLoadAddr){ 
 		#ifdef cpuem_bugs_b1
-		if(addr >= edge_block_array.size()){ cout<<"bug! : addr out-of-range (load_unit) : hvtx_id : "<<hvtx_id<<", wblkmargin.top/WORK_BLOCK_HEIGHT : "<<wblkmargin.top/WORK_BLOCK_HEIGHT<<" addr : "<<addr<<", edge_block_array.size() : "<<edge_block_array.size()<<endl; return;}
+		if(addr >= edge_block_array.size()){ cout<<"bug! : addr out-of-range (load_unit) : hvtx_id : "<<hvtx_id<<", wblkmargin.top/WORK_BLOCK_HEIGHT : "<<wblkmargin.top/WORK_BLOCK_HEIGHT<<" addr : "<<addr<<", edge_block_array.size() : "<<edge_block_array.size()<<", geni : "<<geni<<endl; return;}
 		#endif
 		
 		*edgeblock = edge_block_array[addr];		

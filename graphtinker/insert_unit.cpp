@@ -16,7 +16,9 @@ void graphtinker::insert_unit(
 				edge_nt * edgeblock,
 				edge_t * edge,
 				vertexid_t xvtx_id,
-				unsigned int rolledover){			
+				unsigned int rolledover,
+				unsigned int geni
+				){			
 	bucket_t localoffset;
 	
 	vertexid_t entry_i; 
@@ -84,6 +86,7 @@ void graphtinker::insert_unit(
 					edge->heba_hvtx_id = xvtx_id;
 					edge->heba_workblockid = wblkmargin.top / WORK_BLOCK_HEIGHT;
 					edge->heba_loffset = localoffset;
+					// edge->which_gen_is_the_main_copy_located = geni;
 				}
 				#endif
 				
@@ -119,6 +122,7 @@ void graphtinker::insert_unit(
 					edge->heba_hvtx_id = xvtx_id;
 					edge->heba_workblockid = wblkmargin.top / WORK_BLOCK_HEIGHT;
 					edge->heba_loffset = localoffset;
+					// edge->which_gen_is_the_main_copy_located = geni;
 				}
 				#endif
 				

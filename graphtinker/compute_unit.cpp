@@ -19,7 +19,8 @@ void graphtinker::compute_unit(
 				edge_t * edge,
 				vertexid_t xvtx_id,
 				unsigned int rolledover,
-				unsigned int edgeupdatecmd
+				unsigned int edgeupdatecmd,
+				unsigned int geni
 				){	
 	if(moduleunitcmd.mode == FINDONLYMODE){
 	find_unit(
@@ -43,7 +44,8 @@ void graphtinker::compute_unit(
 				edgeblock,
 				edge,
 				xvtx_id,
-				rolledover
+				rolledover,
+				geni
 				);
 	} else { cout<<"bug! : should never get here (compute unit) : moduleunitcmd.mode = "<<moduleunitcmd.mode<<endl; }
 	return;

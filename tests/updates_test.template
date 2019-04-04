@@ -195,10 +195,10 @@ int main(){
 	cout<<"LLFULLDB: {{context['LLFULLDB']}}"<<endl;
 	cout<<"WORK_BLOCK_HEIGHT: {{context['WORK_BLOCK_HEIGHT']}}"<<endl;
 	
-	graphtinker tinkerA(SELF, SELF, SELF, 0, 524288, 524288, 8380000, DIRECTEDGRAPH, 8, 64);
+	graphtinker tinkerA(SELF, SELF, SELF, 0, 524288, 524288, 8380000, DIRECTEDGRAPH, 8, 64, 100000, 100000, 1000, 100, 10000);
 	// graphtinker tinkerA(SELF, SELF, SELF, 0, 524288, 84081, 5038749, DIRECTEDGRAPH, 8, 64);
 	// graphtinker tinkerA(SELF, SELF, SELF, 0, 524288, 440207, 3341252, DIRECTEDGRAPH, 8, 64);
 	insertions(tinkerA);
-	// deletions(tinkerA);
+	deletions(tinkerA);
 	return 0;
 }

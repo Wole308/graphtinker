@@ -15,17 +15,18 @@ int graphtinker::sv_get_next_edge(
 			unsigned int * svs_index,
 			unsigned int * numclusteredworkblocks,
 			unsigned int geni,
-			vector<edge_nt> & edge_block_array
+			vector<edge_nt> & edge_block_array_m,
+			vector<edge_nt> & edge_block_array_c
 			){
 	// return 5;
-	// we got here because the current subblock we're in is clustered, this cluster info has our svs index pointer (sv_ptr)
+	/// we got here because the current subblock we're in is clustered, this cluster info has our svs index pointer (sv_ptr)
 	unsigned int work_block_height = WORK_BLOCK_HEIGHT;
 	unsigned int work_blocks_per_subblock = work_blocks_per_subblock;
 	unsigned int currworkblockaddr = get_edgeblock_offset(xvtx_id) + wblkmargin.top/work_block_height;
 	
 	// get tail edgeblock
 	// unsigned int svs_index=0;	
-	*tailhvtx_id = sv_get_tail_edgeblock(svs, currworkblockaddr, svs_index, geni, edge_block_array);
+	*tailhvtx_id = sv_get_tail_edgeblock(svs, currworkblockaddr, svs_index, geni, edge_block_array_m, edge_block_array_c);
 	if(*tailhvtx_id < 0){
 		return 5;
 	} else {
@@ -40,7 +41,7 @@ int graphtinker::sv_get_next_edge(
 				offset,
 				edgett,
 				numclusteredworkblocks,
-				edge_block_array
+				edge_block_array_c
 				);
 				
 		if(edgefound < 0){ return 6; }
@@ -55,12 +56,19 @@ int graphtinker::sv_get_tail_edgeblock(
 			unsigned int currworkblockaddr,
 			unsigned int *svs_index,
 			unsigned int geni,
-			vector<edge_nt> & edge_block_array 
+			vector<edge_nt> & edge_block_array_m,
+			vector<edge_nt> & edge_block_array_c
 			){
-	// get where in svs the founfing father is pointing to
-	if(currworkblockaddr >= edge_block_array.size()){ cout<<"bug! : addr out-of-range4 (supervs) "<<endl; }
-	if(edge_block_array[currworkblockaddr].clusterinfo.flag != VALID){ cout<<"bug! : addr out-of-range8 (supervs) "<<endl; }
-	*svs_index = edge_block_array[currworkblockaddr].clusterinfo.sv_ptr;
+	// get where in svs the founding father is pointing to
+	if(geni == 1){
+		if(currworkblockaddr >= edge_block_array_m.size()){ cout<<"bug! : addr out-of-range4 (supervs) "<<endl; }
+		if(edge_block_array_m[currworkblockaddr].clusterinfo.flag != VALID){ cout<<"bug! : addr out-of-range8 (supervs) "<<endl; }
+		*svs_index = edge_block_array_m[currworkblockaddr].clusterinfo.sv_ptr;
+	} else {
+		if(currworkblockaddr >= edge_block_array_c.size()){ cout<<"bug! : addr out-of-range5 (supervs) "<<endl; }
+		if(edge_block_array_c[currworkblockaddr].clusterinfo.flag != VALID){ cout<<"bug! : addr out-of-range6 (supervs) "<<endl; }
+		*svs_index = edge_block_array_c[currworkblockaddr].clusterinfo.sv_ptr;
+	}
 	
 	// return FAILED if empty
 	if(*svs_index >= svs.size()){ return -1; cout<<"bug! : addr out-of-range5 (supervs). *svs_index : "<<*svs_index<<", svs.size() : "<<svs.size()<<endl; return -1; }

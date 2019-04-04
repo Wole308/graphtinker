@@ -20,7 +20,8 @@ void graphtinker::writeback_unit(
 				writebackunitcmd_t writebackunitcmd,
 				edge_t edge,
 				edge_nt * edgeblock,
-				vector<edge_nt> & edge_block_array, 
+				vector<edge_nt> & edge_block_array_m,
+				vector<edge_nt> & edge_block_array_c,
 				#ifdef EN_CRUMPLEINONDELETE
 				vector<edgeblock_parentinfo_t> & edgeblock_parentinfo,
 				#endif
@@ -33,6 +34,9 @@ void graphtinker::writeback_unit(
 				#ifdef EN_CRUMPLEINONDELETE
 				,unsigned int lastgenworkblockaddr
 				,vector<supervertex_t> & svs
+				#ifdef EN_LLGDS
+				,vector<ll_edgeblock_t> & ll_edge_block_array
+				#endif 
 				#endif
 				){	
 	clusterinfo_t clusterinfo;
@@ -41,11 +45,7 @@ void graphtinker::writeback_unit(
 	/** append cluster info (if necessary) */
 	if(writebackunitcmd.markasclustered == YES){
 		//initialize LVAentity row
-		#ifdef EN_ARRAY_HEBA
-		newpageindexpos = add_page(lvatracker);
-		#else
-		newpageindexpos = add_page2(lvatracker, edge_block_array);
-		#endif
+		newpageindexpos = add_page(lvatracker, edge_block_array_c);
 		
 		//update cluster pointer
 		moduleparams->clustered = YES;
@@ -66,7 +66,7 @@ void graphtinker::writeback_unit(
 	NB: this function should be before you write the cluster info to its subblock */
 	if(edgeupdatecmd != DELETEEDGE){
 		if(writebackunitcmd.markasclustered == YES){
-			unsigned int subblockid = subblkmargin.top/SUB_BLOCK_HEIGHT;
+			unsigned int subblockid = subblkmargin.top/sub_block_height;
 			unsigned int subblocksperpage = sub_blocks_per_page;
 			if((subblockid == (subblocksperpage-1)) && (geni == 1)){
 				
@@ -87,12 +87,17 @@ void graphtinker::writeback_unit(
 				
 				// since it is a first child, this subblock should share the same supervertex entry as its parent subblock
 				// update cluster info
-				// #ifdef EN_OTHERS
-				if(edge_block_array[lastgenworkblockaddr].clusterinfo.flag != VALID){ cout<<"bug1!!!!!!!!!!!!!! clusterinfo should not be empty!!! (writeback_unit)"<<endl; }
-				// #endif
-				
-				if(edge_block_array[lastgenworkblockaddr].clusterinfo.flag != VALID){ cout<<"bug! : addr out-of-range8 (writeback_unit4) "<<endl; }
-				unsigned int svs_index = edge_block_array[lastgenworkblockaddr].clusterinfo.sv_ptr;
+				///***^ this is under testing ^***//
+				unsigned int svs_index=0;
+				if((geni - 1) == 1){ /// last edgeblock was in generation 1
+					if(lastgenworkblockaddr >= edge_block_array_m.size()){ cout<<"graphtinker::writeback_unit : out-of-range34"<<endl; }
+					if(edge_block_array_m[lastgenworkblockaddr].clusterinfo.flag != VALID){ cout<<"graphtinker::writeback_unit : addr out-of-range8"<<endl; }
+					svs_index = edge_block_array_m[lastgenworkblockaddr].clusterinfo.sv_ptr;
+				} else {
+					if(lastgenworkblockaddr >= edge_block_array_c.size()){ cout<<"graphtinker::writeback_unit : out-of-range35"<<endl; }
+					if(edge_block_array_c[lastgenworkblockaddr].clusterinfo.flag != VALID){ cout<<"graphtinker::writeback_unit : addr out-of-range82"<<endl; }
+					svs_index = edge_block_array_c[lastgenworkblockaddr].clusterinfo.sv_ptr;
+				}
 				clusterinfo.sv_ptr = svs_index;
 				
 				// #ifdef EN_OTHERS
@@ -138,35 +143,49 @@ void graphtinker::writeback_unit(
 				cout<<"svs.size() : "<<svs.size()<<" (writeback_unit)"<<endl;
 				#endif
 			} else { cout<<"bug! should never be seen here (WritebackUnit7) "<<endl; }
-			//1001338 >= svs.size()
-			if(clusterinfo.sv_ptr == 1001338){ cout<<"bug! : addr out-of-range5 (writeback_unit). clusterinfo.sv_ptr : "<<clusterinfo.sv_ptr<<", svs.size() : "<<svs.size()<<endl; }
 		}
 	}
 	#endif
 	
 	/** write to DRAM */
 	if(writebackunitcmd.writeback == YES){
-		edgeblock->edgeinfo.flag = VALID;		
-		edge_block_array[writebackunitcmd.addr] = *edgeblock;
-		
-		#ifdef cpuem_bugs_b1
-		if(writebackunitcmd.addr>=edge_block_array.size()){ cout<<"bug! : writebackunitcmd.addr out-of-range (WritebackUnit)"<<endl; }	
+		#ifdef EN_BUGCHECK
+		if(geni == 1){ if(writebackunitcmd.addr>=edge_block_array_m.size()){ cout<<"bug! : writebackunitcmd.addr out-of-range2 (WritebackUnit)"<<endl; } }
+		else { if(writebackunitcmd.addr>=edge_block_array_c.size()){ cout<<"bug! : writebackunitcmd.addr out-of-range3 (WritebackUnit)"<<endl; }  }
 		#endif
-	}	
+		
+		edgeblock->edgeinfo.flag = VALID;
+		if(geni == 1){ edge_block_array_m[writebackunitcmd.addr] = *edgeblock; }
+		else { edge_block_array_c[writebackunitcmd.addr] = *edgeblock; }
+		
+		// update ll_edge_block_array
+		#ifdef EN_CRUMPLEINONDELETE
+		ll_edge_block_array[moduleparams->ll_localbaseaddrptr_x].ll_edgeblock[moduleparams->ll_localaddrptr_x].which_gen_is_the_main_copy_located = geni;//***
+		#endif
+	}
 	
 	/** write cluster info to all workblocks in given subblock */
 	if(writebackunitcmd.markasclustered==YES){
-		unsigned int subblockbaseaddr = get_edgeblock_offset(hvtx_id) + (writebackunitcmd.subblockid * work_blocks_per_subblock);
-		for(unsigned int id=0;id<work_blocks_per_subblock;id++){
-				edge_block_array[(subblockbaseaddr + id)].clusterinfo = clusterinfo;
+		if(geni == 1){ 
+			unsigned int subblockbaseaddr = get_edgeblock_offset(hvtx_id) + (writebackunitcmd.subblockid * work_blocks_per_subblock);
+			for(unsigned int id=0;id<work_blocks_per_subblock;id++){ 
+					edge_block_array_m[(subblockbaseaddr + id)].clusterinfo = clusterinfo;
+			}
+		} else {
+			unsigned int subblockbaseaddr = get_edgeblock_offset(hvtx_id) + (writebackunitcmd.subblockid * work_blocks_per_subblock);
+			for(unsigned int id=0;id<work_blocks_per_subblock;id++){
+					edge_block_array_c[(subblockbaseaddr + id)].clusterinfo = clusterinfo;
+			}
 		}
 	}
 	
 	#ifdef EN_CRUMPLEINONDELETE
 	if(writebackunitcmd.markasclustered==YES){		
-		unsigned int index = clusterinfo.data - EDGEBLOCKARRAYHEIGHT;
-		if(index > lva_overflow_length){ cout<<"bug! out of range. writeback_unit"<<endl; }
+		unsigned int index = clusterinfo.data;
+		if(index > edgeblock_parentinfo.size()){ cout<<"bug! out of range. writeback_unit"<<endl; }
 		if(edgeblock_parentinfo[index].flag != VALID){
+			edgeblock_parentinfo[index].gen_of_parent = geni;
+			edgeblock_parentinfo[index].xvtx_id = hvtx_id; ///***^ [recently added, correct] 
 			edgeblock_parentinfo[index].subblockid = writebackunitcmd.subblockid;
 			edgeblock_parentinfo[index].flag = VALID;
 		}
