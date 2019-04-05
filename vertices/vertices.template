@@ -58,6 +58,9 @@ void vertices::update_vertex_property(vertexid_t xvtx_id, vertexid_t xadjvtx_id,
 			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].indegree += 1; }
 			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].outdegree += 1; }
 			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].indegree += 1; }
+		} else if(graphdirectiontype == REVERSE_DIRECTED_GRAPH){
+			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].indegree += 1; }
+			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].outdegree += 1; }
 		} else { cout<<"vertices::update_vertex_property : error1"<<endl; }
 	} else if (edgeupdatecmd == DELETEEDGE){
 		if(graphdirectiontype == DIRECTEDGRAPH){
@@ -68,6 +71,9 @@ void vertices::update_vertex_property(vertexid_t xvtx_id, vertexid_t xadjvtx_id,
 			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].indegree -= 1; }
 			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].outdegree -= 1; }
 			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].indegree -= 1; }
+		} else if(graphdirectiontype == REVERSE_DIRECTED_GRAPH){
+			if(xvtx_id < num_vertices){ vertex_properties[xvtx_id].indegree -= 1; }
+			if(xadjvtx_id < num_vertices){ vertex_properties[xadjvtx_id].outdegree -= 1; }
 		} else { cout<<"vertices::update_vertex_property : error2"<<endl; }
 	}
 	return;

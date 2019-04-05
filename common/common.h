@@ -8,7 +8,6 @@ using namespace std;
 #define CPU 0
 #define EN_LLGDS 0
 
-#define EN_CRUMPLEINONDELETE
 
 #define cpuem_bugs_b1 0
 #define EN_BUGCHECK 0
@@ -20,6 +19,7 @@ using namespace std;
 
 #define DIRECTEDGRAPH 0
 #define UNDIRECTEDGRAPH 1
+#define REVERSE_DIRECTED_GRAPH 2
 
 #define ZERO 0
 #define NA 999999999 //not applicable
@@ -201,9 +201,7 @@ typedef struct {
 	int heba_hvtx_id;
 	int heba_workblockid;
 	int heba_loffset;
-	#ifdef EN_CRUMPLEINONDELETE
 	int which_gen_is_the_main_copy_located;
-	#endif
 	#endif
 } edge_t;
 
@@ -311,6 +309,11 @@ typedef struct {
 	unsigned int A;
 	unsigned int B;
 } tuple_t;
+
+typedef struct {
+	int A;
+	int B;
+} tuple_int_t;
 
 typedef struct {
 	vertexid_t A;

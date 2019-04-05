@@ -11,11 +11,13 @@ print('number of arguments : ' + str(len(sys.argv)))
 #### system variables
 context['NUM_CORES'] = int(sys.argv[1])
 context['LLFULLDB'] = sys.argv[2]
-context['WORK_BLOCK_HEIGHT'] = int(sys.argv[3])
+context['CRUMPLEINONDELETE'] = sys.argv[3]
+context['WORK_BLOCK_HEIGHT'] = int(sys.argv[4])
 
 print ('GraphTinker configured parameters (Courtesy: Jinja 2.0)...')
 print ('NUM_CORES: ' + str(context['NUM_CORES']))
 print ('LLFULLDB: ' + str(context['LLFULLDB']))
+print ('CRUMPLEINONDELETE: ' + str(context['CRUMPLEINONDELETE']))
 print ('WORK_BLOCK_HEIGHT: ' + str(context['WORK_BLOCK_HEIGHT']))
 	
 #================================

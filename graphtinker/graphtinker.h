@@ -103,6 +103,18 @@ class graphtinker{
 			unsigned int _ll_eba_expansion_addition_height,
 			unsigned int _ll_lva_expansion_addition_height,
 			unsigned int _eba_expansion_padding
+			);			
+		void create(
+			unsigned int _sgh_for_xvtxid, 
+			unsigned int _sgh_for_xadjvtxid, 
+			unsigned int _updatev, 
+			unsigned int _min_vertex, 
+			unsigned int _max_vertex, 
+			unsigned int _num_vertices, 
+			unsigned int _num_edges,
+			unsigned int _graphdirectiontype,
+			unsigned int _sub_block_height, 
+			unsigned int _page_block_height
 			);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
