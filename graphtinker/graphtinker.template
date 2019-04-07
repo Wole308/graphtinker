@@ -90,8 +90,8 @@ graphtinker::~graphtinker(){
 	edge_block_array_c.clear();
 	delete [] vertex_translator;
 	#ifdef EN_LLGDS	
-	delete [] ll_edge_block_array;
-	delete [] ll_lva;
+	ll_edge_block_array.clear();
+	ll_lva.clear();
 	#endif */
 }
 
@@ -154,7 +154,7 @@ void graphtinker::create(
 	cout<<"sgh_for_xadjvtxid : "<<_sgh_for_xadjvtxid<<endl;
 	cout<<"updatev : "<<_updatev<<endl;
 	cout<<"min_vertex : "<<_min_vertex<<endl;
-	cout<<"min_vertex : "<<_min_vertex<<endl;
+	cout<<"max_vertex : "<<_max_vertex<<endl;
 	cout<<"num_vertices : "<<_num_vertices<<endl;
 	cout<<"num_edges : "<<_num_edges<<endl;
 	cout<<"graphdirectiontype : "<<_graphdirectiontype<<endl;
@@ -193,8 +193,8 @@ void graphtinker::create(
 	cout<<"lvatracker start mark : "<<lvatracker.mark<<endl;
 	
 	#ifdef EN_LLGDS
-	ll_edge_block_array.resize(((num_vertices * page_block_height) / {{context['LLEDGEBLOCKSIZE']}})); 
-	ll_lva.resize((num_vertices / {{context['LVACOARSENESSWIDTH']}})); 
+	ll_edge_block_array.resize(((num_vertices * page_block_height) / LLEDGEBLOCKSIZE));
+	ll_lva.resize(((num_vertices + (LVACOARSENESSWIDTH - 1)) / LVACOARSENESSWIDTH));
 	ll_eba_tracker.ptraddr=0;	
 	initialize_lvas();
 	#endif
@@ -213,6 +213,13 @@ void graphtinker::create(
 	// metadata (for delete and crumple in)
 	#ifdef EN_CRUMPLEINONDELETE
 	edgeblock_parentinfo.resize((num_edges / (page_block_height / 2)));
+	#endif
+	cout<<"edge_block_array_m.size() : "<<edge_block_array_m.size()<<endl;
+	cout<<"edge_block_array_c.size() : "<<edge_block_array_c.size()<<endl;
+	#ifdef EN_LLGDS
+	cout<<"ll_edge_block_array.size() : "<<ll_edge_block_array.size()<<endl;
+	cout<<"ll_lva.size() : "<<ll_lva.size()<<endl;
+	cout<<"ll_eba_tracker.ptraddr : "<<ll_eba_tracker.ptraddr<<endl;
 	#endif
 	return;	
 }
@@ -235,12 +242,22 @@ void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int e
 	return;
 }
 
+void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker){
+	if(src > vertex_range){ cout<<"graphtinker::insert_edge : bug, out of range19. src : "<<src<<", vertex_range : "<<vertex_range<<endl; }
+	unsigned int edgeupdatecmd = INSERTEDGE;
+	if(sgh_for_xvtxid == OTHER){ src = (unsigned int)get_localvid((vertexid_t)src, ext_vertex_translator, ext_translator_tracker); }
+	if(sgh_for_xadjvtxid == OTHER){ dst = (unsigned int)get_localvid((vertexid_t)dst, ext_vertex_translator, ext_translator_tracker); }
+	check_whether_to_resize_edgeblockarray_m(src);
+	update_edge(src, dst, ew, edgeupdatecmd, vertices_handler);
+	return;
+}
+
 void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker){
 	if(src > vertex_range){ cout<<"graphtinker::insert_edge : bug, out of range19. src : "<<src<<", vertex_range : "<<vertex_range<<endl; }
 	unsigned int edgeupdatecmd = INSERTEDGE;
 	if(sgh_for_xvtxid == OTHER){ src = (unsigned int)get_localvid((vertexid_t)src, ext_vertex_translator, ext_translator_tracker); }
-	if(sgh_for_xadjvtxid == OTHER){ cout<<"graphtinker::insert_edge : tabooooo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"<<endl; dst = (unsigned int)get_localvid((vertexid_t)dst, ext_vertex_translator, ext_translator_tracker); }
-	check_whether_to_resize_edgeblockarray_m(src); //***
+	if(sgh_for_xadjvtxid == OTHER){ dst = (unsigned int)get_localvid((vertexid_t)dst, ext_vertex_translator, ext_translator_tracker); }
+	check_whether_to_resize_edgeblockarray_m(src);
 	update_edge(src, dst, ew, edgeupdatecmd, external_vertices_handler);
 	return;
 }

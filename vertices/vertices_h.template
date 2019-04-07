@@ -21,6 +21,7 @@ class vertices{
 	void writedata(vertexid_t vertexid, vertexdata_t vertexdata);
 	vertexproperty_t readproperty(vertexid_t vertexid);
 	void writeproperty(vertexid_t vertexid, vertexproperty_t vertexproperty);
+	void increment_outdegree(vertexid_t vertexid);
 	void update_vertex_property(vertexid_t xvtx_id, vertexid_t xadjvtx_id, unsigned int edgeupdatecmd, unsigned int graphdirectiontype);
 	void initialize(float initvalue);
 	void print_first_n(unsigned int n);

@@ -30,23 +30,25 @@ void graphtinker::ll_insert(
 	unsigned int lvaindex=0;
 	unsigned int ONE=1;
 	
-	/// find lvaindex
+	/// calculate lvaindex
 	lvaindex = edge.xvtx_id / LVACOARSENESSWIDTH;
+	
+	/// resize ll_lva if full 
+	if(lvaindex >= ll_lva.size()){
+		ll_lva.resize((ll_lva.size() + ll_lva_expansion_addition_height));
+		cout<<"ll_insert : resizing ll_lva... "<<endl;
+	}
 	#ifdef EN_BUGCHECK
 	if(lvaindex>=ll_lva.size()){cout<<"graphtinker::ll_insert : out-of-range 1 lvaindex = "<<lvaindex<<", ll_lva.size() = "<<ll_lva.size()<<endl;}
 	#endif
+	
+	/// retrieve ll_lva entity
 	ll_logicalvertexentity_t entity = ll_lva[lvaindex];	
 	
 	/// resize ll_edge_block_array if full	
 	if(((entity.lastlocalbaseaddr) >= ll_edge_block_array.size()) || (ll_eba_tracker->ptraddr >= ll_edge_block_array.size())){
 		cout<<"ll_insert : resizing ll_edge_block_array..."<<endl;
 		ll_edge_block_array.resize((ll_edge_block_array.size() + ll_eba_expansion_addition_height));
-	}
-	
-	/// resize ll_lva if full 
-	if(lvaindex >= ll_lva.size()){
-		ll_lva.resize((ll_lva.size() + ll_lva_expansion_addition_height));
-		cout<<"ll_insert : resizing ll_lva... "<<endl;
 	}
 	
 	/// check if we need to initialize first

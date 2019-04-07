@@ -48,6 +48,12 @@ void vertices::writeproperty(vertexid_t vertexid, vertexproperty_t vertexpropert
 	return;
 }
 
+void vertices::increment_outdegree(vertexid_t vertexid){
+	if(vertexid >= num_vertices){ cout<<"vertices::increment_outdegree : out of range5. vertexid : "<<vertexid<<", num_vertices : "<<num_vertices<<endl; }
+	vertex_properties[vertexid].outdegree +=1;
+	return;
+}
+
 void vertices::update_vertex_property(vertexid_t xvtx_id, vertexid_t xadjvtx_id, unsigned int edgeupdatecmd, unsigned int graphdirectiontype){
 	if(edgeupdatecmd == INSERTEDGE){
 		if(graphdirectiontype == DIRECTEDGRAPH){

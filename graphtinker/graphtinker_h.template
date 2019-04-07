@@ -118,6 +118,7 @@ class graphtinker{
 			);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
+		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker);
 		void delete_edge(unsigned int src, unsigned int dst, unsigned int ew);
 		void delete_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
