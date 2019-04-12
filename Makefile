@@ -1,4 +1,4 @@
-export OMP_NUM_THREADS=1
+export OMP_NUM_THREADS=2
 NUM_CORES=1
 
 ON=1
@@ -40,8 +40,10 @@ GDSARG21=graphtinker/writeback_unit.cpp
 GDSARG22=graphtinker/deleteandcrumplein_unit.cpp
 GDSARG23=graphtinker/ll_unit.cpp
 TESTARG1=tests/updates_test.cpp
+TESTARG2=tests/multicore_updates_test.cpp
 
-TESTARG=$(TESTARG1)
+# TESTARG=$(TESTARG1)
+TESTARG=$(TESTARG2)
 GDSARG=$(GDSARG1) $(GDSARG2) $(GDSARG3) $(GDSARG4) $(GDSARG5) $(GDSARG6) $(GDSARG7) $(GDSARG8) $(GDSARG9) $(GDSARG10) $(GDSARG11) $(GDSARG12) $(GDSARG13) $(GDSARG14) $(GDSARG15) $(GDSARG16) $(GDSARG17) $(GDSARG18) $(GDSARG19) $(GDSARG20) $(GDSARG21) $(GDSARG22) $(GDSARG23)
 
 PYARG=$(NUM_CORES) $(LL) $(CRUMPLEINONDELETE) 4

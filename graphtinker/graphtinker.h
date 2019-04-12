@@ -151,6 +151,7 @@ class graphtinker{
 		void print_edgeblockarray(vertexid_t begin, vertexid_t end);
 		unsigned int get_edge_block_array_height(vector<edge_nt> & edge_block_array);
 		void check_whether_to_resize_edgeblockarray_m(unsigned int vid);
+		unsigned int get_vertex_range();
 		
 		// compute unit 
 		void compute_unit(

@@ -235,7 +235,7 @@ void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int e
 
 void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler){
 	unsigned int edgeupdatecmd = INSERTEDGE;
-	if(sgh_for_xvtxid == SELF){ src = (unsigned int)get_localvid((vertexid_t)src); if(translator_tracker.mark > num_vertices){ cout<<"graphtinker::insert_edge : something wrong65 : translator_tracker.mark : "<<translator_tracker.mark<<", num_vertices : "<<num_vertices<<", vertex_range : "<<vertex_range<<endl; } }
+	if(sgh_for_xvtxid == SELF){ src = (unsigned int)get_localvid((vertexid_t)src); }
 	if(sgh_for_xadjvtxid == SELF){ dst = (unsigned int)get_localvid((vertexid_t)dst); }
 	check_whether_to_resize_edgeblockarray_m(src); //***
 	update_edge(src, dst, ew, edgeupdatecmd, external_vertices_handler);
@@ -253,7 +253,7 @@ void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int e
 }
 
 void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker){
-	if(src > vertex_range){ cout<<"graphtinker::insert_edge : bug, out of range19. src : "<<src<<", vertex_range : "<<vertex_range<<endl; }
+	if(src > vertex_range){ cout<<"graphtinker::insert_edge : bug, out of range199. src : "<<src<<", vertex_range : "<<vertex_range<<endl; }
 	unsigned int edgeupdatecmd = INSERTEDGE;
 	if(sgh_for_xvtxid == OTHER){ src = (unsigned int)get_localvid((vertexid_t)src, ext_vertex_translator, ext_translator_tracker); }
 	if(sgh_for_xadjvtxid == OTHER){ dst = (unsigned int)get_localvid((vertexid_t)dst, ext_vertex_translator, ext_translator_tracker); }
@@ -869,6 +869,10 @@ void graphtinker::check_whether_to_resize_edgeblockarray_m(unsigned int vid){
 		cout<<"graphtinker::resize_edgeblockarray_m : resizing... : vid : "<<vid<<", new edge_block_array_m size : "<<edge_block_array_m.size()<<", new edge_block_array_m height : "<<get_edge_block_array_height(edge_block_array_m)<<endl;	
 	}
 	return;
+}
+
+unsigned int graphtinker::get_vertex_range(){
+	return vertex_range;
 }
 
 
