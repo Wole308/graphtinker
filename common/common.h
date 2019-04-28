@@ -146,7 +146,7 @@ using namespace std;
 #define OTHER 2
 
 typedef unsigned int vertexid_t;
-typedef unsigned int vertexid_t;
+typedef unsigned int edgeid_t;
 typedef unsigned int bucket_t;
 typedef unsigned int edgeweight_t;
 typedef unsigned int flag_t;

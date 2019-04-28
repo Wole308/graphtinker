@@ -18,7 +18,7 @@
 using namespace std;
 
 /**
-cout<<"NUM_CORES: 1"<<endl;
+cout<<"NUM_CORES: 2"<<endl;
 cout<<"LLFULLDB: ON"<<endl;
 cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
 cout<<"SUB_BLOCK_HEIGHT: "<<endl;
@@ -191,7 +191,7 @@ void deletions(graphtinker & tinker){
 
 int main(){	
 	cout<<"started  (updates_test)"<<endl;	
-	cout<<"NUM_CORES: 1"<<endl;
+	cout<<"NUM_CORES: 2"<<endl;
 	cout<<"LLFULLDB: ON"<<endl;
 	cout<<"WORK_BLOCK_HEIGHT: 4"<<endl;
 	

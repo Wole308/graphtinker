@@ -204,11 +204,8 @@ void graphtinker::create(
 		vertices_handler.initialize(vertex_range, 0.15);
 	} else {}
 	if((sgh_for_xvtxid == SELF) || (sgh_for_xadjvtxid == SELF)){
-		vertex_translator = new vertex_translator_t[vertex_range];		
-		initialize_vertex_translator();		
-		translator_tracker.mark = 0;
+		translator_handler.initialize(vertex_range);
 	}
-	translator_tracker.mark = 0;
 	
 	// metadata (for delete and crumple in)
 	#ifdef EN_CRUMPLEINONDELETE
@@ -225,9 +222,9 @@ void graphtinker::create(
 }
 
 void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew){
-	unsigned int edgeupdatecmd = INSERTEDGE;	
-	if(sgh_for_xvtxid == SELF){ src = get_localvid((vertexid_t)src); }
-	if(sgh_for_xadjvtxid == SELF){ dst = get_localvid((vertexid_t)dst); }
+	unsigned int edgeupdatecmd = INSERTEDGE;
+	if(sgh_for_xvtxid == SELF){ src = translator_handler.get_localvid((vertexid_t)src); }
+	if(sgh_for_xadjvtxid == SELF){ dst = translator_handler.get_localvid((vertexid_t)dst); }
 	check_whether_to_resize_edgeblockarray_m(src);
 	update_edge(src, dst, ew, edgeupdatecmd, vertices_handler);
 	return;
@@ -235,28 +232,28 @@ void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int e
 
 void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler){
 	unsigned int edgeupdatecmd = INSERTEDGE;
-	if(sgh_for_xvtxid == SELF){ src = (unsigned int)get_localvid((vertexid_t)src); }
-	if(sgh_for_xadjvtxid == SELF){ dst = (unsigned int)get_localvid((vertexid_t)dst); }
-	check_whether_to_resize_edgeblockarray_m(src); //***
+	if(sgh_for_xvtxid == SELF){ src = (unsigned int)translator_handler.get_localvid((vertexid_t)src); }
+	if(sgh_for_xadjvtxid == SELF){ dst = (unsigned int)translator_handler.get_localvid((vertexid_t)dst); }
+	check_whether_to_resize_edgeblockarray_m(src);
 	update_edge(src, dst, ew, edgeupdatecmd, external_vertices_handler);
 	return;
 }
 
-void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker){
+void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, translator & translator_handler){
 	if(src > vertex_range){ cout<<"graphtinker::insert_edge : bug, out of range19. src : "<<src<<", vertex_range : "<<vertex_range<<endl; }
 	unsigned int edgeupdatecmd = INSERTEDGE;
-	if(sgh_for_xvtxid == OTHER){ src = (unsigned int)get_localvid((vertexid_t)src, ext_vertex_translator, ext_translator_tracker); }
-	if(sgh_for_xadjvtxid == OTHER){ dst = (unsigned int)get_localvid((vertexid_t)dst, ext_vertex_translator, ext_translator_tracker); }
+	if(sgh_for_xvtxid == OTHER){ src = (unsigned int)translator_handler.get_localvid((vertexid_t)src); }
+	if(sgh_for_xadjvtxid == OTHER){ dst = (unsigned int)translator_handler.get_localvid((vertexid_t)dst); }
 	check_whether_to_resize_edgeblockarray_m(src);
 	update_edge(src, dst, ew, edgeupdatecmd, vertices_handler);
 	return;
 }
 
-void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker){
+void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, translator & translator_handler){
 	if(src > vertex_range){ cout<<"graphtinker::insert_edge : bug, out of range199. src : "<<src<<", vertex_range : "<<vertex_range<<endl; }
 	unsigned int edgeupdatecmd = INSERTEDGE;
-	if(sgh_for_xvtxid == OTHER){ src = (unsigned int)get_localvid((vertexid_t)src, ext_vertex_translator, ext_translator_tracker); }
-	if(sgh_for_xadjvtxid == OTHER){ dst = (unsigned int)get_localvid((vertexid_t)dst, ext_vertex_translator, ext_translator_tracker); }
+	if(sgh_for_xvtxid == OTHER){ src = (unsigned int)translator_handler.get_localvid((vertexid_t)src); }
+	if(sgh_for_xadjvtxid == OTHER){ dst = (unsigned int)translator_handler.get_localvid((vertexid_t)dst); }
 	check_whether_to_resize_edgeblockarray_m(src);
 	update_edge(src, dst, ew, edgeupdatecmd, external_vertices_handler);
 	return;
@@ -264,16 +261,16 @@ void graphtinker::insert_edge(unsigned int src, unsigned int dst, unsigned int e
 
 void graphtinker::delete_edge(unsigned int src, unsigned int dst, unsigned int ew){
 	unsigned int edgeupdatecmd = DELETEEDGE;
-	if(sgh_for_xvtxid == SELF){ src = get_localvid((vertexid_t)src); }
-	if(sgh_for_xadjvtxid == SELF){ dst = get_localvid((vertexid_t)dst); }
+	if(sgh_for_xvtxid == SELF){ src = translator_handler.get_localvid((vertexid_t)src); }
+	if(sgh_for_xadjvtxid == SELF){ dst = translator_handler.get_localvid((vertexid_t)dst); }
 	update_edge(src, dst, ew, edgeupdatecmd, vertices_handler);
 	return;
 }
 
 void graphtinker::delete_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler){
 	unsigned int edgeupdatecmd = DELETEEDGE;
-	if(sgh_for_xvtxid == SELF){ src = get_localvid((vertexid_t)src); }
-	if(sgh_for_xadjvtxid == SELF){ dst = get_localvid((vertexid_t)dst); }
+	if(sgh_for_xvtxid == SELF){ src = translator_handler.get_localvid((vertexid_t)src); }
+	if(sgh_for_xadjvtxid == SELF){ dst = translator_handler.get_localvid((vertexid_t)dst); }
 	update_edge(src, dst, ew, edgeupdatecmd, external_vertices_handler);
 	return;
 }
@@ -388,8 +385,8 @@ void graphtinker::update_edge(unsigned int src, unsigned int dst, unsigned int e
 	if(updatev != OFF){
 		// update vertex of first edge
 		xvtxid = edge.xvtx_id; xadjvtxid = edge.xadjvtx_id;
-		if(sgh_for_xvtxid == SELF){ xvtxid = get_globalvid(edge.xvtx_id); }
-		if(sgh_for_xadjvtxid == SELF){ xadjvtxid = get_globalvid(edge.xadjvtx_id); }		
+		if(sgh_for_xvtxid == SELF){ xvtxid = translator_handler.get_globalvid(edge.xvtx_id); }
+		if(sgh_for_xadjvtxid == SELF){ xadjvtxid = translator_handler.get_globalvid(edge.xadjvtx_id); }		
 		external_vertices_handler.update_vertex_property(xvtxid, xadjvtxid, edgeupdatecmd, graphdirectiontype);
 	}
 
@@ -764,38 +761,6 @@ void graphtinker::initialize_lvas(){
 	return;
 }
 
-vertexid_t graphtinker::get_localvid(vertexid_t globalvid){
-	if(globalvid > vertex_range){ cout<<"graphtinker::get_localvid : bug, out of range5. globalvid : "<<globalvid<<", vertex_range : "<<vertex_range<<endl; }
-	if(translator_tracker.mark > vertex_range){ cout<<"graphtinker::get_localvid : bug, out of range6. globalvid : "<<globalvid<<", vertex_range : "<<vertex_range<<endl; }
-	if(vertex_translator[globalvid].flag != VALID){
-		vertex_translator[translator_tracker.mark].globalvid = globalvid;
-		vertex_translator[translator_tracker.mark].lflag = VALID;		
-		vertex_translator[globalvid].localvid = translator_tracker.mark;
-		vertex_translator[globalvid].flag = VALID;
-		translator_tracker.mark += 1;
-	}
-	return vertex_translator[globalvid].localvid;
-}
-
-vertexid_t graphtinker::get_globalvid(vertexid_t localvid){
-	if(localvid > vertex_range){ cout<<"graphtinker::get_globalvid : bug. out of range7 (localvid > vertex_range). localvid : "<<localvid<<", vertex_range : "<<vertex_range<<endl; } 
-	/// if(vertex_translator[localvid].lflag != VALID){ cout<<"graphtinker::get_globalvid : bug. out of range8 (lflag != VALID). localvid : "<<localvid<<", vertex_range : "<<vertex_range<<", vertex_translator["<<localvid<<"].globalvid : "<<vertex_translator[localvid].globalvid<<endl; } 
-	return vertex_translator[localvid].globalvid;
-}
-
-vertexid_t graphtinker::get_localvid(vertexid_t globalvid, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker){
-	if(globalvid > vertex_range){ cout<<"graphtinker::get_localvid 2 : bug, out of range69. globalvid : "<<globalvid<<", vertex_range : "<<vertex_range<<endl; }
-	if(ext_translator_tracker->mark > vertex_range){ cout<<"graphtinker::get_localvid : bug, out of range6. globalvid : "<<globalvid<<", vertex_range : "<<vertex_range<<endl; }
-	if(ext_vertex_translator[globalvid].flag != VALID){
-		ext_vertex_translator[ext_translator_tracker->mark].globalvid = globalvid;
-		ext_vertex_translator[ext_translator_tracker->mark].lflag = VALID;		
-		ext_vertex_translator[globalvid].localvid = ext_translator_tracker->mark;
-		ext_vertex_translator[globalvid].flag = VALID;
-		ext_translator_tracker->mark += 1;
-	}
-	return ext_vertex_translator[globalvid].localvid;
-}
-
 vertices & graphtinker::get_vertices_handler(){
 	return vertices_handler;
 }
@@ -804,37 +769,12 @@ unsigned int graphtinker::get_graphdirectiontype(){
 	return graphdirectiontype;
 }
 
-vertexid_t graphtinker::read_globalvid(vertexid_t localvid){
-	if(localvid > vertex_range){ cout<<"graphtinker::read_globalvid : bug, out of range. localvid : "<<localvid<<", vertex_range : "<<vertex_range<<endl; }
-	return vertex_translator[localvid].globalvid;
+translator & graphtinker::gettranslator(){
+	return translator_handler;
 }
 
 unsigned int graphtinker::get_translator_tracker_mark(){
-	return translator_tracker.mark;
-}
-
-void graphtinker::print_first_n_items_of_vertex_translator(unsigned int n){
-	cout<<"graphtinker::print_first_n_items_of_vertex_translator : n : "<<n<<endl;
-	for(unsigned int i=0; i<n; i++){
-		cout<<i<<": [";
-		cout<<vertex_translator[i].globalvid;
-		cout<<", "<<vertex_translator[i].localvid;
-		cout<<", "<<vertex_translator[i].flag;
-		cout<<", "<<vertex_translator[i].lflag;
-		cout<<"]"<<endl;
-	}
-	return;
-}
-
-void graphtinker::initialize_vertex_translator(){
-	cout<<"graphtinker::initialize_vertex_translator : initializing vertex translator"<<endl;
-	for(unsigned int i=0; i<vertex_range; i++){
-		vertex_translator[i].globalvid = 0;
-		vertex_translator[i].localvid = 0;
-		vertex_translator[i].flag = INVALID;
-		vertex_translator[i].lflag = INVALID;
-	}
-	return;
+	return translator_handler.get_translator_tracker_mark();
 }
 
 unsigned int graphtinker::get_work_blocks_per_page(){

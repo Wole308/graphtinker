@@ -5,6 +5,7 @@
 #include <vector>
 #include "../common/common.h"
 #include "../vertices/vertices.h" 
+#include "../translator/translator.h" 
 using namespace std;
 
 /// classes
@@ -74,8 +75,9 @@ class graphtinker{
 		
 		// vertices 
 		vertices vertices_handler;
-		vertex_translator_t * vertex_translator;
-		tracker_t translator_tracker;
+		
+		// translator
+		translator translator_handler;
 		
 		// metadata (for delete and crumple in)
 		#ifdef EN_CRUMPLEINONDELETE	
@@ -118,8 +120,8 @@ class graphtinker{
 			);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew);
 		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
-		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker);
-		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker);
+		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, translator & translator_handler);
+		void insert_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & external_vertices_handler, translator & translator_handler);
 		void delete_edge(unsigned int src, unsigned int dst, unsigned int ew);
 		void delete_edge(unsigned int src, unsigned int dst, unsigned int ew, vertices & _vertices_handler);
 		void update_edge(unsigned int src, unsigned int dst, unsigned int ew, unsigned int edgeupdatecmd, vertices & _vertices_handler);
@@ -137,15 +139,10 @@ class graphtinker{
 		unsigned int print_svs_size();
 		unsigned int print_freed_edgeblock_list_size();
 		void initialize_lvas();
-		vertexid_t get_localvid(vertexid_t globalvid);
-		vertexid_t get_globalvid(vertexid_t localvid);
-		vertexid_t get_localvid(vertexid_t globalvid, vertex_translator_t * ext_vertex_translator, tracker_t * ext_translator_tracker);
 		vertices & get_vertices_handler();
 		unsigned int get_graphdirectiontype();
-		vertexid_t read_globalvid(vertexid_t localvid);
+		translator & gettranslator();
 		unsigned int get_translator_tracker_mark();
-		void print_first_n_items_of_vertex_translator(unsigned int n);
-		void initialize_vertex_translator();
 		unsigned int get_work_blocks_per_page();
 		unsigned int get_work_blocks_per_subblock();
 		void print_edgeblockarray(vertexid_t begin, vertexid_t end);
